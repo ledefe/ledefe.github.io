@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Flume 1.7 安裝（服务聚合端） | ledefe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Flume 1.7 安裝（服务聚合端）该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0 资源准备资源： flume.zip 部署步骤指定安装目录mkdir -p /opt/flume_server 接下来的操作都在/opt/flume_server下操作 zip包准备 该flume.zip已经支持flume es5.3.0 sink 上传至/opt/flume_se">
+<meta name="keywords" content="flume1.7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flume 1.7 安裝（服务聚合端）">
+<meta property="og:url" content="http://ledefe.tech/2017/04/26/flume1.7-install(server)/index.html">
+<meta property="og:site_name" content="ledefe">
+<meta property="og:description" content="Flume 1.7 安裝（服务聚合端）该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0 资源准备资源： flume.zip 部署步骤指定安装目录mkdir -p /opt/flume_server 接下来的操作都在/opt/flume_server下操作 zip包准备 该flume.zip已经支持flume es5.3.0 sink 上传至/opt/flume_se">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-04T08:18:55.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flume 1.7 安裝（服务聚合端）">
+<meta name="twitter:description" content="Flume 1.7 安裝（服务聚合端）该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0 资源准备资源： flume.zip 部署步骤指定安装目录mkdir -p /opt/flume_server 接下来的操作都在/opt/flume_server下操作 zip包准备 该flume.zip已经支持flume es5.3.0 sink 上传至/opt/flume_se">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">ledefe</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">ledefe</h2>
+            <h3 id="title">Java 服务端工程师</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Xiamen, China</span>
+            <a id="follow" target="_blank" href="https://github.com/ledefe/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                34
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                18
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ledefe/" target="_blank" title="github" >
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-flume1.7-install(server)" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Flume 1.7 安裝（服务聚合端）
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/04/26/flume1.7-install(server)/">
+            <time datetime="2017-04-26T06:32:19.000Z" itemprop="datePublished">2017-04-26</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/flume1-7/">flume1.7</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="Flume-1-7-安裝（服务聚合端）"><a href="#Flume-1-7-安裝（服务聚合端）" class="headerlink" title="Flume 1.7 安裝（服务聚合端）"></a>Flume 1.7 安裝（服务聚合端）</h1><p>该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0</p>
+<h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1><p>资源： flume.zip</p>
+<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><h2 id="指定安装目录"><a href="#指定安装目录" class="headerlink" title="指定安装目录"></a>指定安装目录</h2><pre><code>mkdir -p /opt/flume_server
+</code></pre><p><strong>接下来的操作都在/opt/flume_server下操作</strong></p>
+<h2 id="zip包准备"><a href="#zip包准备" class="headerlink" title="zip包准备"></a>zip包准备</h2><ul>
+<li>该flume.zip已经支持flume es5.3.0 sink</li>
+<li>上传至/opt/flume_server目录下</li>
+</ul>
+<blockquote>
+<p>cd /opt/flume_server<br>rz -y</p>
+</blockquote>
+<h2 id="解压zip包"><a href="#解压zip包" class="headerlink" title="解压zip包"></a>解压zip包</h2><ul>
+<li>在/opt/flume_server目录下解压</li>
+</ul>
+<blockquote>
+<p>unzip flume.zip  </p>
+</blockquote>
+<h2 id="定义配置文件"><a href="#定义配置文件" class="headerlink" title="定义配置文件"></a>定义配置文件</h2><ul>
+<li>配置文件都放置到conf中去</li>
+</ul>
+<blockquote>
+<p>mkdir -p cloud/conf<br>cd cloud/conf</p>
+</blockquote>
+<ul>
+<li>这里分别定义三个文件：4145.conf 4144.conf log4j2.xml</li>
+<li>4145.conf 4144.conf 分别对应两个agent服务。</li>
+<li>对外提供avro服务，并最终持久化到es服务中。</li>
+<li>目前文件已定义好，只需更改对应es服务相关信息和avro提供的端口</li>
+</ul>
+<ol>
+<li>4145.conf文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">a1.sources=s1</div><div class="line">a1.channels=c1</div><div class="line">a1.sinks=k1</div><div class="line"></div><div class="line">a1.channels.c1.type=memory</div><div class="line"></div><div class="line"><span class="comment">#a1.channels.c1.type=file</span></div><div class="line"><span class="comment">#a1.channels.c1.checkpointDir = /mnt/flume/checkpoint</span></div><div class="line"><span class="comment">#a1.channels.c1.dataDirs = /mnt/flume/data</span></div><div class="line"></div><div class="line"><span class="comment">#定义avro source</span></div><div class="line">a1.sources.s1.type=avro</div><div class="line">a1.sources.s1.bind=0.0.0.0</div><div class="line">a1.sources.s1.port=4145</div><div class="line">a1.sources.s1.channels=c1</div><div class="line"></div><div class="line">a1.sinks.k1.type=org.apache.flume.sink.elasticsearch5.ElasticSearchSink</div><div class="line">a1.sinks.k1.batchSize=100</div><div class="line"><span class="comment">#es服务的地址</span></div><div class="line">a1.sinks.k1.hostNames=127.0.0.1:9300</div><div class="line">a1.sinks.k1.indexType=logs</div><div class="line"><span class="comment">#动态索引名称，根据需求自行定义比如tomcat/nginx等</span></div><div class="line">a1.sinks.k1.indexName=%&#123;indexName&#125;</div><div class="line">a1.sinks.k1.clusterName=yealink-log</div><div class="line">a1.sinks.k1.serializer=com.nd.imlog.sink.YealinkElasticSearchLogDynamicSerializer</div><div class="line">a1.sinks.k1.channel=c1</div></pre></td></tr></table></figure>
+<ol>
+<li>4144.conf文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">a1.sources=s1</div><div class="line">a1.channels=c1</div><div class="line">a1.sinks=k1</div><div class="line"></div><div class="line">a1.channels.c1.type=memory</div><div class="line"></div><div class="line"><span class="comment">#a1.channels.c1.type=file</span></div><div class="line"><span class="comment">#a1.channels.c1.checkpointDir = /mnt/flume/checkpoint</span></div><div class="line"><span class="comment">#a1.channels.c1.dataDirs = /mnt/flume/data</span></div><div class="line"></div><div class="line"><span class="comment">#定义avro source</span></div><div class="line">a1.sources.s1.type=avro</div><div class="line">a1.sources.s1.bind=0.0.0.0</div><div class="line">a1.sources.s1.port=4144</div><div class="line">a1.sources.s1.channels=c1</div><div class="line"></div><div class="line">a1.sinks.k1.type=org.apache.flume.sink.elasticsearch5.ElasticSearchSink</div><div class="line">a1.sinks.k1.batchSize=100</div><div class="line"><span class="comment">#es服务的地址</span></div><div class="line">a1.sinks.k1.hostNames=127.0.0.1:9300</div><div class="line">a1.sinks.k1.indexType=logs</div><div class="line"><span class="comment">#动态索引名称，根据需求自行定义比如tomcat/nginx等</span></div><div class="line">a1.sinks.k1.indexName=%&#123;indexName&#125;</div><div class="line">a1.sinks.k1.clusterName=yealink-log</div><div class="line">a1.sinks.k1.serializer=com.nd.imlog.sink.YealinkElasticSearchLogDynamicSerializer</div><div class="line">a1.sinks.k1.channel=c1</div></pre></td></tr></table></figure>
+<ol>
+<li>log4j2.xml文件</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"error"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"trace"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;HH:mm:ss.SSS&#125; %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">Console</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFile"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;sys:flumeInstance&#125;/logs/flume.log"</span></span></div><div class="line"><span class="tag">                     <span class="attr">filePattern</span>=<span class="string">"$&#123;sys:flumeInstance&#125;/logs/flume.%d&#123;yyyy-MM-dd&#125;-%i.log"</span></span></div><div class="line"><span class="tag">                     <span class="attr">ignoreExceptions</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;HH:mm:ss.SSS&#125; [%t] %-5level %logger&#123;36&#125; %L %M - %msg%xEx%n"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> /&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"100 MB"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">loggers</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFile"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">root</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">loggers</span>&gt;</span> <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>${sys:flumeInstance} 主要是从系统变量里面获取值，动态设置日志输入目录，通过 -DflumeInstance=xxx进行设置，已在flume_cloud_start.sh中定义好</strong></p>
+<p>##修改脚本配置<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /opt/flume_server/flume</div></pre></td></tr></table></figure></p>
+<ol>
+<li>配置flume_cloud_start.sh</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi flume_cloud_start.sh</div></pre></td></tr></table></figure>
+<ul>
+<li><p>设置实例路径</p>
+<p>   找到 instance_root_dir变量设置实例目录<br>   默认设置为 /opt/flume_server/instance</p>
+</li>
+<li><p>设置运行配置目录</p>
+<p>   设置cloud目录，当前cloud是放在和该执行脚本同级上，可根据需求自行修改</p>
+<p>  <code>nohup $dir/bin/flume-ng agent -c $dir/cloud/conf -f $dir/cloud/conf/${con_file}.conf -DflumeInstance=$flumeInstance  -n a1 &gt;${flumeInstance}/opt.log 2&gt;&amp;1 &amp;</code></p>
+</li>
+<li><p>授权</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x flume_cloud_start.sh</div></pre></td></tr></table></figure>
+<ol>
+<li>flume_cloud_stop.sh脚本</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi flume_cloud_stop.sh</div></pre></td></tr></table></figure>
+<ul>
+<li><p>设置实例路径</p>
+<p>找到 log_dir变量设置实例目录<br>可根据需要更改，默认是在/opt/flume_server/instance下），必须和flume_cloud_start.sh里设置的目录一样<br>  log_dir=/opt/flume_server/instance</p>
+</li>
+<li><p>授权</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x flume_cloud_stop.sh</div></pre></td></tr></table></figure>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">4145为实例名，与cloud/conf中配置的4145.conf相关联</span></div><div class="line">./flume_cloud_start.sh 4145</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">4144为实例名，与cloud/conf中配置的4144.conf相关联</span></div><div class="line">./flume_cloud_start.sh 4144</div></pre></td></tr></table></figure>
+<h2 id="添加至开机自启动"><a href="#添加至开机自启动" class="headerlink" title="添加至开机自启动"></a>添加至开机自启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
+<p>追加以下内容<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/opt/flume_server/flume/flume_cloud_start.sh 4145</div><div class="line">/opt/flume_server/flume/flume_cloud_start.sh 4144</div></pre></td></tr></table></figure></p>
+<h2 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h2><p>nohup: failed to run command ‘/opt/flume_server/flume/bin/flume-ng’: Permission denied</p>
+<p>flume-ng未授权</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /opt/flume_server/flume/bin/flume-ng</div></pre></td></tr></table></figure>
+<h2 id="开机启动-找不到javahome"><a href="#开机启动-找不到javahome" class="headerlink" title="开机启动 找不到javahome"></a>开机启动 找不到javahome</h2><p>可直接在flume_cloud_start.sh中加入JAVA_HOME</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/04/26/flume1.7-install(server)/" data-id="cj75x6ow00013r8q0amm2pkyy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/04/26/flume1.7-install(server)/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/01/logstash-5.3.0-install/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    logstash 部署
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/04/25/flume1.7-install(client)/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">flume1.7-部署(服务采集端)</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="uyan_frame"></div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/31/spring-jar/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/spring/">spring</a></p>
+                            <p class="item-title"><a href="/2017/08/31/spring-jar/" class="title">spring 中获取jar执行的路径</a></p>
+                            <p class="item-date"><time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/31/ansible_tower_install/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/linux/">linux</a></p>
+                            <p class="item-title"><a href="/2017/08/31/ansible_tower_install/" class="title">ansible tower 安装</a></p>
+                            <p class="item-date"><time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/18/EFK-design-II/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/design/">design</a></p>
+                            <p class="item-title"><a href="/2017/08/18/EFK-design-II/" class="title">EFFK-日志采集方案II</a></p>
+                            <p class="item-date"><time datetime="2017-08-18T06:32:19.000Z" itemprop="datePublished">2017-08-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/08/07/Elasticsearch-routing/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/elk/">elk</a></p>
+                            <p class="item-title"><a href="/2017/08/07/Elasticsearch-routing/" class="title">Elasticsearch 不同地域集群分片分配方案</a></p>
+                            <p class="item-date"><time datetime="2017-08-07T06:32:19.000Z" itemprop="datePublished">2017-08-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/07/22/go-web-demo/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/linux/">linux</a></p>
+                            <p class="item-title"><a href="/2017/07/22/go-web-demo/" class="title">go web api 简单实现</a></p>
+                            <p class="item-date"><time datetime="2017-07-22T06:32:19.000Z" itemprop="datePublished">2017-07-22</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/EFK/">EFK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EFK-日志采集/">EFK 日志采集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/">Elasticsearch</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flume-ElasticSearch/">Flume ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ansible/">ansible</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/filebeat/">filebeat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flume/">flume</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flume1-7/">flume1.7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-shell/">java shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kibana/">kibana</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logstash/">logstash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-jar/">spring jar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索设计/">搜索设计</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 13.33px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 16.67px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 13.33px;">搜索设计</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ppoffice/hexo-theme-icarus">Hexo-theme-icarus</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 ledefe<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2143172"></script>
+
+
+
+    
+        <script src="/vendor/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-share.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

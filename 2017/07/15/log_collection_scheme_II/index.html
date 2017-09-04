@@ -3,18 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2017 | ledefe</title>
+    <title>日志采集方案II | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="java boy">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ledefe">
-<meta property="og:url" content="http://ledefe.tech/archives/2017/index.html">
+    <meta name="description" content="日志采集方案II背景早期采用EFK（Eleasticsearch+Flume+kibana）的架构模式，在各服务器端部署flume代理，以tailf的方式，采集日志文件，当日志文件量大时，会导致cpu的使用率会上升，主要是flume代理会占用服务器端资源，基于上述原因，需求更好的解决方式。查阅官网发现，filebeat,一个轻量级的采集程序，基于golang开发，占用资源比flume的少很多。下面">
+<meta name="keywords" content="EFK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日志采集方案II">
+<meta property="og:url" content="http://ledefe.tech/2017/07/15/log_collection_scheme_II/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="java boy">
+<meta property="og:description" content="日志采集方案II背景早期采用EFK（Eleasticsearch+Flume+kibana）的架构模式，在各服务器端部署flume代理，以tailf的方式，采集日志文件，当日志文件量大时，会导致cpu的使用率会上升，主要是flume代理会占用服务器端资源，基于上述原因，需求更好的解决方式。查阅官网发现，filebeat,一个轻量级的采集程序，基于golang开发，占用资源比flume的少很多。下面">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-04T08:21:01.288Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ledefe">
-<meta name="twitter:description" content="java boy">
+<meta name="twitter:title" content="日志采集方案II">
+<meta name="twitter:description" content="日志采集方案II背景早期采用EFK（Eleasticsearch+Flume+kibana）的架构模式，在各服务器端部署flume代理，以tailf的方式，采集日志文件，当日志文件量大时，会导致cpu的使用率会上升，主要是flume代理会占用服务器端资源，基于上述原因，需求更好的解决方式。查阅官网发现，filebeat,一个轻量级的采集程序，基于golang开发，占用资源比flume的少很多。下面">
     
 
     
@@ -171,349 +173,21 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2017</h1>
-            </div>
+            <section id="main"><article id="post-log_collection_scheme_II" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/31/spring-jar/">spring 中获取jar执行的路径</a>
+        <h1 class="article-title" itemprop="name">
+            日志采集方案II
         </h1>
     
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/31/spring-jar/">
-            <time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/spring/">spring</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/spring-jar/">spring jar</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/31/ansible_tower_install/">ansible tower 安装</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/31/ansible_tower_install/">
-            <time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/ansible/">ansible</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/18/EFK-design-II/">EFFK-日志采集方案II</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/18/EFK-design-II/">
-            <time datetime="2017-08-18T06:32:19.000Z" itemprop="datePublished">2017-08-18</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/design/">design</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/EFK-日志采集/">EFK 日志采集</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/07/Elasticsearch-routing/">Elasticsearch 不同地域集群分片分配方案</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/07/Elasticsearch-routing/">
-            <time datetime="2017-08-07T06:32:19.000Z" itemprop="datePublished">2017-08-07</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/22/go-web-demo/">go web api 简单实现</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/22/go-web-demo/">
-            <time datetime="2017-07-22T06:32:19.000Z" itemprop="datePublished">2017-07-22</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/21/java_exec_shell/">java执行shell脚本(备忘)</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/java_exec_shell/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java-shell/">java shell</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/21/linux cmd/">常用命令备忘</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/linux cmd/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/20/service/">制作java程序以linux服务方式启动</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/20/service/">
-            <time datetime="2017-07-20T06:32:19.000Z" itemprop="datePublished">2017-07-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/16/filebeat_install/">filebeat 部署</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/16/filebeat_install/">
-            <time datetime="2017-07-16T06:32:19.000Z" itemprop="datePublished">2017-07-16</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/filebeat/">filebeat</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/15/log_collection_scheme_II/">日志采集方案II</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2017/07/15/log_collection_scheme_II/">
@@ -522,27 +196,171 @@
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/design/">design</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/EFK/">EFK</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="日志采集方案II"><a href="#日志采集方案II" class="headerlink" title="日志采集方案II"></a>日志采集方案II</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>早期采用EFK（Eleasticsearch+Flume+kibana）的架构模式，在各服务器端部署flume代理，以tailf的方式，采集日志文件，当日志文件量大时，会导致cpu的使用率会上升，主要是flume代理会占用服务器端资源，基于上述原因，需求更好的解决方式。查阅官网发现，filebeat,一个轻量级的采集程序，基于golang开发，占用资源比flume的少很多。下面主要介绍filebeat+logstash+Eleasticsearch的日志采集方案。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>五大组件</p>
+<ul>
+<li>filebeat：部署在采集端，负载采集，轻量，占用资源相对较少</li>
+<li>logstash：部署在服务端，主要汇集和过滤各个采集端的数据</li>
+<li>Flume：可做为采集端和采集服务端，在大数据量时，会占用宿主资源</li>
+<li>Eleasticsearch：作为数据的存储，具备高可用，高扩展性的服务</li>
+<li>kibana：数据展现层，提供日志的可视化分析</li>
+</ul>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
+<li><p>flume-agent(采集端)=》flume-server（服务端）=》Eleasticsearch(集群)+kibana</p>
+<p>优点：<br>具有分布式、可靠、可用的特性，可水平扩展。</p>
+<p>缺点：<br>数据量大时，比较耗资源</p>
+</li>
+<li><p>filebeat（采集端）=》logstash（服务端）=》Eleasticsearch(集群)=》kibana</p>
+<p>优点：<br>轻量，体积小，占用资源少</p>
+</li>
+<li><p>filebeat（采集端）=》消息队列<br>消息队列=》logstash（服务端）+Eleasticsearch(集群)+kibana<br>优点：<br>引入消息队列，filebeat 支持 Kafka、Redis消息队列；<br>在数据量大和高并发的情况下，均衡了网络传输，降低了网络闭塞。</p>
+</li>
+</ol>
+<h2 id="附相关部署"><a href="#附相关部署" class="headerlink" title="附相关部署"></a>附相关部署</h2><p><a href="https://ledefe.github.io/posts/filebeat%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">filebeat部署</a></p>
+<p><a href="https://ledefe.github.io/posts/kibana-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">kibana部署</a></p>
+<p><a href="https://ledefe.github.io/posts/JDK-1.8-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">JDK部署</a></p>
+<p><a href="https://ledefe.github.io/posts/logstash-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">logstash部署</a></p>
+<p><a href="https://ledefe.github.io/posts/elasticsearch-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">elasticsearch部署</a></p>
+<p><a href="https://ledefe.github.io/posts/flume1.7-%E9%83%A8%E7%BD%B2(%E6%9C%8D%E5%8A%A1%E9%87%87%E9%9B%86%E7%AB%AF).html" target="_blank" rel="external">flume部署（客户端采集）</a></p>
+<p><a href="https://ledefe.github.io/posts/flume1.7-%E9%83%A8%E7%BD%B2(%E6%9C%8D%E5%8A%A1%E8%81%9A%E5%90%88%E7%AB%AF).html" target="_blank" rel="external">flume（服务采集端）</a></p>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
 
-    <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="page-number" href="/archives/2017/page/4/">4</a><a class="extend next" rel="next" href="/archives/2017/page/2/">下一页 &raquo;</a>
-    </nav>
+    <a data-url="http://ledefe.tech/2017/07/15/log_collection_scheme_II/" data-id="cj75x6oz8002cr8q0i2f0nhen" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/15/log_collection_scheme_II/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/07/16/filebeat_install/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    filebeat 部署
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/07/14/jenkins_install/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">jenkins 安装</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="uyan_frame"></div>
+
+    
+    </section>
+
 </section>
             
                 <aside id="sidebar">

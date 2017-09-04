@@ -8,7 +8,7 @@
     <meta name="description" content="java boy">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ledefe">
-<meta property="og:url" content="http://ledefe.tech/index.html">
+<meta property="og:url" content="http://ledefe.tech/page/3/index.html">
 <meta property="og:site_name" content="ledefe">
 <meta property="og:description" content="java boy">
 <meta property="og:locale" content="zh-CN">
@@ -172,7 +172,7 @@
 
             
             <section id="main">
-    <article id="post-spring-jar" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-message-search-design" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -180,7 +180,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/31/spring-jar/">spring 中获取jar执行的路径</a>
+            <a class="article-title" href="/2017/05/19/message-search-design/">消息搜索设计</a>
         </h1>
     
 
@@ -189,318 +189,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/08/31/spring-jar/">
-            <time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/spring/">spring</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/spring-jar/">spring jar</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="获取jar文件的路径"><a href="#获取jar文件的路径" class="headerlink" title="获取jar文件的路径"></a>获取jar文件的路径</h1><ul>
-<li>ResourceUtils 工具的使用</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#获取jar中的类路径</div><div class="line">URL url = InputDataService.class.getProtectionDomain().getCodeSource().getLocation();</div><div class="line">#获取jar文件</div><div class="line">File jarFile = new File(ResourceUtils.extractJarFileURL(url).getPath())</div></pre></td></tr></table></figure>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/08/31/spring-jar/" data-id="cj75x6p0e002wr8q0sf3g6nfw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/08/31/spring-jar/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-ansible_tower_install" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/31/ansible_tower_install/">ansible tower 安装</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/31/ansible_tower_install/">
-            <time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/ansible/">ansible</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="ansible-tower-安装"><a href="#ansible-tower-安装" class="headerlink" title="ansible tower 安装"></a>ansible tower 安装</h1><ul>
-<li><p>获取 ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz至/opt</p>
-</li>
-<li><p>tar -zxvf ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz</p>
-</li>
-<li><p>mv ansible-tower-setup-bundle-3.0.3-1.el7 ansible-tower</p>
-</li>
-<li><p>cd  ansible-tower </p>
-</li>
-<li><p>配置inventory</p>
-</li>
-</ul>
-<pre><code class="shell">vi inventory
-
-localhost ansible_connection=local
-
-[secondary]
-
-[database]
-
-[all:vars]
-admin_password=&#39;ledefe&#39;
-redis_password=&#39;ledefe&#39;
-
-pg_host=&#39;&#39;
-pg_port=&#39;&#39;
-
-pg_database=&#39;awx&#39;
-pg_username=&#39;awx&#39;
-pg_password=&#39;ledefe&#39;
-</code></pre>
-<ul>
-<li>运行 ./setup.sh</li>
-</ul>
-<p>ImportError: /var/lib/awx/venv/tower/lib/python2.7/site-packages/_ldap.so: failed to map segment from shared object: Permission denied</p>
-<p>发表于 2012/05/04 10:17:03<br>快速禁用SELinux命令：</p>
-<p>/usr/sbin/setenforce 0</p>
-<p>快速开启SELinux命令：</p>
-<p>/usr/sbin/setenforce 1</p>
-<p>禁用SELinux方法：</p>
-<p>修改配置文件 /etc/selinux/config 找到下面的：</p>
-<p>SELINUX=enforcing</p>
-<p>修改为：</p>
-<p>SELINUX=disabled</p>
-<p>搞定！ </p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj75x6ovk000lr8q0l054dwrp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/08/31/ansible_tower_install/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-EFK-design-II" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/18/EFK-design-II/">EFFK-日志采集方案II</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/18/EFK-design-II/">
-            <time datetime="2017-08-18T06:32:19.000Z" itemprop="datePublished">2017-08-18</time>
+        <a href="/2017/05/19/message-search-design/">
+            <time datetime="2017-05-19T06:32:19.000Z" itemprop="datePublished">2017-05-19</time>
         </a>
     </div>
 
@@ -514,7 +204,7 @@ pg_password=&#39;ledefe&#39;
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/EFK-日志采集/">EFK 日志采集</a>
+        <a class="tag-link" href="/tags/搜索设计/">搜索设计</a>
     </div>
 
                     </div>
@@ -525,35 +215,24 @@ pg_password=&#39;ledefe&#39;
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>EFLK是Elasticsearch、filebeat、logstash、kibana的简称。</p>
-<p>Elasticsearch:是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</p>
-<p>filebeat: elastic官方维护的日志采集程序，基于go语言编写，资源消耗小。</p>
-<p>logstash：作为日志的汇总中心，其具有丰富的转换插件，提供日志转换。</p>
-<p>kibana:是一个为ElasticSearch 提供的日志分析的 Web 接口。可使用它对日志进行高效的搜索、可视化、分析等各种操作。</p>
-<h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1><p><img src="https://raw.githubusercontent.com/ledefe/ledefe.github.io/master/images/t2.png" alt=""></p>
-<p>日志采集主要借助于filebeat开源采集工具，通过logstash转换后，持久化至ES集群中。</p>
-<p>整个架构可分为三部分：采集端、聚合端和ES集群</p>
-<ul>
-<li>采集端 filebeat</li>
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。</p>
+<p>用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>查询与某个人对话的消息内容，并支持关键字搜索</li>
+<li>查询包含此关键字的所有用户</li>
 </ul>
-<p>filebeat作为日志采集工具，负责客户端日志采集，基于go语言开发，具有占用资源少的特点。</p>
-<p>采集过程中会记录文件读取的offset，具备ack机制，当上报至logstash的日志成功后才会更新offset，网络异常或上报失败，会进行重试操作，保证数据不丢失。</p>
-<ul>
-<li>聚合端 logstash</li>
-</ul>
-<p>logstash作为日志的汇总中心，其具有丰富的转换插件，主要提供日志清洗转换。转换输出至es集群中。</p>
-<p>logstash这边接收filebeat上报的数据，有两种方式进行缓存，一种是基于内存，一种是基于文件。</p>
-<p>基于内存，当出现异常时，数据会丢失，但是性能高。</p>
-<p>基于文件，当出现异常时，由于数据存储于文件中，当恢复时，数据会从文件中恢复，保证数据不丢失，但可能会影响性能。</p>
-<p>而logstash上报至es集群，采用的重试机制，默认开始2秒后进行重试，随后按64*n 秒后进行重试。</p>
-<ul>
-<li><p>ES集群</p>
-<p>主要存放历史日志，使用场景在对历史日志进行检索。</p>
-</li>
-</ul>
-<h1 id="查询工具"><a href="#查询工具" class="headerlink" title="查询工具"></a>查询工具</h1><p>  目前提供日志的在线查询和根据特定条件筛选下载，考虑到日志文件的大小情况，这边限定下载需要选定一个时间区间，且时间区间不超过24个小时。</p>
-<p>局域网：<a href="http://10.200.110.85:8080/" target="_blank" rel="external">http://10.200.110.85:8080/</a></p>
-<h1 id="日志输出格式约定"><a href="#日志输出格式约定" class="headerlink" title="日志输出格式约定"></a>日志输出格式约定</h1><p> 日志输出格式统一约定以ISO 8601（格式为： YYYY-MM-DDTHH:mm:ss.sssZ ）日期开头输出<br> 如：log4j.xml或logback里配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;yyyy-MM-dd'T'HH:mm:ss.SSSZ&#125; [%t] %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>&gt;</span><span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><h3 id="消息模型"><a href="#消息模型" class="headerlink" title="消息模型"></a>消息模型</h3><p>&lt;会话，发送者，接收者，消息，撤回状态，…&gt;</p>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p><strong>1. 基于会话的维度</strong></p>
+<p> 从会话的消息库里面同步数据至es，按年分索引，每个索引50个分片，按会话做路由，使同一个会话消息落地至同一个分片中。  每个分片平均有2kw的数据。</p>
+<p><strong>优点：</strong><br>数据量上不管是群会话还是二人会话，都只有一条数据，后面的人，进入一个群，也能查阅之前在这个群会话里面聊过的聊天记录。<br><strong>缺点：</strong><br>不满足第二个需求</p>
+<p><strong>2. 基于收件箱的维度</strong></p>
+<p>从收件箱数据库里面同步数据至es，按年分索引，每个索引50个分片，接收者做路由，使同一个会话消息落地至同一个分片中，每个分片平均有2kw的数据。</p>
+<p><strong>优点：</strong><br>数据量上会比基于会话维度上多个2-3倍的数据，不管是群会话还是二人会话，都会给在这个会话中的每个成员的收件箱推一条消息。</p>
+<p><strong>缺点：</strong><br>后面进入群的成员，看不到之前在群里面聊过的聊天记录。</p>
+<h3 id="搜索性能"><a href="#搜索性能" class="headerlink" title="搜索性能"></a>搜索性能</h3><p>搜索操作需要在秒级内,采用jmeter压测工具随机关键字随机用户100并发做压测。</p>
+<h3 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h3><p>随着数据的不断增长，在保证不更改当前的逻辑下能够做到横向扩展。</p>
+<p>后期如果数据过大，只需要增加机器做集群，将分片分布到不同的集群上。</p>
+<h3 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h3><p>采用es冗余分片，当有个节点挂掉了，还有其他的节点上分片能够继续提供服务。</p>
 
         
         </div>
@@ -564,7 +243,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj75x6oug0000r8q0v16naf2c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj75x6p01002jr8q0w92m48nd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -632,7 +311,7 @@ pg_password=&#39;ledefe&#39;
 
             
     
-        <a href="http://ledefe.tech/2017/08/18/EFK-design-II/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/05/19/message-search-design/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -642,7 +321,7 @@ pg_password=&#39;ledefe&#39;
 
 
 
-    <article id="post-Elasticsearch-routing" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Elasticsearch5.3.0-monitor" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -650,7 +329,7 @@ pg_password=&#39;ledefe&#39;
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/07/Elasticsearch-routing/">Elasticsearch 不同地域集群分片分配方案</a>
+            <a class="article-title" href="/2017/05/18/Elasticsearch5.3.0-monitor/">Elasticsearch 入门系列-监控篇</a>
         </h1>
     
 
@@ -659,8 +338,8 @@ pg_password=&#39;ledefe&#39;
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/08/07/Elasticsearch-routing/">
-            <time datetime="2017-08-07T06:32:19.000Z" itemprop="datePublished">2017-08-07</time>
+        <a href="/2017/05/18/Elasticsearch5.3.0-monitor/">
+            <time datetime="2017-05-18T06:32:19.000Z" itemprop="datePublished">2017-05-18</time>
         </a>
     </div>
 
@@ -685,21 +364,8 @@ pg_password=&#39;ledefe&#39;
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。</p>
-<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果</p>
-<p>在线文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html</a></p>
-<h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><p>1./config/elasticsearch.yml设置区域信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">中国区</span></div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span><span class="bash"> 欧洲区</span></div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span><span class="bash"> 美国</span></div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
-<p>2.索引命名规则：{区域}<em>logs</em>{业务}-{date:YYYY-MM-dd}</p>
-<p>区域：表示 cn,eu,us</p>
-<p>业务：比如 tomcat,nginx等</p>
-<p>3.索引模块定义</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*PUT /_template/logs_cn</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "cn_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"cn",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">*PUT /_template/logs_eu</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "eu_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"eu",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">*PUT /_template/logs_us</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "us_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"us",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>4.索引操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*POST &#123;对应区域es&#125;/cn_logs_demo/log</div><div class="line"></div><div class="line">&#123;</div><div class="line">	"@message":"cn content.."</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>5.索引查询</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*POST /cn_logs_*,eu_logs_*/_search?_search?preference=_only_nodes:zone:cn,zone:eu</div><div class="line"></div><div class="line">&#123;"query":&#123;"match_all":&#123;&#125;&#125;&#125;</div></pre></td></tr></table></figure>
-<p>其中preference可指定查询的区域,如preference=_only_nodes:zone:cn,zone:eu，多个以逗号隔开</p>
+            <h1 id="bigdesk插件"><a href="#bigdesk插件" class="headerlink" title="bigdesk插件"></a>bigdesk插件</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GitHub 地址见：<a href="https://github.com/hlstudio/bigdesk" target="_blank" rel="external">https://github.com/hlstudio/bigdesk</a><br>bigdesk 通过浏览器直连 ES 节点，发起 RESTful 请求，并渲染结果成图。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>bigdesk的程序是javascript编写的，故可部署至任何web服务器中访问即可。<br>这里使用tomcat部署方式。<br>下载地址：<a href="https://codeload.github.com/hlstudio/bigdesk/zip/v2.2.a" target="_blank" rel="external">https://codeload.github.com/hlstudio/bigdesk/zip/v2.2.a</a><br>解压将_site下的文件复制至tomcat/webapps/ROOT下面即可。<br>启动tomcat ，浏览器访问： ip:port 如图：<br><img src="/images/bigdesk1.png" width="500" align="center"><br>输入想要访问的es地址<br>选择一个集群节点，查看节点性能情况，一般重点关注 JVM 性能和索引性能。<br><img src="/images/bigdesk2.png" width="500" align="center"></p>
 
         
         </div>
@@ -710,7 +376,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj75x6p0m0033r8q0ym5gll2a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj75x6ov20008r8q0f7xkufg3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -778,7 +444,7 @@ pg_password=&#39;ledefe&#39;
 
             
     
-        <a href="http://ledefe.tech/2017/08/07/Elasticsearch-routing/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -788,7 +454,7 @@ pg_password=&#39;ledefe&#39;
 
 
 
-    <article id="post-go-web-demo" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Elasticsearch5.3.0-options" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -796,7 +462,7 @@ pg_password=&#39;ledefe&#39;
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/22/go-web-demo/">go web api 简单实现</a>
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-options/">Elasticsearch 入门系列-操作篇</a>
         </h1>
     
 
@@ -805,573 +471,8 @@ pg_password=&#39;ledefe&#39;
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/07/22/go-web-demo/">
-            <time datetime="2017-07-22T06:32:19.000Z" itemprop="datePublished">2017-07-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>1.准备环境</p>
-<ul>
-<li>安装go环境</li>
-</ul>
-<ul>
-<li>安装ide</li>
-</ul>
-<p>这边采用idea来开发</p>
-<p>2.源码</p>
-<p>3.源码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">	"bytes"</div><div class="line">	"encoding/base64"</div><div class="line">	"fmt"</div><div class="line">	"log"</div><div class="line">	"net/http"</div><div class="line">	"strings"</div><div class="line">	"os/exec"</div><div class="line">	"encoding/json"</div><div class="line">	"io"</div><div class="line">	"os"</div><div class="line">	"github.com/kardianos/service"</div><div class="line">)</div><div class="line"></div><div class="line"></div><div class="line">type program struct&#123;&#125;</div><div class="line"></div><div class="line">func (p *program) Start(s service.Service) error &#123;</div><div class="line">	// Start should not block. Do the actual work async.</div><div class="line">	go p.run()</div><div class="line">	return nil</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p *program) run()&#123;</div><div class="line"></div><div class="line">	user := []byte("test")</div><div class="line">	pass := []byte("test2")</div><div class="line">	http.HandleFunc("/start", BasicAuth(startFunc, user, pass))</div><div class="line">	http.HandleFunc("/stop", BasicAuth(stopFunc, user, pass))</div><div class="line">	http.HandleFunc("/status", BasicAuth(statusFunc, user, pass))</div><div class="line">	http.HandleFunc("/restart", BasicAuth(restartFunc, user, pass))</div><div class="line">	http.HandleFunc("/sync", BasicAuth(syncFunc, user, pass))</div><div class="line"></div><div class="line">	log.Println("Listen :8090")</div><div class="line">	err := http.ListenAndServe(":8090", nil)</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Fatal("ListenAndServe: ", err)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p *program) Stop(s service.Service) error &#123;</div><div class="line">	// Stop should not block. Return with a few seconds.</div><div class="line">	return nil</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">func main() &#123;</div><div class="line"></div><div class="line">	//服务的配置信息</div><div class="line">	cfg := &amp;service.Config&#123;</div><div class="line">		Name:        "beat-agent",</div><div class="line">		DisplayName: "beat agent service",</div><div class="line">		Description: "beat agent Go service.",</div><div class="line">	&#125;</div><div class="line">	// Interface 接口</div><div class="line">	prg := &amp;program&#123;&#125;</div><div class="line">	// 构建服务对象</div><div class="line">	s, err := service.New(prg, cfg)</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Fatal(err)</div><div class="line">	&#125;</div><div class="line">	// logger 用于记录系统日志</div><div class="line">	logger, err := s.Logger(nil)</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Fatal(err)</div><div class="line">	&#125;</div><div class="line">	if len(os.Args) == 2 &#123; //如果有命令则执行</div><div class="line">		err = service.Control(s, os.Args[1])</div><div class="line">		if err != nil &#123;</div><div class="line">			log.Fatal(err)</div><div class="line">		&#125;</div><div class="line">	&#125; else &#123; //否则说明是方法启动了</div><div class="line">		err = s.Run()</div><div class="line">		if err != nil &#123;</div><div class="line">			logger.Error(err)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	if err != nil &#123;</div><div class="line">		logger.Error(err)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">type ViewFunc func(http.ResponseWriter, *http.Request)</div><div class="line"></div><div class="line">func BasicAuth(f ViewFunc, user, passwd []byte) ViewFunc &#123;</div><div class="line">	return func(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">		basicAuthPrefix := "Basic "</div><div class="line">		// 获取 request header</div><div class="line">		auth := r.Header.Get("Authorization")</div><div class="line">		// 如果是 http basic auth</div><div class="line">		if strings.HasPrefix(auth, basicAuthPrefix) &#123;</div><div class="line">			// 解码认证信息</div><div class="line">			payload, err := base64.StdEncoding.DecodeString(</div><div class="line">				auth[len(basicAuthPrefix):],</div><div class="line">			)</div><div class="line">			if err == nil &#123;</div><div class="line">				pair := bytes.SplitN(payload, []byte(":"), 2)</div><div class="line">				if len(pair) == 2 &amp;&amp; bytes.Equal(pair[0], user) &amp;&amp;</div><div class="line">					bytes.Equal(pair[1], passwd) &#123;</div><div class="line">					// 执行被装饰的函数</div><div class="line">					f(w, r)</div><div class="line">					return</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		// 01 状态码</div><div class="line">		w.WriteHeader(http.StatusUnauthorized)</div><div class="line"></div><div class="line">		resultFunc(w,"permission denied","401")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">func startFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line"></div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat start");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func resultFunc(w http.ResponseWriter,msg string,code string)&#123;</div><div class="line">	w.Header().Set("Content-Type", "application/json; charset=utf-8")</div><div class="line">	w.Header().Set("X-Content-Type-Options", "nosniff")</div><div class="line">	var resultMsg *ResultMsg=&amp;ResultMsg&#123;Msg:msg,Code:code&#125;</div><div class="line">	json.NewEncoder(w).Encode(resultMsg)</div><div class="line">	//if bs, err := json.Marshal(&amp;resultMsg); err != nil &#123;</div><div class="line">	//	log.Println(err)</div><div class="line">	//&#125; else &#123;</div><div class="line">	//	fmt.Fprintf(w,string(bs))</div><div class="line">	//&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func stopFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat stop");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func statusFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat status");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func restartFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat restart");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line"></div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">func syncFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line"></div><div class="line">	r.ParseForm();</div><div class="line">	configHost:=r.Form.Get("configHost");</div><div class="line">	agentHost:=r.Form.Get("agentHost");</div><div class="line">	path:=r.Form.Get("path");</div><div class="line">	hostPort:= strings.Split(configHost, ":")</div><div class="line">	if (len(hostPort)== 1) &#123;</div><div class="line">		configHost = configHost + ":8080";</div><div class="line">	&#125;</div><div class="line">	url:="http://"+configHost+"/getBeatConf?host="+agentHost;</div><div class="line">	res, err := http.Get(url)</div><div class="line">	if err != nil &#123;</div><div class="line">		resultFunc(w,string(err.Error()),"501")</div><div class="line">		return</div><div class="line">	&#125;</div><div class="line">	workDir:="/etc/filebeat";</div><div class="line"><span class="meta">	if(len(path)&gt;</span><span class="bash">0)&#123;</span></div><div class="line">		workDir=path;</div><div class="line">	&#125;</div><div class="line">	checkDir(workDir);</div><div class="line">	fmt.Println("getConf url:"+url)</div><div class="line">	f, err := os.Create(workDir+"/filebeat.yml")</div><div class="line">	if err != nil &#123;</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">		return</div><div class="line">	&#125;</div><div class="line">	io.Copy(f,res.Body)</div><div class="line">	resultFunc(w,"sync success","200")</div><div class="line">&#125;</div><div class="line"></div><div class="line">func checkDir(dir string)&#123;</div><div class="line">	err1:=os.MkdirAll(dir,os.ModePerm)</div><div class="line">	if err1 != nil &#123;</div><div class="line">		fmt.Println("%s", err1)</div><div class="line">	&#125; else &#123;</div><div class="line">		fmt.Println("workDir:"+dir+" create Ok")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">type ResultMsg struct &#123;</div><div class="line">	Code string `json:"code"`</div><div class="line">	Msg  string `json:"msg"`</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/22/go-web-demo/" data-id="cj75x6ox5001er8q0wti7adm2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/22/go-web-demo/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-java_exec_shell" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/21/java_exec_shell/">java执行shell脚本(备忘)</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/java_exec_shell/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java-shell/">java shell</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="java执行shell脚本-备忘"><a href="#java执行shell脚本-备忘" class="headerlink" title="java执行shell脚本(备忘)"></a>java执行shell脚本(备忘)</h1><ul>
-<li>主要代码</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">     <span class="function"><span class="keyword">public</span> ResultMsg <span class="title">stop</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException </span>&#123;</div><div class="line">	String[] cmd = &#123; <span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/etc/init.d/filebeat stop"</span> &#125;;</div><div class="line">	String result;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		result = doExeCmd(cmd);</div><div class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"500"</span>, e.getMessage());</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"200"</span>, result);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">doExeCmd</span><span class="params">(String[] cmd)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">	ProcessBuilder pbuilder = <span class="keyword">new</span> ProcessBuilder(cmd);</div><div class="line">	pbuilder.redirectErrorStream(<span class="keyword">true</span>);</div><div class="line">	Process process = pbuilder.start();</div><div class="line">	StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">	BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(process.getInputStream(), <span class="string">"UTF-8"</span>));</div><div class="line">	String line = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">		result.append(line).append(<span class="string">"\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> code = -<span class="number">1</span>;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		code = process.waitFor();</div><div class="line">		logger.info(<span class="string">"exec result code"</span> + code);</div><div class="line">	&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">		logger.error(e.getMessage());</div><div class="line">	&#125;</div><div class="line">	logger.info(<span class="string">"exec result"</span> + result.toString());</div><div class="line">	<span class="keyword">return</span> result.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/21/java_exec_shell/" data-id="cj75x6oye001mr8q0yjjv5fhb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/21/java_exec_shell/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-linux cmd" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/21/linux cmd/">常用命令备忘</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/linux cmd/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <ul>
-<li>1.解压至指定目录</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">tar -zxvf /opt/jdk-8u131-linux-x64.tar.gz -C /usr/local</div></pre></td></tr></table></figure>
-<ul>
-<li>2.scp复制</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">远程复制至本地</span></div><div class="line">scp  root@119.23.61.245:/opt/filebeat-agent.zip /opt</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">本地服务至远程</span></div><div class="line">scp  /opt/filebeat-agent.zip  root@119.23.61.22:/opt</div><div class="line"><span class="meta">#</span><span class="bash">加入私钥</span></div><div class="line">scp -i test.pem filebeat-agent.zip ec2-user@34.204.121.27:/home/ec2-user</div></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj75x6oyt0020r8q0tqhclf2b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/21/linux cmd/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-service" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/20/service/">制作java程序以linux服务方式启动</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/20/service/">
-            <time datetime="2017-07-20T06:32:19.000Z" itemprop="datePublished">2017-07-20</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="制作java程序以linux服务方式启动"><a href="#制作java程序以linux服务方式启动" class="headerlink" title="制作java程序以linux服务方式启动"></a>制作java程序以linux服务方式启动</h1><ul>
-<li><p>1.获取应用程序包：filebeat-agent.jar</p>
-</li>
-<li><p>2.上传至/opt/filebeat_agent ,使用命令做一个软连接到/etc/init.d</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /opt/filebeat_agent/filebeat-agent.jar /etc/init.d/filebeat-agent</div></pre></td></tr></table></figure>
-</li>
-<li><p>3.设置配置</p>
-</li>
-</ul>
-<p>在/opt/filebeat_agent/目录下，创建一个filebeat-agent.conf,必须与应用名一样<br>加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">JAVA_HOME=/usr/local/jdk1.8.0_121</div><div class="line">JAVA_OPTS=-Xmx128M</div><div class="line">LOG_FOLDER=/var/log</div></pre></td></tr></table></figure>
-<ul>
-<li>4.授权</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">chmod +x /etc/init.d/filebeat-agent</div></pre></td></tr></table></figure>
-<ul>
-<li>5.启动</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">service filebeat-agent start|stop|restart|status</div></pre></td></tr></table></figure>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/20/service/" data-id="cj75x6p0c002tr8q08zea8bbg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/20/service/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-filebeat_install" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/16/filebeat_install/">filebeat 部署</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/16/filebeat_install/">
-            <time datetime="2017-07-16T06:32:19.000Z" itemprop="datePublished">2017-07-16</time>
+        <a href="/2017/05/05/Elasticsearch5.3.0-options/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
         </a>
     </div>
 
@@ -1385,7 +486,7 @@ pg_password=&#39;ledefe&#39;
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/filebeat/">filebeat</a>
+        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
     </div>
 
                     </div>
@@ -1396,20 +497,7 @@ pg_password=&#39;ledefe&#39;
         <div class="article-entry" itemprop="articleBody">
         
             
-            <ul>
-<li><p>rpm方式安装<br>rpm -vi filebeat-5.3.0-x86_64.rpm</p>
-</li>
-<li><p>配置filebeat.yml<br>vi /etc/filebeat/filebeat.yml</p>
-</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="string">filebeat.prospectors:</span></div><div class="line"></div><div class="line"><span class="attr">- input_type:</span> <span class="string">log</span></div><div class="line"><span class="attr">  paths:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">/tmp/logs/eureka</span></div><div class="line"><span class="attr">  fields_under_root:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  fields:</span></div><div class="line"><span class="attr">    host:</span> <span class="number">10.2</span><span class="number">.61</span><span class="number">.201</span></div><div class="line"><span class="attr">    instance:</span> <span class="string">vc_10.2.61.201</span></div><div class="line"><span class="attr">    indexname:</span> <span class="string">logs_vctest</span></div><div class="line">  <span class="string">multiline.pattern:</span> <span class="string">'^[0-9]&#123;4&#125;-[0-9]&#123;2&#125;-[0-9]&#123;2&#125;'</span></div><div class="line">  <span class="string">multiline.negate:</span> <span class="literal">true</span></div><div class="line">  <span class="string">multiline.match:</span> <span class="string">after</span></div><div class="line"><span class="attr">processors:</span></div><div class="line"><span class="attr">- drop_fields:</span></div><div class="line"><span class="attr">    fields:</span> <span class="string">["beat"]</span></div><div class="line"><span class="comment">#----------------------------- Logstash output --------------------------------</span></div><div class="line"><span class="string">output.logstash:</span></div><div class="line">  <span class="comment"># The Logstash hosts</span></div><div class="line"><span class="attr">  hosts:</span> <span class="string">["10.2.61.210:5044"]</span></div><div class="line"><span class="attr">  compression_level:</span> <span class="number">3</span></div><div class="line"><span class="comment">#================================ Logging =====================================</span></div><div class="line"><span class="string">logging.level:</span> <span class="string">info</span></div><div class="line"><span class="comment"># At debug level, you can selectively enable logging only for some components.</span></div><div class="line"><span class="comment"># To enable all selectors use ["*"]. Examples of other selectors are "beat",</span></div><div class="line"><span class="comment"># "publish", "service".</span></div><div class="line"><span class="comment">#logging.selectors: ["*"]</span></div></pre></td></tr></table></figure>
-<ul>
-<li>启动命令<br>sudo /etc/init.d/filebeat start|stop|status</li>
-</ul>
-<ul>
-<li>自启动<br>systemctl enable filebeat.service</li>
-</ul>
-
+            
         
         </div>
         <footer class="article-footer">
@@ -1419,7 +507,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/16/filebeat_install/" data-id="cj75x6ovz0011r8q0fp7xaz6n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj75x6ova000dr8q0dz1nai7s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1487,7 +575,7 @@ pg_password=&#39;ledefe&#39;
 
             
     
-        <a href="http://ledefe.tech/2017/07/16/filebeat_install/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -1497,7 +585,7 @@ pg_password=&#39;ledefe&#39;
 
 
 
-    <article id="post-log_collection_scheme_II" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -1505,7 +593,7 @@ pg_password=&#39;ledefe&#39;
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/15/log_collection_scheme_II/">日志采集方案II</a>
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-qps/">Elasticsearch 入门系列-常见问题收集篇</a>
         </h1>
     
 
@@ -1514,8 +602,143 @@ pg_password=&#39;ledefe&#39;
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/07/15/log_collection_scheme_II/">
-            <time datetime="2017-07-15T06:32:19.000Z" itemprop="datePublished">2017-07-15</time>
+        <a href="/2017/05/05/Elasticsearch5.3.0-qps/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
+<p>‘‘‘java</p>
+<p>request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);</p>
+<p>public MetaData save(final MetaData meta) {<br>        meta.setCreateTime(System.currentTimeMillis());<br>        meta.setUpdateTime(System.currentTimeMillis());<br>        IndexRequest request = new IndexRequest(INDEX_NAME, INDEX_TYPE).source(JSON.toJSONString(meta),<br>                XContentType.JSON);<br>        request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);<br>        IndexResponse respnese = client.index(request).actionGet(DEFAULT_TIMEOUT);<br>        if (respnese.getId() != null) {<br>            meta.setId(respnese.getId());<br>        }<br>        return meta;<br>    }<br>‘‘‘<br>那么基于http restful呢？答案是：在请求后面添加<br>‘‘‘java<br>？refresh=true<br>‘‘‘</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj75x6ovd000fr8q0o379ks6f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-EFK-design-I" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/05/EFK-design-I/">EFK-日志采集方案I</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/05/EFK-design-I/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
         </a>
     </div>
 
@@ -1529,7 +752,7 @@ pg_password=&#39;ledefe&#39;
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/EFK/">EFK</a>
+        <a class="tag-link" href="/tags/EFK-日志采集/">EFK 日志采集</a>
     </div>
 
                     </div>
@@ -1540,33 +763,30 @@ pg_password=&#39;ledefe&#39;
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h1 id="日志采集方案II"><a href="#日志采集方案II" class="headerlink" title="日志采集方案II"></a>日志采集方案II</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>早期采用EFK（Eleasticsearch+Flume+kibana）的架构模式，在各服务器端部署flume代理，以tailf的方式，采集日志文件，当日志文件量大时，会导致cpu的使用率会上升，主要是flume代理会占用服务器端资源，基于上述原因，需求更好的解决方式。查阅官网发现，filebeat,一个轻量级的采集程序，基于golang开发，占用资源比flume的少很多。下面主要介绍filebeat+logstash+Eleasticsearch的日志采集方案。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>五大组件</p>
-<ul>
-<li>filebeat：部署在采集端，负载采集，轻量，占用资源相对较少</li>
-<li>logstash：部署在服务端，主要汇集和过滤各个采集端的数据</li>
-<li>Flume：可做为采集端和采集服务端，在大数据量时，会占用宿主资源</li>
-<li>Eleasticsearch：作为数据的存储，具备高可用，高扩展性的服务</li>
-<li>kibana：数据展现层，提供日志的可视化分析</li>
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>   EFK是Elasticsearch、Flume、Kafka的简称。</p>
+<p>   Elasticsearch是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</p>
+<p> Flume是Cloudera提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方，用于收集数据；同时，Flume提供对数据进行简单处理，并写到各种数据接受方（可定制）的能力。</p>
+<p>   Kafka是一种高吞吐量的分布式发布订阅消息系统，它适合处理海量日志发布订阅，提供消息磁盘持久化、支持物理分片存储、多组消费等特性。</p>
+<h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1><p><img src="http://10.3.17.150:88/uploads/201704/58f42b8282e26_58f42b82.png" alt="img-w500"></p>
+<p>日志采集主要借助于flume开源采集工具，持久化至ES集群中。</p>
+<p>我们使用Flume，将flume采集到的日志汇报至服务聚合端，服务聚合端将日志持久化至Elasticsearch集群,最后使用日志查询工具可实时查看日志</p>
+<p>整个架构可分为两部分：flume服务和ES集群</p>
+<h1 id="flume服务可分为服务聚合端和服务采集端"><a href="#flume服务可分为服务聚合端和服务采集端" class="headerlink" title="flume服务可分为服务聚合端和服务采集端"></a>flume服务可分为服务聚合端和服务采集端</h1><ul>
+<li><p>服务聚合端</p>
+<p>  服务中心端通过avro协议负责收集处理所有从客户端上报上来的数据，并持久化到es集群中去</p>
+</li>
+<li><p>服务采集端</p>
+<p>  采集端是通过一个flume代理，采集不同应用程序的日志，flume支持多种采集协议，比如监控目录方式，syslog，avro协议等。可收集不同类型的数据，比如tomcat/nginx等，然后通过avro协议上报至服务聚合端。</p>
+<p>   目前我们采用的采集方式是监听某个目录（tail -F [file]），收集数据。</p>
+<p>   我们会在需要日志采集的服务器上安装flume代理，负责采集单机上所有项目的日志。</p>
+</li>
 </ul>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
-<li><p>flume-agent(采集端)=》flume-server（服务端）=》Eleasticsearch(集群)+kibana</p>
-<p>优点：<br>具有分布式、可靠、可用的特性，可水平扩展。</p>
-<p>缺点：<br>数据量大时，比较耗资源</p>
-</li>
-<li><p>filebeat（采集端）=》logstash（服务端）=》Eleasticsearch(集群)=》kibana</p>
-<p>优点：<br>轻量，体积小，占用资源少</p>
-</li>
-<li><p>filebeat（采集端）=》消息队列<br>消息队列=》logstash（服务端）+Eleasticsearch(集群)+kibana<br>优点：<br>引入消息队列，filebeat 支持 Kafka、Redis消息队列；<br>在数据量大和高并发的情况下，均衡了网络传输，降低了网络闭塞。</p>
-</li>
-</ol>
-<h2 id="附相关部署"><a href="#附相关部署" class="headerlink" title="附相关部署"></a>附相关部署</h2><p><a href="https://ledefe.github.io/posts/filebeat%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">filebeat部署</a></p>
-<p><a href="https://ledefe.github.io/posts/kibana-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">kibana部署</a></p>
-<p><a href="https://ledefe.github.io/posts/JDK-1.8-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">JDK部署</a></p>
-<p><a href="https://ledefe.github.io/posts/logstash-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">logstash部署</a></p>
-<p><a href="https://ledefe.github.io/posts/elasticsearch-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">elasticsearch部署</a></p>
-<p><a href="https://ledefe.github.io/posts/flume1.7-%E9%83%A8%E7%BD%B2(%E6%9C%8D%E5%8A%A1%E9%87%87%E9%9B%86%E7%AB%AF).html" target="_blank" rel="external">flume部署（客户端采集）</a></p>
-<p><a href="https://ledefe.github.io/posts/flume1.7-%E9%83%A8%E7%BD%B2(%E6%9C%8D%E5%8A%A1%E8%81%9A%E5%90%88%E7%AB%AF).html" target="_blank" rel="external">flume（服务采集端）</a></p>
+<h1 id="flume原理"><a href="#flume原理" class="headerlink" title="flume原理"></a>flume原理</h1><p>  每个flume都有三部分组成：source,chanel,sink。</p>
+<p>  比如：<br>  我们使用Taildir Source 配置监听某个文件，或某个文件目录，当该文件或目录下有数据变化时，flume会从第一行开始实时读取日志并封装成Event批量放入Channel。<br> Flume的Sink会从Channel里拿到Event，然后在原始日志前面加上header，然后批量提交至服务聚合端。<br>  详细见： （<a href="http://flume.apache.org/FlumeUserGuide.html）" target="_blank" rel="external">http://flume.apache.org/FlumeUserGuide.html）</a></p>
+<h1 id="ES集群"><a href="#ES集群" class="headerlink" title="ES集群"></a>ES集群</h1><p> 主要存放历史日志，使用场景在对历史日志进行检索。</p>
+<h1 id="查询工具"><a href="#查询工具" class="headerlink" title="查询工具"></a>查询工具</h1><p>  目前提供日志的在线查询和根据特定条件筛选下载，考虑到日志文件的大小情况，这边限定下载需要选定一个时间区间，且时间区间不超过24个小时。</p>
+<p>局域网：<a href="http://10.2.61.211:8080/" target="_blank" rel="external">http://10.2.61.211:8080/</a></p>
+<h1 id="日志输出格式约定"><a href="#日志输出格式约定" class="headerlink" title="日志输出格式约定"></a>日志输出格式约定</h1><p> 日志输出格式统一约定以ISO 8601（格式为： YYYY-MM-DDTHH:mm:ss.sssZ ）日期开头输出<br> 如：log4j.xml或logback里配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;yyyy-MM-dd'T'HH:mm:ss.SSSZ&#125; [%t] %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>&gt;</span><span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
 
         
         </div>
@@ -1577,7 +797,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/15/log_collection_scheme_II/" data-id="cj75x6oz8002cr8q0i2f0nhen" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj75x6oun0002r8q0qmnltjsd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1645,7 +865,802 @@ pg_password=&#39;ledefe&#39;
 
             
     
-        <a href="http://ledefe.tech/2017/07/15/log_collection_scheme_II/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/05/05/EFK-design-I/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-Elasticsearch5.3.0-concepts" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-concepts/">Elasticsearch 入门系列-概念篇</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj75x6ouy0006r8q0gcnmn3cz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-kibana-5.3.0-install" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/04/kibana-5.3.0-install/">kibana 部署</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/04/kibana-5.3.0-install/">
+            <time datetime="2017-05-04T06:32:19.000Z" itemprop="datePublished">2017-05-04</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/kibana/">kibana</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p> centos 7</p>
+<h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>kibana-5.3.0-linux-x86_64.tar.gz</p>
+<p>#资源</p>
+<p>资源： kibana-5.3.0-linux-x86_64.tar.gz</p>
+<h1 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kibana-5.3.0-linux-x86_64.tar.gz</div><div class="line"></div><div class="line">mv kibana-5.3.0-linux-x86_64 kibana-5.3.0</div><div class="line"></div><div class="line">cd kibana-5.3.0</div></pre></td></tr></table></figure>
+<h1 id="配置kibana"><a href="#配置kibana" class="headerlink" title="配置kibana"></a>配置kibana</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd config</div><div class="line"></div><div class="line">vi kibana.yml</div></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>找到 # server.host，修改成以下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#设置外网可以访问</div><div class="line">server.host: &quot;0.0.0.0&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h2><ul>
+<li>编写脚本kibana_start.sh</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi  kibana_start.sh</div></pre></td></tr></table></figure>
+<p>加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">/home/ldh/kibana-5.3.0/bin/kibana &amp;</div></pre></td></tr></table></figure>
+<ul>
+<li>在rc.local里添加一行</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi  /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
+<p>加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/kibana_start.sh</div></pre></td></tr></table></figure>
+<p>启动命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/kibana_start.sh</div></pre></td></tr></table></figure>
+<h1 id="6-附加"><a href="#6-附加" class="headerlink" title="6.附加"></a>6.附加</h1><h2 id="centos7-firewall设置开放9200-9300端口"><a href="#centos7-firewall设置开放9200-9300端口" class="headerlink" title="centos7 firewall设置开放9200/9300端口"></a>centos7 firewall设置开放9200/9300端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">（--permanent永久生效，没有此参数重启后失效）</div><div class="line">firewall-cmd --zone=public --add-port=9200/tcp --permanent</div><div class="line"></div><div class="line">重新载入</div><div class="line">firewall-cmd --reload</div></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cj75x6oym001tr8q06z8mcfrv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-JDK-1.8-install" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/03/JDK-1.8-install/">JDK 部署</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/03/JDK-1.8-install/">
+            <time datetime="2017-05-03T06:32:19.000Z" itemprop="datePublished">2017-05-03</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JDK/">JDK</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="安装jdk1-8"><a href="#安装jdk1-8" class="headerlink" title="安装jdk1.8"></a>安装jdk1.8</h1><ul>
+<li><p>jdk-8u101-linux-x64.tar.gz上传至服务器/opt目录</p>
+<p>解压：</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf jdk-8u101-linux-x64.tar.gz</div></pre></td></tr></table></figure>
+<ul>
+<li>移动至/usr/local目录：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv jdk1.8.0_101/ /usr/local/</div></pre></td></tr></table></figure>
+<ul>
+<li>设置环境变量</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">vi /etc/profile</div><div class="line"><span class="meta">#</span>输入</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH:$NODE_HOME/bin</div><div class="line">export JAVA_HOME PATH CLASSPATH</div><div class="line"></div><div class="line"><span class="meta">#</span>使环境变量即时生效</div><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
+<ul>
+<li>验证<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="cj75x6ov60009r8q0w1npy4co" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/03/JDK-1.8-install/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-logstash-5.3.0-install" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/01/logstash-5.3.0-install/">logstash 部署</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/01/logstash-5.3.0-install/">
+            <time datetime="2017-05-01T06:32:19.000Z" itemprop="datePublished">2017-05-01</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/logstash/">logstash</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>centos 7</p>
+<p>#资源</p>
+<p>资源： logstash-5.3.0.tar.gz</p>
+<h1 id="上传至解压"><a href="#上传至解压" class="headerlink" title="上传至解压"></a>上传至解压</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf logstash-5.3.0.tar.gz</div><div class="line">cd logstash-5.3.0</div></pre></td></tr></table></figure>
+<h1 id="配置采集规则"><a href="#配置采集规则" class="headerlink" title="配置采集规则"></a>配置采集规则</h1><p> 这边以采集tomcat的访问日志为例<br>创建logstash_tomcat.conf</p>
+<p>Vi logstash_tomcat.conf</p>
+<p>加入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">input &#123;</div><div class="line">        file &#123;  </div><div class="line">                path =&gt; <span class="string">"/home/ldh/apache-tomcat-8.5.6/logs/localhost_access_log*.txt"</span>  </div><div class="line">                sincedb_path =&gt; <span class="string">"/home/ldh/logstash-5.3.0/config/sincedb_apache_access_log.txt"</span></div><div class="line">                <span class="built_in">type</span> =&gt; <span class="string">"apache_access_log"</span></div><div class="line">                add_field =&gt; &#123;<span class="string">"@ip"</span> =&gt; <span class="string">"192.168.24.129"</span>&#125;</div><div class="line">        &#125;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">filter&#123;</div><div class="line">        <span class="keyword">if</span> [<span class="built_in">type</span>] == <span class="string">"apache_access_log"</span> &#123;</div><div class="line">                grok&#123;</div><div class="line">                        match =&gt; &#123; <span class="string">"message"</span> =&gt; <span class="string">"%&#123;IPORHOST:clientip&#125; %&#123;USER:ident&#125; %&#123;USER:auth&#125; \[%&#123;HTTPDATE:timestamp&#125;\] \"(?:%&#123;WORD:verb&#125; %&#123;URIPATHPARAM:request&#125;(?: HTTP/%&#123;NUMBER:httpversion&#125;)?|-)\" %&#123;NUMBER:response&#125; (?:%&#123;NUMBER:bytes&#125;|-) %&#123;NUMBER:responsetime&#125; \"(?:%&#123;URI:referrer&#125;|-)\" %&#123;QS:agent&#125;"</span> &#125;</div><div class="line">                &#125;</div><div class="line">                date&#123;</div><div class="line">                        match =&gt; [ <span class="string">"timestamp"</span>, <span class="string">"dd/MMM/yyyy:HH:mm:ss Z"</span> ]</div><div class="line">                        target =&gt; [<span class="string">"writetime"</span>]</div><div class="line">                &#125;</div><div class="line">                mutate &#123;</div><div class="line">                        convert =&gt; &#123; </div><div class="line">                                <span class="string">"response"</span> =&gt; <span class="string">"integer"</span> </div><div class="line">                                <span class="string">"bytes"</span> =&gt; <span class="string">"integer"</span> </div><div class="line">                                <span class="string">"responsetime"</span> =&gt; <span class="string">"integer"</span> </div><div class="line">                        &#125;</div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">output &#123;</div><div class="line">        <span class="keyword">if</span> [<span class="built_in">type</span>] == <span class="string">"apache_access_log"</span> &#123;</div><div class="line">                elasticsearch &#123;</div><div class="line">                        hosts =&gt; [<span class="string">"192.168.24.129:9200"</span>]</div><div class="line">                        index =&gt; <span class="string">"tomcat-accesslog-%&#123;+YYYY.MM.dd&#125;"</span></div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>logstash_tomcat.conf主要有三个组件组成，分别是输入、过滤、输出。</p>
+<p>这边输出是存储至es服务</p>
+<p>#设置开机自启动</p>
+<ol>
+<li>编写脚本logstash_start.sh</li>
+</ol>
+<p>Vi  logstash_start.sh</p>
+<p>加入<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">/home/ldh/logstash-5.3.0/bin/logstash -f /home/ldh/logstash-5.3.0/logstash_tomcat.conf &amp;</div></pre></td></tr></table></figure></p>
+<p>2.在rc.local里添加一行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi  /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
+<p>加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/ logstash_start.sh</div></pre></td></tr></table></figure>
+<p>启动命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/ logstash_start.sh</div></pre></td></tr></table></figure></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/01/logstash-5.3.0-install/" data-id="cj75x6p06002mr8q01bojhf5x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/01/logstash-5.3.0-install/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-flume1.7-install(server)" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/04/26/flume1.7-install(server)/">Flume 1.7 安裝（服务聚合端）</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/04/26/flume1.7-install(server)/">
+            <time datetime="2017-04-26T06:32:19.000Z" itemprop="datePublished">2017-04-26</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/flume1-7/">flume1.7</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="Flume-1-7-安裝（服务聚合端）"><a href="#Flume-1-7-安裝（服务聚合端）" class="headerlink" title="Flume 1.7 安裝（服务聚合端）"></a>Flume 1.7 安裝（服务聚合端）</h1><p>该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0</p>
+<h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1><p>资源： flume.zip</p>
+<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><h2 id="指定安装目录"><a href="#指定安装目录" class="headerlink" title="指定安装目录"></a>指定安装目录</h2><pre><code>mkdir -p /opt/flume_server
+</code></pre><p><strong>接下来的操作都在/opt/flume_server下操作</strong></p>
+<h2 id="zip包准备"><a href="#zip包准备" class="headerlink" title="zip包准备"></a>zip包准备</h2><ul>
+<li>该flume.zip已经支持flume es5.3.0 sink</li>
+<li>上传至/opt/flume_server目录下</li>
+</ul>
+<blockquote>
+<p>cd /opt/flume_server<br>rz -y</p>
+</blockquote>
+<h2 id="解压zip包"><a href="#解压zip包" class="headerlink" title="解压zip包"></a>解压zip包</h2><ul>
+<li>在/opt/flume_server目录下解压</li>
+</ul>
+<blockquote>
+<p>unzip flume.zip  </p>
+</blockquote>
+<h2 id="定义配置文件"><a href="#定义配置文件" class="headerlink" title="定义配置文件"></a>定义配置文件</h2><ul>
+<li>配置文件都放置到conf中去</li>
+</ul>
+<blockquote>
+<p>mkdir -p cloud/conf<br>cd cloud/conf</p>
+</blockquote>
+<ul>
+<li>这里分别定义三个文件：4145.conf 4144.conf log4j2.xml</li>
+<li>4145.conf 4144.conf 分别对应两个agent服务。</li>
+<li>对外提供avro服务，并最终持久化到es服务中。</li>
+<li>目前文件已定义好，只需更改对应es服务相关信息和avro提供的端口</li>
+</ul>
+<ol>
+<li>4145.conf文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">a1.sources=s1</div><div class="line">a1.channels=c1</div><div class="line">a1.sinks=k1</div><div class="line"></div><div class="line">a1.channels.c1.type=memory</div><div class="line"></div><div class="line"><span class="comment">#a1.channels.c1.type=file</span></div><div class="line"><span class="comment">#a1.channels.c1.checkpointDir = /mnt/flume/checkpoint</span></div><div class="line"><span class="comment">#a1.channels.c1.dataDirs = /mnt/flume/data</span></div><div class="line"></div><div class="line"><span class="comment">#定义avro source</span></div><div class="line">a1.sources.s1.type=avro</div><div class="line">a1.sources.s1.bind=0.0.0.0</div><div class="line">a1.sources.s1.port=4145</div><div class="line">a1.sources.s1.channels=c1</div><div class="line"></div><div class="line">a1.sinks.k1.type=org.apache.flume.sink.elasticsearch5.ElasticSearchSink</div><div class="line">a1.sinks.k1.batchSize=100</div><div class="line"><span class="comment">#es服务的地址</span></div><div class="line">a1.sinks.k1.hostNames=127.0.0.1:9300</div><div class="line">a1.sinks.k1.indexType=logs</div><div class="line"><span class="comment">#动态索引名称，根据需求自行定义比如tomcat/nginx等</span></div><div class="line">a1.sinks.k1.indexName=%&#123;indexName&#125;</div><div class="line">a1.sinks.k1.clusterName=yealink-log</div><div class="line">a1.sinks.k1.serializer=com.nd.imlog.sink.YealinkElasticSearchLogDynamicSerializer</div><div class="line">a1.sinks.k1.channel=c1</div></pre></td></tr></table></figure>
+<ol>
+<li>4144.conf文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">a1.sources=s1</div><div class="line">a1.channels=c1</div><div class="line">a1.sinks=k1</div><div class="line"></div><div class="line">a1.channels.c1.type=memory</div><div class="line"></div><div class="line"><span class="comment">#a1.channels.c1.type=file</span></div><div class="line"><span class="comment">#a1.channels.c1.checkpointDir = /mnt/flume/checkpoint</span></div><div class="line"><span class="comment">#a1.channels.c1.dataDirs = /mnt/flume/data</span></div><div class="line"></div><div class="line"><span class="comment">#定义avro source</span></div><div class="line">a1.sources.s1.type=avro</div><div class="line">a1.sources.s1.bind=0.0.0.0</div><div class="line">a1.sources.s1.port=4144</div><div class="line">a1.sources.s1.channels=c1</div><div class="line"></div><div class="line">a1.sinks.k1.type=org.apache.flume.sink.elasticsearch5.ElasticSearchSink</div><div class="line">a1.sinks.k1.batchSize=100</div><div class="line"><span class="comment">#es服务的地址</span></div><div class="line">a1.sinks.k1.hostNames=127.0.0.1:9300</div><div class="line">a1.sinks.k1.indexType=logs</div><div class="line"><span class="comment">#动态索引名称，根据需求自行定义比如tomcat/nginx等</span></div><div class="line">a1.sinks.k1.indexName=%&#123;indexName&#125;</div><div class="line">a1.sinks.k1.clusterName=yealink-log</div><div class="line">a1.sinks.k1.serializer=com.nd.imlog.sink.YealinkElasticSearchLogDynamicSerializer</div><div class="line">a1.sinks.k1.channel=c1</div></pre></td></tr></table></figure>
+<ol>
+<li>log4j2.xml文件</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"error"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"trace"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;HH:mm:ss.SSS&#125; %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">Console</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFile"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;sys:flumeInstance&#125;/logs/flume.log"</span></span></div><div class="line"><span class="tag">                     <span class="attr">filePattern</span>=<span class="string">"$&#123;sys:flumeInstance&#125;/logs/flume.%d&#123;yyyy-MM-dd&#125;-%i.log"</span></span></div><div class="line"><span class="tag">                     <span class="attr">ignoreExceptions</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;HH:mm:ss.SSS&#125; [%t] %-5level %logger&#123;36&#125; %L %M - %msg%xEx%n"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> /&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"100 MB"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">loggers</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFile"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">root</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">loggers</span>&gt;</span> <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>${sys:flumeInstance} 主要是从系统变量里面获取值，动态设置日志输入目录，通过 -DflumeInstance=xxx进行设置，已在flume_cloud_start.sh中定义好</strong></p>
+<p>##修改脚本配置<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /opt/flume_server/flume</div></pre></td></tr></table></figure></p>
+<ol>
+<li>配置flume_cloud_start.sh</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi flume_cloud_start.sh</div></pre></td></tr></table></figure>
+<ul>
+<li><p>设置实例路径</p>
+<p>   找到 instance_root_dir变量设置实例目录<br>   默认设置为 /opt/flume_server/instance</p>
+</li>
+<li><p>设置运行配置目录</p>
+<p>   设置cloud目录，当前cloud是放在和该执行脚本同级上，可根据需求自行修改</p>
+<p>  <code>nohup $dir/bin/flume-ng agent -c $dir/cloud/conf -f $dir/cloud/conf/${con_file}.conf -DflumeInstance=$flumeInstance  -n a1 &gt;${flumeInstance}/opt.log 2&gt;&amp;1 &amp;</code></p>
+</li>
+<li><p>授权</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x flume_cloud_start.sh</div></pre></td></tr></table></figure>
+<ol>
+<li>flume_cloud_stop.sh脚本</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi flume_cloud_stop.sh</div></pre></td></tr></table></figure>
+<ul>
+<li><p>设置实例路径</p>
+<p>找到 log_dir变量设置实例目录<br>可根据需要更改，默认是在/opt/flume_server/instance下），必须和flume_cloud_start.sh里设置的目录一样<br>  log_dir=/opt/flume_server/instance</p>
+</li>
+<li><p>授权</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x flume_cloud_stop.sh</div></pre></td></tr></table></figure>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">4145为实例名，与cloud/conf中配置的4145.conf相关联</span></div><div class="line">./flume_cloud_start.sh 4145</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">4144为实例名，与cloud/conf中配置的4144.conf相关联</span></div><div class="line">./flume_cloud_start.sh 4144</div></pre></td></tr></table></figure>
+<h2 id="添加至开机自启动"><a href="#添加至开机自启动" class="headerlink" title="添加至开机自启动"></a>添加至开机自启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
+<p>追加以下内容<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/opt/flume_server/flume/flume_cloud_start.sh 4145</div><div class="line">/opt/flume_server/flume/flume_cloud_start.sh 4144</div></pre></td></tr></table></figure></p>
+<h2 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h2><p>nohup: failed to run command ‘/opt/flume_server/flume/bin/flume-ng’: Permission denied</p>
+<p>flume-ng未授权</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /opt/flume_server/flume/bin/flume-ng</div></pre></td></tr></table></figure>
+<h2 id="开机启动-找不到javahome"><a href="#开机启动-找不到javahome" class="headerlink" title="开机启动 找不到javahome"></a>开机启动 找不到javahome</h2><p>可直接在flume_cloud_start.sh中加入JAVA_HOME</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/04/26/flume1.7-install(server)/" data-id="cj75x6ow00013r8q0amm2pkyy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/04/26/flume1.7-install(server)/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -1656,7 +1671,7 @@ pg_password=&#39;ledefe&#39;
 
 
     <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
     </nav>
 </section>
             

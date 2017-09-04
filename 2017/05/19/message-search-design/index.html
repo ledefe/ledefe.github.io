@@ -3,18 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2017 | ledefe</title>
+    <title>消息搜索设计 | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="java boy">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ledefe">
-<meta property="og:url" content="http://ledefe.tech/archives/2017/index.html">
+    <meta name="description" content="背景随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。 用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。 需求 查询与某个人对话的消息内容，并支持关键字搜索 查询包含此关键字的所有用户  设计思路消息模型&amp;lt;">
+<meta name="keywords" content="搜索设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息搜索设计">
+<meta property="og:url" content="http://ledefe.tech/2017/05/19/message-search-design/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="java boy">
+<meta property="og:description" content="背景随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。 用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。 需求 查询与某个人对话的消息内容，并支持关键字搜索 查询包含此关键字的所有用户  设计思路消息模型&amp;lt;">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-04T08:20:26.270Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ledefe">
-<meta name="twitter:description" content="java boy">
+<meta name="twitter:title" content="消息搜索设计">
+<meta name="twitter:description" content="背景随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。 用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。 需求 查询与某个人对话的消息内容，并支持关键字搜索 查询包含此关键字的所有用户  设计思路消息模型&amp;lt;">
     
 
     
@@ -171,378 +173,185 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2017</h1>
-            </div>
+            <section id="main"><article id="post-message-search-design" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/31/spring-jar/">spring 中获取jar执行的路径</a>
+        <h1 class="article-title" itemprop="name">
+            消息搜索设计
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/08/31/spring-jar/">
-            <time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time>
+        <a href="/2017/05/19/message-search-design/">
+            <time datetime="2017-05-19T06:32:19.000Z" itemprop="datePublished">2017-05-19</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/spring/">spring</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/spring-jar/">spring jar</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/31/ansible_tower_install/">ansible tower 安装</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/31/ansible_tower_install/">
-            <time datetime="2017-08-31T06:32:19.000Z" itemprop="datePublished">2017-08-31</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/ansible/">ansible</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/18/EFK-design-II/">EFFK-日志采集方案II</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/18/EFK-design-II/">
-            <time datetime="2017-08-18T06:32:19.000Z" itemprop="datePublished">2017-08-18</time>
-        </a>
-    </div>
-
-
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/design/">design</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/EFK-日志采集/">EFK 日志采集</a>
+        <a class="tag-link" href="/tags/搜索设计/">搜索设计</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/07/Elasticsearch-routing/">Elasticsearch 不同地域集群分片分配方案</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。</p>
+<p>用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>查询与某个人对话的消息内容，并支持关键字搜索</li>
+<li>查询包含此关键字的所有用户</li>
+</ul>
+<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><h3 id="消息模型"><a href="#消息模型" class="headerlink" title="消息模型"></a>消息模型</h3><p>&lt;会话，发送者，接收者，消息，撤回状态，…&gt;</p>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p><strong>1. 基于会话的维度</strong></p>
+<p> 从会话的消息库里面同步数据至es，按年分索引，每个索引50个分片，按会话做路由，使同一个会话消息落地至同一个分片中。  每个分片平均有2kw的数据。</p>
+<p><strong>优点：</strong><br>数据量上不管是群会话还是二人会话，都只有一条数据，后面的人，进入一个群，也能查阅之前在这个群会话里面聊过的聊天记录。<br><strong>缺点：</strong><br>不满足第二个需求</p>
+<p><strong>2. 基于收件箱的维度</strong></p>
+<p>从收件箱数据库里面同步数据至es，按年分索引，每个索引50个分片，接收者做路由，使同一个会话消息落地至同一个分片中，每个分片平均有2kw的数据。</p>
+<p><strong>优点：</strong><br>数据量上会比基于会话维度上多个2-3倍的数据，不管是群会话还是二人会话，都会给在这个会话中的每个成员的收件箱推一条消息。</p>
+<p><strong>缺点：</strong><br>后面进入群的成员，看不到之前在群里面聊过的聊天记录。</p>
+<h3 id="搜索性能"><a href="#搜索性能" class="headerlink" title="搜索性能"></a>搜索性能</h3><p>搜索操作需要在秒级内,采用jmeter压测工具随机关键字随机用户100并发做压测。</p>
+<h3 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h3><p>随着数据的不断增长，在保证不更改当前的逻辑下能够做到横向扩展。</p>
+<p>后期如果数据过大，只需要增加机器做集群，将分片分布到不同的集群上。</p>
+<h3 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h3><p>采用es冗余分片，当有个节点挂掉了，还有其他的节点上分片能够继续提供服务。</p>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/07/Elasticsearch-routing/">
-            <time datetime="2017-08-07T06:32:19.000Z" itemprop="datePublished">2017-08-07</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/22/go-web-demo/">go web api 简单实现</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/22/go-web-demo/">
-            <time datetime="2017-07-22T06:32:19.000Z" itemprop="datePublished">2017-07-22</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/21/java_exec_shell/">java执行shell脚本(备忘)</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/java_exec_shell/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java-shell/">java shell</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/21/linux cmd/">常用命令备忘</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/linux cmd/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/20/service/">制作java程序以linux服务方式启动</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/20/service/">
-            <time datetime="2017-07-20T06:32:19.000Z" itemprop="datePublished">2017-07-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/16/filebeat_install/">filebeat 部署</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/16/filebeat_install/">
-            <time datetime="2017-07-16T06:32:19.000Z" itemprop="datePublished">2017-07-16</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/filebeat/">filebeat</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/07/15/log_collection_scheme_II/">日志采集方案II</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/15/log_collection_scheme_II/">
-            <time datetime="2017-07-15T06:32:19.000Z" itemprop="datePublished">2017-07-15</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/design/">design</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/EFK/">EFK</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
 
-    <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="page-number" href="/archives/2017/page/4/">4</a><a class="extend next" rel="next" href="/archives/2017/page/2/">下一页 &raquo;</a>
-    </nav>
+    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj75x6p01002jr8q0w92m48nd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/19/message-search-design/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/22/java_job_summary/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    java工作技术总结
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/05/18/Elasticsearch5.3.0-monitor/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Elasticsearch 入门系列-监控篇</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="uyan_frame"></div>
+
+    
+    </section>
+
 </section>
             
                 <aside id="sidebar">
