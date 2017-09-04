@@ -2107,59 +2107,70 @@ ol.toc {
   height: 1.6em;
 }
 .highlight {
-  color: #ddd;
-  background: #272822;
+  color: #c5c8c6;
+  background: #1d1f21;
+/*selection color*/
 }
-.highlight .code .tag,
-.highlight .code .keyword,
-.highlight .code .selector-tag,
-.highlight .code .literal,
-.highlight .code .strong,
+.highlight::selection,
+.highlight span::selection {
+  background: #373b41;
+}
+.highlight::-moz-selection,
+.highlight span::-moz-selection {
+  background: #373b41;
+}
+.highlight .code .title,
 .highlight .code .name {
-  color: #f92672;
+  color: #f0c674;
 }
-.highlight .code .code {
-  color: #66d9ef;
+.highlight .code .comment,
+.highlight .code .meta,
+.highlight .code .meta .keyword {
+  color: #707880;
 }
-.highlight .code .class .title {
-  color: #fff;
-}
-.highlight .code .attribute,
+.highlight .code .number,
 .highlight .code .symbol,
-.highlight .code .regexp,
+.highlight .code .literal,
+.highlight .code .deletion,
 .highlight .code .link {
-  color: #bf79db;
+  color: #c66;
 }
 .highlight .code .string,
-.highlight .code .bullet,
-.highlight .code .subst,
-.highlight .code .title,
-.highlight .code .section,
-.highlight .code .emphasis,
-.highlight .code .type,
-.highlight .code .built_in,
-.highlight .code .builtin-name,
-.highlight .code .selector-attr,
-.highlight .code .selector-pseudo,
+.highlight .code .doctag,
 .highlight .code .addition,
+.highlight .code .regexp,
+.highlight .code .selector-attr,
+.highlight .code .selector-pseudo {
+  color: #b5bd68;
+}
+.highlight .code .attribute,
+.highlight .code .code,
+.highlight .code .selector-id {
+  color: #b294bb;
+}
+.highlight .code .keyword,
+.highlight .code .selector-tag,
+.highlight .code .bullet,
+.highlight .code .tag {
+  color: #81a2be;
+}
+.highlight .code .subst,
 .highlight .code .variable,
 .highlight .code .template-tag,
 .highlight .code .template-variable {
-  color: #a6e22e;
+  color: #8abeb7;
 }
-.highlight .code .comment,
-.highlight .code .quote,
-.highlight .code .deletion,
-.highlight .code .meta {
-  color: #75715e;
-}
-.highlight .code .keyword,
-.highlight .code .selector-tag,
-.highlight .code .literal,
-.highlight .code .doctag,
-.highlight .code .title,
-.highlight .code .section,
 .highlight .code .type,
-.highlight .code .selector-id {
+.highlight .code .built_in,
+.highlight .code .builtin-name,
+.highlight .code .quote,
+.highlight .code .section,
+.highlight .code .selector-class {
+  color: #de935f;
+}
+.highlight .code .emphasis {
+  font-style: italic;
+}
+.highlight .code .strong {
   font-weight: bold;
 }

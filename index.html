@@ -218,7 +218,7 @@
             <h1 id="获取jar文件的路径"><a href="#获取jar文件的路径" class="headerlink" title="获取jar文件的路径"></a>获取jar文件的路径</h1><ul>
 <li>ResourceUtils 工具的使用</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#获取jar中的类路径</div><div class="line">URL url = InputDataService.class.getProtectionDomain().getCodeSource().getLocation();</div><div class="line">#获取jar文件</div><div class="line">File jarFile = new File(ResourceUtils.extractJarFileURL(url).getPath())</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#获取jar中的类路径</div><div class="line">URL url = InputDataService.class.getProtectionDomain().getCodeSource().getLocation();</div><div class="line">#获取jar文件</div><div class="line">File jarFile = <span class="keyword">new</span> File(ResourceUtils.extractJarFileURL(url).getPath())</div></pre></td></tr></table></figure>
         
         </div>
         <footer class="article-footer">
@@ -228,7 +228,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/31/spring-jar/" data-id="cj75x6p0e002wr8q0sf3g6nfw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/31/spring-jar/" data-id="cj75z1cpu002ussq0xh0f5hm6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -361,38 +361,19 @@
 <li><p>配置inventory</p>
 </li>
 </ul>
-<pre><code class="shell">vi inventory
-
-localhost ansible_connection=local
-
-[secondary]
-
-[database]
-
-[all:vars]
-admin_password=&#39;ledefe&#39;
-redis_password=&#39;ledefe&#39;
-
-pg_host=&#39;&#39;
-pg_port=&#39;&#39;
-
-pg_database=&#39;awx&#39;
-pg_username=&#39;awx&#39;
-pg_password=&#39;ledefe&#39;
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">vi inventory</div><div class="line"></div><div class="line">localhost ansible_connection=local</div><div class="line"></div><div class="line">[secondary]</div><div class="line"></div><div class="line">[database]</div><div class="line"></div><div class="line">[all:vars]</div><div class="line">admin_password='ledefe'</div><div class="line">redis_password='ledefe'</div><div class="line"></div><div class="line">pg_host=''</div><div class="line">pg_port=''</div><div class="line"></div><div class="line">pg_database='awx'</div><div class="line">pg_username='awx'</div><div class="line">pg_password='ledefe'</div></pre></td></tr></table></figure>
 <ul>
-<li>运行 ./setup.sh</li>
+<li><p>运行 ./setup.sh</p>
+</li>
+<li><p>问题解决</p>
+</li>
 </ul>
 <p>ImportError: /var/lib/awx/venv/tower/lib/python2.7/site-packages/_ldap.so: failed to map segment from shared object: Permission denied</p>
-<p>发表于 2012/05/04 10:17:03<br>快速禁用SELinux命令：</p>
-<p>/usr/sbin/setenforce 0</p>
-<p>快速开启SELinux命令：</p>
-<p>/usr/sbin/setenforce 1</p>
+<p>快速禁用SELinux命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/sbin/setenforce 0</div></pre></td></tr></table></figure></p>
+<p>快速开启SELinux命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/sbin/setenforce 1</div></pre></td></tr></table></figure></p>
 <p>禁用SELinux方法：</p>
-<p>修改配置文件 /etc/selinux/config 找到下面的：</p>
-<p>SELINUX=enforcing</p>
-<p>修改为：</p>
-<p>SELINUX=disabled</p>
+<p>修改配置文件 /etc/selinux/config 找到下面的：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELINUX=enforcing</div></pre></td></tr></table></figure></p>
+<p>修改为：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELINUX=disabled</div></pre></td></tr></table></figure></p>
 <p>搞定！ </p>
 
         
@@ -404,7 +385,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj75x6ovk000lr8q0l054dwrp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj75z1cnv000issq0uvflabgs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -564,7 +545,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj75x6oug0000r8q0v16naf2c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj75z1cn20000ssq0syhb7sfe" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -689,16 +670,32 @@ pg_password=&#39;ledefe&#39;
 <h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果</p>
 <p>在线文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html</a></p>
 <h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><p>1./config/elasticsearch.yml设置区域信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">中国区</span></div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span><span class="bash"> 欧洲区</span></div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span><span class="bash"> 美国</span></div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>中国区</div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span> 欧洲区</div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span> 美国</div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
 <p>2.索引命名规则：{区域}<em>logs</em>{业务}-{date:YYYY-MM-dd}</p>
 <p>区域：表示 cn,eu,us</p>
 <p>业务：比如 tomcat,nginx等</p>
 <p>3.索引模块定义</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*PUT /_template/logs_cn</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "cn_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"cn",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">*PUT /_template/logs_eu</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "eu_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"eu",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">*PUT /_template/logs_us</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "us_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"us",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>PUT /_template/logs_cn</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"cn_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"cn"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>PUT /_template/logs_eu</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"eu_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"eu"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>PUT /_template/logs_us</p>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"us_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"us"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>4.索引操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*POST &#123;对应区域es&#125;/cn_logs_demo/log</div><div class="line"></div><div class="line">&#123;</div><div class="line">	"@message":"cn content.."</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>POST {对应区域es}/cn_logs_demo/log<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"@message"</span>:<span class="string">"cn content.."</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>5.索引查询</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*POST /cn_logs_*,eu_logs_*/_search?_search?preference=_only_nodes:zone:cn,zone:eu</div><div class="line"></div><div class="line">&#123;"query":&#123;"match_all":&#123;&#125;&#125;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>POST /cn<em>logs</em><em>,eu<em>logs</em></em>/_search?_search?preference=_only_nodes:zone:cn,zone:eu</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"query"</span>:&#123;<span class="attr">"match_all"</span>:&#123;&#125;&#125;&#125;</div></pre></td></tr></table></figure>
 <p>其中preference可指定查询的区域,如preference=_only_nodes:zone:cn,zone:eu，多个以逗号隔开</p>
 
         
@@ -710,7 +707,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj75x6p0m0033r8q0ym5gll2a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj75z1cnc0004ssq0ghjmhyrq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -852,7 +849,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/22/go-web-demo/" data-id="cj75x6ox5001er8q0wti7adm2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/22/go-web-demo/" data-id="cj75z1cor001gssq04db0fj3x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -930,141 +927,6 @@ pg_password=&#39;ledefe&#39;
 
 
 
-    <article id="post-java_exec_shell" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/21/java_exec_shell/">java执行shell脚本(备忘)</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/java_exec_shell/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java-shell/">java shell</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="java执行shell脚本-备忘"><a href="#java执行shell脚本-备忘" class="headerlink" title="java执行shell脚本(备忘)"></a>java执行shell脚本(备忘)</h1><ul>
-<li>主要代码</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">     <span class="function"><span class="keyword">public</span> ResultMsg <span class="title">stop</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException </span>&#123;</div><div class="line">	String[] cmd = &#123; <span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/etc/init.d/filebeat stop"</span> &#125;;</div><div class="line">	String result;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		result = doExeCmd(cmd);</div><div class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"500"</span>, e.getMessage());</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"200"</span>, result);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">doExeCmd</span><span class="params">(String[] cmd)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">	ProcessBuilder pbuilder = <span class="keyword">new</span> ProcessBuilder(cmd);</div><div class="line">	pbuilder.redirectErrorStream(<span class="keyword">true</span>);</div><div class="line">	Process process = pbuilder.start();</div><div class="line">	StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">	BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(process.getInputStream(), <span class="string">"UTF-8"</span>));</div><div class="line">	String line = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">		result.append(line).append(<span class="string">"\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> code = -<span class="number">1</span>;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		code = process.waitFor();</div><div class="line">		logger.info(<span class="string">"exec result code"</span> + code);</div><div class="line">	&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">		logger.error(e.getMessage());</div><div class="line">	&#125;</div><div class="line">	logger.info(<span class="string">"exec result"</span> + result.toString());</div><div class="line">	<span class="keyword">return</span> result.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/21/java_exec_shell/" data-id="cj75x6oye001mr8q0yjjv5fhb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/21/java_exec_shell/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-linux cmd" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1126,7 +988,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj75x6oyt0020r8q0tqhclf2b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj75z1cpa0020ssq08oy9xbry" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1195,6 +1057,141 @@ pg_password=&#39;ledefe&#39;
             
     
         <a href="http://ledefe.tech/2017/07/21/linux cmd/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-java_exec_shell" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/07/21/java_exec_shell/">java执行shell脚本(备忘)</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/07/21/java_exec_shell/">
+            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java-shell/">java shell</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="java执行shell脚本-备忘"><a href="#java执行shell脚本-备忘" class="headerlink" title="java执行shell脚本(备忘)"></a>java执行shell脚本(备忘)</h1><ul>
+<li>主要代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">     <span class="function"><span class="keyword">public</span> ResultMsg <span class="title">stop</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException </span>&#123;</div><div class="line">	String[] cmd = &#123; <span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/etc/init.d/filebeat stop"</span> &#125;;</div><div class="line">	String result;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		result = doExeCmd(cmd);</div><div class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"500"</span>, e.getMessage());</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"200"</span>, result);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">doExeCmd</span><span class="params">(String[] cmd)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">	ProcessBuilder pbuilder = <span class="keyword">new</span> ProcessBuilder(cmd);</div><div class="line">	pbuilder.redirectErrorStream(<span class="keyword">true</span>);</div><div class="line">	Process process = pbuilder.start();</div><div class="line">	StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">	BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(process.getInputStream(), <span class="string">"UTF-8"</span>));</div><div class="line">	String line = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">		result.append(line).append(<span class="string">"\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> code = -<span class="number">1</span>;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		code = process.waitFor();</div><div class="line">		logger.info(<span class="string">"exec result code"</span> + code);</div><div class="line">	&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">		logger.error(e.getMessage());</div><div class="line">	&#125;</div><div class="line">	logger.info(<span class="string">"exec result"</span> + result.toString());</div><div class="line">	<span class="keyword">return</span> result.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/07/21/java_exec_shell/" data-id="cj75z1cow001nssq0jhb4mylf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/21/java_exec_shell/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -1275,7 +1272,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/20/service/" data-id="cj75x6p0c002tr8q08zea8bbg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/20/service/" data-id="cj75z1cpq002ossq0y7fkhfy8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1419,7 +1416,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/16/filebeat_install/" data-id="cj75x6ovz0011r8q0fp7xaz6n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/16/filebeat_install/" data-id="cj75z1cob0010ssq0kk167bar" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1577,7 +1574,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/15/log_collection_scheme_II/" data-id="cj75x6oz8002cr8q0i2f0nhen" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/15/log_collection_scheme_II/" data-id="cj75z1cpl002essq044sh6ttn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

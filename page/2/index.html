@@ -244,7 +244,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/14/jenkins_install/" data-id="cj75x6oyh001pr8q0i3g1wqrm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/14/jenkins_install/" data-id="cj75z1cp7001xssq0yb0egzzg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -379,7 +379,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/13/es_init_script/" data-id="cj75x6ovs000ur8q0p13r6xvt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/13/es_init_script/" data-id="cj75z1co2000pssq05i8y8oyn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -518,7 +518,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/12/flume_install/" data-id="cj75x6ow5001ar8q0ppvho9q8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/12/flume_install/" data-id="cj75z1coq001dssq0nhkwvckb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -657,7 +657,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/09/linux_offen_shell_collect/" data-id="cj75x6oyy0024r8q0gqz7q26e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/09/linux_offen_shell_collect/" data-id="cj75z1cpc0023ssq0ibxt0io6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -803,7 +803,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/08/linux_shell_collect/" data-id="cj75x6oz00028r8q0zwn48ccl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/08/linux_shell_collect/" data-id="cj75z1cpf0027ssq0ztirzn1l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -872,6 +872,141 @@
             
     
         <a href="http://ledefe.tech/2017/07/08/linux_shell_collect/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-es_install_script" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/07/06/es_install_script/">es安装脚本</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/07/06/es_install_script/">
+            <time datetime="2017-07-06T06:32:19.000Z" itemprop="datePublished">2017-07-06</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/linux/">linux</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <ul>
+<li>es初始化脚本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line">if [[ -z $1 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  serviceName=$1</div><div class="line">fi</div><div class="line">if [[ -z $2 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  opt=$2</div><div class="line">fi</div><div class="line"></div><div class="line">echo  service:$serviceName,operator:$opt</div><div class="line"></div><div class="line">if [ "$serviceName" == "es" ]; then</div><div class="line"></div><div class="line">	if [ "$opt" == "install" ]; then</div><div class="line"></div><div class="line">	    if [ -n `which unzip` ]; then</div><div class="line">		 echo 'unzip exist'</div><div class="line">		else</div><div class="line">		 echo 'install unzip'</div><div class="line">		 yum install -y unzip</div><div class="line">		fi</div><div class="line"><span class="meta">		#</span>unzip es.zip</div><div class="line">		chmod +x /home/es/jdk1.8.0_131/bin/java</div><div class="line">		chmod +x /home/es/elasticsearch-5.3.0/bin/*</div><div class="line">		chmod +x /home/es/script/*.sh</div><div class="line">		export JAVA_HOME=/home/es/jdk1.8.0_131</div><div class="line">		mkdir -p /data/elasticsearch</div><div class="line"></div><div class="line">		groupadd es</div><div class="line">		useradd es -g es -p 'es123!@#'</div><div class="line">		chown  es /home/es -R</div><div class="line">		chown  es /data/elasticsearch -R</div><div class="line"></div><div class="line">		result=$(grep "/home/es/script/es_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/es_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/es_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/es_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		/home/es/script/es_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line">elif [ "$serviceName" == "kibana" ]; then</div><div class="line"></div><div class="line">    if [ "$opt" == "install" ]; then</div><div class="line">	</div><div class="line">		tar -zxvf /home/es/kibana-5.3.0-linux-x86_64.tar.gz</div><div class="line">		mv kibana-5.3.0-linux-x86_64 /home/es/kibana-5.3.0</div><div class="line">		chmod +x /home/es/kibana-5.3.0/bin/*</div><div class="line">		sed -i "s#^\#server.host:.*#server.host: \"0.0.0.0\"#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		sed -i "s#^\#pid.file:.*#pid.file: /var/run/kibana.pid#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		result=$(grep "/home/es/script/kibana_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/kibana_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/kibana_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/kibana_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		 /home/es/script/kibana_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line"></div><div class="line"></div><div class="line">elif [ "$serviceName" == "watcher" ]; then</div><div class="line"></div><div class="line">      if [ "$opt" == "install" ]; then</div><div class="line">			echo  service:$serviceName install. </div><div class="line">			cp -r /home/es/watcher /home/es/elasticsearch-5.3.0/plugins/</div><div class="line">	elif  [ "$opt" == "remove" ]; then</div><div class="line">		echo  service:$serviceName remove. </div><div class="line">		rm -rf /home/es/elasticsearch-5.3.0/plugins/watcher</div><div class="line">     fi</div><div class="line">  </div><div class="line"> else </div><div class="line">	echo "other starting ...."</div><div class="line">fi</div></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/07/06/es_install_script/" data-id="cj75z1co7000wssq0t2wztmpk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/06/es_install_script/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -955,7 +1090,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/06/log_specification_convention/" data-id="cj75x6ozz002fr8q0y76o7n2l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/06/log_specification_convention/" data-id="cj75z1cph002assq06vo0nc4n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1033,141 +1168,6 @@
 
 
 
-    <article id="post-es_install_script" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/06/es_install_script/">es安装脚本</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/06/es_install_script/">
-            <time datetime="2017-07-06T06:32:19.000Z" itemprop="datePublished">2017-07-06</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <ul>
-<li>es初始化脚本</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line">if [[ -z $1 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  serviceName=$1</div><div class="line">fi</div><div class="line">if [[ -z $2 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  opt=$2</div><div class="line">fi</div><div class="line"></div><div class="line">echo  service:$serviceName,operator:$opt</div><div class="line"></div><div class="line">if [ "$serviceName" == "es" ]; then</div><div class="line"></div><div class="line">	if [ "$opt" == "install" ]; then</div><div class="line"></div><div class="line">	    if [ -n `which unzip` ]; then</div><div class="line">		 echo 'unzip exist'</div><div class="line">		else</div><div class="line">		 echo 'install unzip'</div><div class="line">		 yum install -y unzip</div><div class="line">		fi</div><div class="line"><span class="meta">		#</span>unzip es.zip</div><div class="line">		chmod +x /home/es/jdk1.8.0_131/bin/java</div><div class="line">		chmod +x /home/es/elasticsearch-5.3.0/bin/*</div><div class="line">		chmod +x /home/es/script/*.sh</div><div class="line">		export JAVA_HOME=/home/es/jdk1.8.0_131</div><div class="line">		mkdir -p /data/elasticsearch</div><div class="line"></div><div class="line">		groupadd es</div><div class="line">		useradd es -g es -p 'es123!@#'</div><div class="line">		chown  es /home/es -R</div><div class="line">		chown  es /data/elasticsearch -R</div><div class="line"></div><div class="line">		result=$(grep "/home/es/script/es_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/es_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/es_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/es_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		/home/es/script/es_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line">elif [ "$serviceName" == "kibana" ]; then</div><div class="line"></div><div class="line">    if [ "$opt" == "install" ]; then</div><div class="line">	</div><div class="line">		tar -zxvf /home/es/kibana-5.3.0-linux-x86_64.tar.gz</div><div class="line">		mv kibana-5.3.0-linux-x86_64 /home/es/kibana-5.3.0</div><div class="line">		chmod +x /home/es/kibana-5.3.0/bin/*</div><div class="line">		sed -i "s#^\#server.host:.*#server.host: \"0.0.0.0\"#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		sed -i "s#^\#pid.file:.*#pid.file: /var/run/kibana.pid#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		result=$(grep "/home/es/script/kibana_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/kibana_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/kibana_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/kibana_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		 /home/es/script/kibana_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line"></div><div class="line"></div><div class="line">elif [ "$serviceName" == "watcher" ]; then</div><div class="line"></div><div class="line">      if [ "$opt" == "install" ]; then</div><div class="line">			echo  service:$serviceName install. </div><div class="line">			cp -r /home/es/watcher /home/es/elasticsearch-5.3.0/plugins/</div><div class="line">	elif  [ "$opt" == "remove" ]; then</div><div class="line">		echo  service:$serviceName remove. </div><div class="line">		rm -rf /home/es/elasticsearch-5.3.0/plugins/watcher</div><div class="line">     fi</div><div class="line">  </div><div class="line"> else </div><div class="line">	echo "other starting ...."</div><div class="line">fi</div></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/06/es_install_script/" data-id="cj75x6ovo000qr8q0wqnzjvhh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/06/es_install_script/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-high_CPU_investigation" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1227,7 +1227,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/02/high_CPU_investigation/" data-id="cj75x6ox8001hr8q05ml8ij28" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/02/high_CPU_investigation/" data-id="cj75z1cou001kssq05p7sz86x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1388,7 +1388,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj75x6ovh000jr8q0eze10694" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj75z1co5000tssq09zi1gamv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1522,7 +1522,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj75x6oyp001xr8q0n62iknl0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj75z1cp0001qssq0r0uui38i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

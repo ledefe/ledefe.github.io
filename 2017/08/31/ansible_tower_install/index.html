@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="ledefe">
 <meta property="og:description" content="ansible tower 安装 获取 ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz至/opt  tar -zxvf ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz  mv ansible-tower-setup-bundle-3.0.3-1.el7 ansible-tower  cd  ansible-to">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-04T08:20:30.183Z">
+<meta property="og:updated_time" content="2017-09-04T09:31:31.200Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible tower 安装">
 <meta name="twitter:description" content="ansible tower 安装 获取 ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz至/opt  tar -zxvf ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz  mv ansible-tower-setup-bundle-3.0.3-1.el7 ansible-tower  cd  ansible-to">
@@ -228,38 +228,19 @@
 <li><p>配置inventory</p>
 </li>
 </ul>
-<pre><code class="shell">vi inventory
-
-localhost ansible_connection=local
-
-[secondary]
-
-[database]
-
-[all:vars]
-admin_password=&#39;ledefe&#39;
-redis_password=&#39;ledefe&#39;
-
-pg_host=&#39;&#39;
-pg_port=&#39;&#39;
-
-pg_database=&#39;awx&#39;
-pg_username=&#39;awx&#39;
-pg_password=&#39;ledefe&#39;
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">vi inventory</div><div class="line"></div><div class="line">localhost ansible_connection=local</div><div class="line"></div><div class="line">[secondary]</div><div class="line"></div><div class="line">[database]</div><div class="line"></div><div class="line">[all:vars]</div><div class="line">admin_password='ledefe'</div><div class="line">redis_password='ledefe'</div><div class="line"></div><div class="line">pg_host=''</div><div class="line">pg_port=''</div><div class="line"></div><div class="line">pg_database='awx'</div><div class="line">pg_username='awx'</div><div class="line">pg_password='ledefe'</div></pre></td></tr></table></figure>
 <ul>
-<li>运行 ./setup.sh</li>
+<li><p>运行 ./setup.sh</p>
+</li>
+<li><p>问题解决</p>
+</li>
 </ul>
 <p>ImportError: /var/lib/awx/venv/tower/lib/python2.7/site-packages/_ldap.so: failed to map segment from shared object: Permission denied</p>
-<p>发表于 2012/05/04 10:17:03<br>快速禁用SELinux命令：</p>
-<p>/usr/sbin/setenforce 0</p>
-<p>快速开启SELinux命令：</p>
-<p>/usr/sbin/setenforce 1</p>
+<p>快速禁用SELinux命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/sbin/setenforce 0</div></pre></td></tr></table></figure></p>
+<p>快速开启SELinux命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/sbin/setenforce 1</div></pre></td></tr></table></figure></p>
 <p>禁用SELinux方法：</p>
-<p>修改配置文件 /etc/selinux/config 找到下面的：</p>
-<p>SELINUX=enforcing</p>
-<p>修改为：</p>
-<p>SELINUX=disabled</p>
+<p>修改配置文件 /etc/selinux/config 找到下面的：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELINUX=enforcing</div></pre></td></tr></table></figure></p>
+<p>修改为：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELINUX=disabled</div></pre></td></tr></table></figure></p>
 <p>搞定！ </p>
 
         
@@ -271,7 +252,7 @@ pg_password=&#39;ledefe&#39;
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj75x6ovk000lr8q0l054dwrp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj75z1cnv000issq0uvflabgs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

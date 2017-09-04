@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="ledefe">
 <meta property="og:description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。 方案初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果 在线文档">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-04T08:15:42.930Z">
+<meta property="og:updated_time" content="2017-09-04T09:34:30.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch 不同地域集群分片分配方案">
 <meta name="twitter:description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。 方案初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果 在线文档">
@@ -220,16 +220,32 @@
 <h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果</p>
 <p>在线文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html</a></p>
 <h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><p>1./config/elasticsearch.yml设置区域信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">中国区</span></div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span><span class="bash"> 欧洲区</span></div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span><span class="bash"> 美国</span></div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>中国区</div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span> 欧洲区</div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span> 美国</div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
 <p>2.索引命名规则：{区域}<em>logs</em>{业务}-{date:YYYY-MM-dd}</p>
 <p>区域：表示 cn,eu,us</p>
 <p>业务：比如 tomcat,nginx等</p>
 <p>3.索引模块定义</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*PUT /_template/logs_cn</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "cn_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"cn",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">*PUT /_template/logs_eu</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "eu_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"eu",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">*PUT /_template/logs_us</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "order": 0,</div><div class="line">    "template": "us_logs_*",</div><div class="line">    "settings": &#123;</div><div class="line">      "index.routing.allocation.include.zone" :"us",</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>PUT /_template/logs_cn</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"cn_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"cn"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>PUT /_template/logs_eu</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"eu_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"eu"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>PUT /_template/logs_us</p>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"us_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"us"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>4.索引操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*POST &#123;对应区域es&#125;/cn_logs_demo/log</div><div class="line"></div><div class="line">&#123;</div><div class="line">	"@message":"cn content.."</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>POST {对应区域es}/cn_logs_demo/log<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"@message"</span>:<span class="string">"cn content.."</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>5.索引查询</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*POST /cn_logs_*,eu_logs_*/_search?_search?preference=_only_nodes:zone:cn,zone:eu</div><div class="line"></div><div class="line">&#123;"query":&#123;"match_all":&#123;&#125;&#125;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>POST /cn<em>logs</em><em>,eu<em>logs</em></em>/_search?_search?preference=_only_nodes:zone:cn,zone:eu</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"query"</span>:&#123;<span class="attr">"match_all"</span>:&#123;&#125;&#125;&#125;</div></pre></td></tr></table></figure>
 <p>其中preference可指定查询的区域,如preference=_only_nodes:zone:cn,zone:eu，多个以逗号隔开</p>
 
         
@@ -241,7 +257,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj75x6p0m0033r8q0ym5gll2a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj75z1cnc0004ssq0ghjmhyrq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
