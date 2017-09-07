@@ -5,18 +5,18 @@
     
     <title>jenkins 安装 | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="jenkins 安装 wget https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm  rpm -ivh  jenkins-2.69-1.1.noarch.rpm  vim /etc/sysconfig/jenkins 配置端口   1234JENKINS_USER=&quot;root&quot;JENKINS_PORT=&quot;7080&quot;  vim /etc">
+    <meta name="description" content="jenkins 安装 wget https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm  rpm -ivh  jenkins-2.69-1.1.noarch.rpm  vim /etc/sysconfig/jenkins 配置端口">
 <meta name="keywords" content="jenkins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jenkins 安装">
 <meta property="og:url" content="http://ledefe.tech/2017/07/14/jenkins_install/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="jenkins 安装 wget https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm  rpm -ivh  jenkins-2.69-1.1.noarch.rpm  vim /etc/sysconfig/jenkins 配置端口   1234JENKINS_USER=&quot;root&quot;JENKINS_PORT=&quot;7080&quot;  vim /etc">
+<meta property="og:description" content="jenkins 安装 wget https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm  rpm -ivh  jenkins-2.69-1.1.noarch.rpm  vim /etc/sysconfig/jenkins 配置端口">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-04T08:21:22.937Z">
+<meta property="og:updated_time" content="2017-09-07T02:18:16.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins 安装">
-<meta name="twitter:description" content="jenkins 安装 wget https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm  rpm -ivh  jenkins-2.69-1.1.noarch.rpm  vim /etc/sysconfig/jenkins 配置端口   1234JENKINS_USER=&quot;root&quot;JENKINS_PORT=&quot;7080&quot;  vim /etc">
+<meta name="twitter:description" content="jenkins 安装 wget https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm  rpm -ivh  jenkins-2.69-1.1.noarch.rpm  vim /etc/sysconfig/jenkins 配置端口">
     
 
     
@@ -219,6 +219,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <h1 id="jenkins-安装"><a href="#jenkins-安装" class="headerlink" title="jenkins 安装"></a>jenkins 安装</h1><ul>
@@ -227,11 +228,11 @@
 <li><p>rpm -ivh  jenkins-2.69-1.1.noarch.rpm</p>
 </li>
 <li><p>vim /etc/sysconfig/jenkins 配置端口</p>
-</li>
-</ul>
+<a id="more"></a>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">JENKINS_USER="root"</div><div class="line"></div><div class="line">JENKINS_PORT="7080"</div></pre></td></tr></table></figure>
-<ul>
-<li>vim /etc/init.d/jenkins 设置java路径</li>
+</li>
+<li><p>vim /etc/init.d/jenkins 设置java路径</p>
+</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> see http://www.nabble.com/guinea-pigs-wanted-----Hudson-RPM-for-RedHat-Linux-td25673707.html</span></div><div class="line">candidates="</div><div class="line">/etc/alternatives/java</div><div class="line">/usr/lib/jvm/java-1.8.0/bin/java</div><div class="line">/usr/lib/jvm/jre-1.8.0/bin/java</div><div class="line">/usr/lib/jvm/java-1.7.0/bin/java</div><div class="line">/usr/lib/jvm/jre-1.7.0/bin/java</div><div class="line">/usr/bin/java</div><div class="line">/home/es/jdk1.8.0_131/bin/java</div><div class="line">"</div></pre></td></tr></table></figure>
 <ul>
@@ -250,7 +251,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/14/jenkins_install/" data-id="cj79qoqdf00257sq0qzpyktwy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/14/jenkins_install/" data-id="cj79slqi6001yxgq0lsg38msb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

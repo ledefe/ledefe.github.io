@@ -5,18 +5,18 @@
     
     <title>Elasticsearch 不同地域集群分片分配方案 | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。 方案初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果 在线文档">
+    <meta name="description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。">
 <meta name="keywords" content="Elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Elasticsearch 不同地域集群分片分配方案">
 <meta property="og:url" content="http://ledefe.tech/2017/08/07/Elasticsearch-routing/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。 方案初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果 在线文档">
+<meta property="og:description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-04T09:34:30.966Z">
+<meta property="og:updated_time" content="2017-09-07T02:13:57.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch 不同地域集群分片分配方案">
-<meta name="twitter:description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。 方案初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果 在线文档">
+<meta name="twitter:description" content="简介目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。">
     
 
     
@@ -219,9 +219,11 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。</p>
+<a id="more"></a>
 <h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果</p>
 <p>在线文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html</a></p>
 <h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><p>1./config/elasticsearch.yml设置区域信息</p>
@@ -262,7 +264,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj79qoqb600017sq0b4uehwqz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj79slqgd0006xgq0zx00c6zh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

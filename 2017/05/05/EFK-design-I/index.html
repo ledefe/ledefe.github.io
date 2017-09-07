@@ -14,7 +14,7 @@
 <meta property="og:description" content="简介   EFK是Elasticsearch、Flume、Kafka的简称。    Elasticsearch是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。  Flume是Cloudera提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://10.3.17.150:88/uploads/201704/58f42b8282e26_58f42b82.png">
-<meta property="og:updated_time" content="2017-09-04T08:23:43.519Z">
+<meta property="og:updated_time" content="2017-09-07T02:16:48.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EFK-日志采集方案I">
 <meta name="twitter:description" content="简介   EFK是Elasticsearch、Flume、Kafka的简称。    Elasticsearch是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。  Flume是Cloudera提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方">
@@ -221,12 +221,13 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>   EFK是Elasticsearch、Flume、Kafka的简称。</p>
 <p>   Elasticsearch是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</p>
 <p> Flume是Cloudera提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方，用于收集数据；同时，Flume提供对数据进行简单处理，并写到各种数据接受方（可定制）的能力。</p>
-<p>   Kafka是一种高吞吐量的分布式发布订阅消息系统，它适合处理海量日志发布订阅，提供消息磁盘持久化、支持物理分片存储、多组消费等特性。</p>
+<p>   Kafka是一种高吞吐量的分布式发布订阅消息系统，它适合处理海量日志发布订阅，提供消息磁盘持久化、支持物理分片存储、多组消费等特性。<br><a id="more"></a></p>
 <h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1><p><img src="http://10.3.17.150:88/uploads/201704/58f42b8282e26_58f42b82.png" alt="img-w500"></p>
 <p>日志采集主要借助于flume开源采集工具，持久化至ES集群中。</p>
 <p>我们使用Flume，将flume采集到的日志汇报至服务聚合端，服务聚合端将日志持久化至Elasticsearch集群,最后使用日志查询工具可实时查看日志</p>
@@ -257,7 +258,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj79qoqbb00047sq0dxq265fu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj79slqfy0000xgq0hpj6enju" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -334,19 +335,19 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/05/18/Elasticsearch5.3.0-monitor/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    Elasticsearch 入门系列-监控篇
+                    Elasticsearch 入门系列-概念篇
                 
             </div>
         </a>
     
     
-        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/05/05/Elasticsearch5.3.0-options/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Elasticsearch 入门系列-概念篇</div>
+            <div class="article-nav-title">Elasticsearch 入门系列-操作篇</div>
         </a>
     
 </nav>

@@ -218,12 +218,12 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="java工作技术总结"><a href="#java工作技术总结" class="headerlink" title="java工作技术总结"></a>java工作技术总结</h1><h2 id="redis的使用"><a href="#redis的使用" class="headerlink" title="redis的使用"></a>redis的使用</h2><p>redis是一款nosql数据库，一般用来做临时缓存。也可以用来做消费者和提供者的模型。<br>改造过一款基于redis的后台任务组件，jesque能把任何类或模块作为任务在后台执行，且自带前台管理功能，方便查看执行情况。用于程序间解藕。</p>
-<h2 id="monogodb的使用"><a href="#monogodb的使用" class="headerlink" title="monogodb的使用"></a>monogodb的使用</h2><p>也是一款nosql数据库，自由的文档模式，面向集合存储，适合存储文档和json形式的数据。它提供丰富的查询语法。<br>能够集群和故障自动转移，用过作为图文存储的介质。<br>缺点：锁粒度比较粗，2.2以前的版本，只有全局锁，2.2之后，提升为集合锁。例如如果一个 mongod 实例上有 5 个库，如果只对一个库中的一个集合执行写操作，那<br>么在写操作过程中，这个库被锁；而其它 4个库不影响。相比 RDBMS 来说，这个粒度已经算很大了！</p>
-<p>## </p>
-
+            <p><h1 id="java工作技术总结"><a href="#java工作技术总结" class="headerlink" title="java工作技术总结"></a>java工作技术总结</h1><h2 id="redis的使用"><a href="#redis的使用" class="headerlink" title="redis的使用"></a>redis的使用</h2><p>redis是一款nosql数据库，一般用来做临时缓存。也可以用来做消费者和提供者的模型。<br>改造过一款基于redis的后台任务组件，jesque能把任何类或模块作为任务在后台执行，且自带前台管理功能，方便查看执行情况。用于程序间解藕。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/05/22/java_job_summary/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -233,7 +233,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj79qoqd5001s7sq0ih39y67m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj79slqhy001oxgq02bddt0o1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -357,27 +357,13 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。</p>
-<p>用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。</p>
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
-<li>查询与某个人对话的消息内容，并支持关键字搜索</li>
-<li>查询包含此关键字的所有用户</li>
-</ul>
-<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><h3 id="消息模型"><a href="#消息模型" class="headerlink" title="消息模型"></a>消息模型</h3><p>&lt;会话，发送者，接收者，消息，撤回状态，…&gt;</p>
-<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p><strong>1. 基于会话的维度</strong></p>
-<p> 从会话的消息库里面同步数据至es，按年分索引，每个索引50个分片，按会话做路由，使同一个会话消息落地至同一个分片中。  每个分片平均有2kw的数据。</p>
-<p><strong>优点：</strong><br>数据量上不管是群会话还是二人会话，都只有一条数据，后面的人，进入一个群，也能查阅之前在这个群会话里面聊过的聊天记录。<br><strong>缺点：</strong><br>不满足第二个需求</p>
-<p><strong>2. 基于收件箱的维度</strong></p>
-<p>从收件箱数据库里面同步数据至es，按年分索引，每个索引50个分片，接收者做路由，使同一个会话消息落地至同一个分片中，每个分片平均有2kw的数据。</p>
-<p><strong>优点：</strong><br>数据量上会比基于会话维度上多个2-3倍的数据，不管是群会话还是二人会话，都会给在这个会话中的每个成员的收件箱推一条消息。</p>
-<p><strong>缺点：</strong><br>后面进入群的成员，看不到之前在群里面聊过的聊天记录。</p>
-<h3 id="搜索性能"><a href="#搜索性能" class="headerlink" title="搜索性能"></a>搜索性能</h3><p>搜索操作需要在秒级内,采用jmeter压测工具随机关键字随机用户100并发做压测。</p>
-<h3 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h3><p>随着数据的不断增长，在保证不更改当前的逻辑下能够做到横向扩展。</p>
-<p>后期如果数据过大，只需要增加机器做集群，将分片分布到不同的集群上。</p>
-<h3 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h3><p>采用es冗余分片，当有个节点挂掉了，还有其他的节点上分片能够继续提供服务。</p>
-
+            <p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。</p>
+<p>用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/05/19/message-search-design/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -387,7 +373,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj79qoqeo003k7sq0h2xt1928" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj79slqit002sxgq0uelm6b78" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -511,11 +497,12 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="bigdesk插件"><a href="#bigdesk插件" class="headerlink" title="bigdesk插件"></a>bigdesk插件</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GitHub 地址见：<a href="https://github.com/hlstudio/bigdesk" target="_blank" rel="external">https://github.com/hlstudio/bigdesk</a><br>bigdesk 通过浏览器直连 ES 节点，发起 RESTful 请求，并渲染结果成图。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>bigdesk的程序是javascript编写的，故可部署至任何web服务器中访问即可。<br>这里使用tomcat部署方式。<br>下载地址：<a href="https://codeload.github.com/hlstudio/bigdesk/zip/v2.2.a" target="_blank" rel="external">https://codeload.github.com/hlstudio/bigdesk/zip/v2.2.a</a><br>解压将_site下的文件复制至tomcat/webapps/ROOT下面即可。<br>启动tomcat ，浏览器访问： ip:port 如图：<br><img src="/images/bigdesk1.png" width="500" align="center"><br>输入想要访问的es地址<br>选择一个集群节点，查看节点性能情况，一般重点关注 JVM 性能和索引性能。<br><img src="/images/bigdesk2.png" width="500" align="center"></p>
-
+            <p><h1 id="bigdesk插件"><a href="#bigdesk插件" class="headerlink" title="bigdesk插件"></a>bigdesk插件</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GitHub 地址见：<a href="https://github.com/hlstudio/bigdesk" target="_blank" rel="external">https://github.com/hlstudio/bigdesk</a><br>bigdesk 通过浏览器直连 ES 节点，发起 RESTful 请求，并渲染结果成图。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/05/18/Elasticsearch5.3.0-monitor/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -525,7 +512,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj79qoqbk000a7sq0xgsmwhqe" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj79slqgo0009xgq0igti49em" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -603,166 +590,6 @@
 
 
 
-    <article id="post-EFK-design-I" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/EFK-design-I/">EFK-日志采集方案I</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/EFK-design-I/">
-            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/design/">design</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/EFK-日志采集/">EFK 日志采集</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>   EFK是Elasticsearch、Flume、Kafka的简称。</p>
-<p>   Elasticsearch是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</p>
-<p> Flume是Cloudera提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方，用于收集数据；同时，Flume提供对数据进行简单处理，并写到各种数据接受方（可定制）的能力。</p>
-<p>   Kafka是一种高吞吐量的分布式发布订阅消息系统，它适合处理海量日志发布订阅，提供消息磁盘持久化、支持物理分片存储、多组消费等特性。</p>
-<h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1><p><img src="http://10.3.17.150:88/uploads/201704/58f42b8282e26_58f42b82.png" alt="img-w500"></p>
-<p>日志采集主要借助于flume开源采集工具，持久化至ES集群中。</p>
-<p>我们使用Flume，将flume采集到的日志汇报至服务聚合端，服务聚合端将日志持久化至Elasticsearch集群,最后使用日志查询工具可实时查看日志</p>
-<p>整个架构可分为两部分：flume服务和ES集群</p>
-<h1 id="flume服务可分为服务聚合端和服务采集端"><a href="#flume服务可分为服务聚合端和服务采集端" class="headerlink" title="flume服务可分为服务聚合端和服务采集端"></a>flume服务可分为服务聚合端和服务采集端</h1><ul>
-<li><p>服务聚合端</p>
-<p>  服务中心端通过avro协议负责收集处理所有从客户端上报上来的数据，并持久化到es集群中去</p>
-</li>
-<li><p>服务采集端</p>
-<p>  采集端是通过一个flume代理，采集不同应用程序的日志，flume支持多种采集协议，比如监控目录方式，syslog，avro协议等。可收集不同类型的数据，比如tomcat/nginx等，然后通过avro协议上报至服务聚合端。</p>
-<p>   目前我们采用的采集方式是监听某个目录（tail -F [file]），收集数据。</p>
-<p>   我们会在需要日志采集的服务器上安装flume代理，负责采集单机上所有项目的日志。</p>
-</li>
-</ul>
-<h1 id="flume原理"><a href="#flume原理" class="headerlink" title="flume原理"></a>flume原理</h1><p>  每个flume都有三部分组成：source,chanel,sink。</p>
-<p>  比如：<br>  我们使用Taildir Source 配置监听某个文件，或某个文件目录，当该文件或目录下有数据变化时，flume会从第一行开始实时读取日志并封装成Event批量放入Channel。<br> Flume的Sink会从Channel里拿到Event，然后在原始日志前面加上header，然后批量提交至服务聚合端。<br>  详细见： （<a href="http://flume.apache.org/FlumeUserGuide.html）" target="_blank" rel="external">http://flume.apache.org/FlumeUserGuide.html）</a></p>
-<h1 id="ES集群"><a href="#ES集群" class="headerlink" title="ES集群"></a>ES集群</h1><p> 主要存放历史日志，使用场景在对历史日志进行检索。</p>
-<h1 id="查询工具"><a href="#查询工具" class="headerlink" title="查询工具"></a>查询工具</h1><p>  目前提供日志的在线查询和根据特定条件筛选下载，考虑到日志文件的大小情况，这边限定下载需要选定一个时间区间，且时间区间不超过24个小时。</p>
-<p>局域网：<a href="http://10.2.61.211:8080/" target="_blank" rel="external">http://10.2.61.211:8080/</a></p>
-<h1 id="日志输出格式约定"><a href="#日志输出格式约定" class="headerlink" title="日志输出格式约定"></a>日志输出格式约定</h1><p> 日志输出格式统一约定以ISO 8601（格式为： YYYY-MM-DDTHH:mm:ss.sssZ ）日期开头输出<br> 如：log4j.xml或logback里配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;yyyy-MM-dd'T'HH:mm:ss.SSSZ&#125; [%t] %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>&gt;</span><span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj79qoqbb00047sq0dxq265fu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/05/05/EFK-design-I/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-Elasticsearch5.3.0-concepts" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -809,6 +636,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             
@@ -821,7 +649,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj79qoqbd00057sq0kvo57dk3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj79slqgk0008xgq0b3zvzay6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -899,6 +727,148 @@
 
 
 
+    <article id="post-EFK-design-I" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/05/EFK-design-I/">EFK-日志采集方案I</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/05/EFK-design-I/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/design/">design</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/EFK-日志采集/">EFK 日志采集</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            <p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>   EFK是Elasticsearch、Flume、Kafka的简称。</p>
+<p>   Elasticsearch是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</p>
+<p> Flume是Cloudera提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方，用于收集数据；同时，Flume提供对数据进行简单处理，并写到各种数据接受方（可定制）的能力。</p>
+<p>   Kafka是一种高吞吐量的分布式发布订阅消息系统，它适合处理海量日志发布订阅，提供消息磁盘持久化、支持物理分片存储、多组消费等特性。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/05/05/EFK-design-I/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj79slqfy0000xgq0hpj6enju" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/05/EFK-design-I/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-Elasticsearch5.3.0-options" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -945,6 +915,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             
@@ -957,7 +928,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj79qoqbf00067sq0f04tar7r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj79slqgr000dxgq06ptrbepx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1081,6 +1052,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
@@ -1097,7 +1069,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj79qoqbo000c7sq019dt7dru" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj79slqgu000fxgq0fj1kci64" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1221,31 +1193,16 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p> centos 7</p>
+            <p><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p> centos 7</p>
 <h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>kibana-5.3.0-linux-x86_64.tar.gz</p>
 <p>#资源</p>
 <p>资源： kibana-5.3.0-linux-x86_64.tar.gz</p>
-<h1 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tar -zxvf kibana-5.3.0-linux-x86_64.tar.gz</div><div class="line"></div><div class="line">mv kibana-5.3.0-linux-x86_64 kibana-5.3.0</div><div class="line"></div><div class="line">cd kibana-5.3.0</div></pre></td></tr></table></figure>
-<h1 id="配置kibana"><a href="#配置kibana" class="headerlink" title="配置kibana"></a>配置kibana</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd config</div><div class="line"></div><div class="line">vi kibana.yml</div></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>找到 # server.host，修改成以下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#设置外网可以访问</div><div class="line">server.host: &quot;0.0.0.0&quot;</div></pre></td></tr></table></figure></p>
-<h2 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h2><ul>
-<li>编写脚本kibana_start.sh</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi  kibana_start.sh</div></pre></td></tr></table></figure>
-<p>加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">/home/ldh/kibana-5.3.0/bin/kibana &amp;</div></pre></td></tr></table></figure>
-<ul>
-<li>在rc.local里添加一行</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi  /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
-<p>加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/kibana_start.sh</div></pre></td></tr></table></figure>
-<p>启动命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/kibana_start.sh</div></pre></td></tr></table></figure>
-<h1 id="6-附加"><a href="#6-附加" class="headerlink" title="6.附加"></a>6.附加</h1><h2 id="centos7-firewall设置开放9200-9300端口"><a href="#centos7-firewall设置开放9200-9300端口" class="headerlink" title="centos7 firewall设置开放9200/9300端口"></a>centos7 firewall设置开放9200/9300端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">（--permanent永久生效，没有此参数重启后失效）</div><div class="line">firewall-cmd --zone=public --add-port=9200/tcp --permanent</div><div class="line"></div><div class="line">重新载入</div><div class="line">firewall-cmd --reload</div></pre></td></tr></table></figure>
-
+<h1 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h1></p>
+            <p class="article-more-link">
+               <a href="/2017/05/04/kibana-5.3.0-install/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1255,7 +1212,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cj79qoqd9001v7sq0i1u1essc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cj79slqi4001vxgq0qpy6pbj8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1379,26 +1336,14 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="安装jdk1-8"><a href="#安装jdk1-8" class="headerlink" title="安装jdk1.8"></a>安装jdk1.8</h1><ul>
+            <p><h1 id="安装jdk1-8"><a href="#安装jdk1-8" class="headerlink" title="安装jdk1.8"></a>安装jdk1.8</h1><ul>
 <li><p>jdk-8u101-linux-x64.tar.gz上传至服务器/opt目录</p>
-<p>解压：</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf jdk-8u101-linux-x64.tar.gz</div></pre></td></tr></table></figure>
-<ul>
-<li>移动至/usr/local目录：</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv jdk1.8.0_101/ /usr/local/</div></pre></td></tr></table></figure>
-<ul>
-<li>设置环境变量</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">vi /etc/profile</div><div class="line"><span class="meta">#</span>输入</div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH:$NODE_HOME/bin</div><div class="line">export JAVA_HOME PATH CLASSPATH</div><div class="line"></div><div class="line"><span class="meta">#</span>使环境变量即时生效</div><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
-<ul>
-<li>验证<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></li>
-</ul>
-
+<p>解压：</p></p>
+            <p class="article-more-link">
+               <a href="/2017/05/03/JDK-1.8-install/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1408,7 +1353,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="cj79qoqbv000g7sq0vdqcvaau" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="cj79slqgx000jxgq0nm9dn0fn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1532,30 +1477,15 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>centos 7</p>
+            <p><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>centos 7</p>
 <p>#资源</p>
 <p>资源： logstash-5.3.0.tar.gz</p>
-<h1 id="上传至解压"><a href="#上传至解压" class="headerlink" title="上传至解压"></a>上传至解压</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf logstash-5.3.0.tar.gz</div><div class="line">cd logstash-5.3.0</div></pre></td></tr></table></figure>
-<h1 id="配置采集规则"><a href="#配置采集规则" class="headerlink" title="配置采集规则"></a>配置采集规则</h1><p> 这边以采集tomcat的访问日志为例<br>创建logstash_tomcat.conf</p>
-<p>Vi logstash_tomcat.conf</p>
-<p>加入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">input &#123;</div><div class="line">        file &#123;  </div><div class="line">                path =&gt; <span class="string">"/home/ldh/apache-tomcat-8.5.6/logs/localhost_access_log*.txt"</span>  </div><div class="line">                sincedb_path =&gt; <span class="string">"/home/ldh/logstash-5.3.0/config/sincedb_apache_access_log.txt"</span></div><div class="line">                <span class="built_in">type</span> =&gt; <span class="string">"apache_access_log"</span></div><div class="line">                add_field =&gt; &#123;<span class="string">"@ip"</span> =&gt; <span class="string">"192.168.24.129"</span>&#125;</div><div class="line">        &#125;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">filter&#123;</div><div class="line">        <span class="keyword">if</span> [<span class="built_in">type</span>] == <span class="string">"apache_access_log"</span> &#123;</div><div class="line">                grok&#123;</div><div class="line">                        match =&gt; &#123; <span class="string">"message"</span> =&gt; <span class="string">"%&#123;IPORHOST:clientip&#125; %&#123;USER:ident&#125; %&#123;USER:auth&#125; \[%&#123;HTTPDATE:timestamp&#125;\] \"(?:%&#123;WORD:verb&#125; %&#123;URIPATHPARAM:request&#125;(?: HTTP/%&#123;NUMBER:httpversion&#125;)?|-)\" %&#123;NUMBER:response&#125; (?:%&#123;NUMBER:bytes&#125;|-) %&#123;NUMBER:responsetime&#125; \"(?:%&#123;URI:referrer&#125;|-)\" %&#123;QS:agent&#125;"</span> &#125;</div><div class="line">                &#125;</div><div class="line">                date&#123;</div><div class="line">                        match =&gt; [ <span class="string">"timestamp"</span>, <span class="string">"dd/MMM/yyyy:HH:mm:ss Z"</span> ]</div><div class="line">                        target =&gt; [<span class="string">"writetime"</span>]</div><div class="line">                &#125;</div><div class="line">                mutate &#123;</div><div class="line">                        convert =&gt; &#123; </div><div class="line">                                <span class="string">"response"</span> =&gt; <span class="string">"integer"</span> </div><div class="line">                                <span class="string">"bytes"</span> =&gt; <span class="string">"integer"</span> </div><div class="line">                                <span class="string">"responsetime"</span> =&gt; <span class="string">"integer"</span> </div><div class="line">                        &#125;</div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">output &#123;</div><div class="line">        <span class="keyword">if</span> [<span class="built_in">type</span>] == <span class="string">"apache_access_log"</span> &#123;</div><div class="line">                elasticsearch &#123;</div><div class="line">                        hosts =&gt; [<span class="string">"192.168.24.129:9200"</span>]</div><div class="line">                        index =&gt; <span class="string">"tomcat-accesslog-%&#123;+YYYY.MM.dd&#125;"</span></div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>logstash_tomcat.conf主要有三个组件组成，分别是输入、过滤、输出。</p>
-<p>这边输出是存储至es服务</p>
-<p>#设置开机自启动</p>
-<ol>
-<li>编写脚本logstash_start.sh</li>
-</ol>
-<p>Vi  logstash_start.sh</p>
-<p>加入<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">/home/ldh/logstash-5.3.0/bin/logstash -f /home/ldh/logstash-5.3.0/logstash_tomcat.conf &amp;</div></pre></td></tr></table></figure></p>
-<p>2.在rc.local里添加一行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi  /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
-<p>加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/ logstash_start.sh</div></pre></td></tr></table></figure>
-<p>启动命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/ldh/script/ logstash_start.sh</div></pre></td></tr></table></figure></p>
-
+<h1 id="上传至解压"><a href="#上传至解压" class="headerlink" title="上传至解压"></a>上传至解压</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf logstash-5.3.0.tar.gz</div><div class="line">cd logstash-5.3.0</div></pre></td></tr></table></figure></p>
+            <p class="article-more-link">
+               <a href="/2017/05/01/logstash-5.3.0-install/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1565,7 +1495,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/01/logstash-5.3.0-install/" data-id="cj79qoqds002n7sq0zqx4paqx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/01/logstash-5.3.0-install/" data-id="cj79slqio002lxgq0quhyuz57" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

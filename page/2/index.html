@@ -218,36 +218,12 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="日志采集方案II"><a href="#日志采集方案II" class="headerlink" title="日志采集方案II"></a>日志采集方案II</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>早期采用EFK（Eleasticsearch+Flume+kibana）的架构模式，在各服务器端部署flume代理，以tailf的方式，采集日志文件，当日志文件量大时，会导致cpu的使用率会上升，主要是flume代理会占用服务器端资源，基于上述原因，需求更好的解决方式。查阅官网发现，filebeat,一个轻量级的采集程序，基于golang开发，占用资源比flume的少很多。下面主要介绍filebeat+logstash+Eleasticsearch的日志采集方案。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>五大组件</p>
-<ul>
-<li>filebeat：部署在采集端，负载采集，轻量，占用资源相对较少</li>
-<li>logstash：部署在服务端，主要汇集和过滤各个采集端的数据</li>
-<li>Flume：可做为采集端和采集服务端，在大数据量时，会占用宿主资源</li>
-<li>Eleasticsearch：作为数据的存储，具备高可用，高扩展性的服务</li>
-<li>kibana：数据展现层，提供日志的可视化分析</li>
-</ul>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
-<li><p>flume-agent(采集端)=》flume-server（服务端）=》Eleasticsearch(集群)+kibana</p>
-<p>优点：<br>具有分布式、可靠、可用的特性，可水平扩展。</p>
-<p>缺点：<br>数据量大时，比较耗资源</p>
-</li>
-<li><p>filebeat（采集端）=》logstash（服务端）=》Eleasticsearch(集群)=》kibana</p>
-<p>优点：<br>轻量，体积小，占用资源少</p>
-</li>
-<li><p>filebeat（采集端）=》消息队列<br>消息队列=》logstash（服务端）+Eleasticsearch(集群)+kibana<br>优点：<br>引入消息队列，filebeat 支持 Kafka、Redis消息队列；<br>在数据量大和高并发的情况下，均衡了网络传输，降低了网络闭塞。</p>
-</li>
-</ol>
-<h2 id="附相关部署"><a href="#附相关部署" class="headerlink" title="附相关部署"></a>附相关部署</h2><p><a href="https://ledefe.github.io/posts/filebeat%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">filebeat部署</a></p>
-<p><a href="https://ledefe.github.io/posts/kibana-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">kibana部署</a></p>
-<p><a href="https://ledefe.github.io/posts/JDK-1.8-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">JDK部署</a></p>
-<p><a href="https://ledefe.github.io/posts/logstash-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">logstash部署</a></p>
-<p><a href="https://ledefe.github.io/posts/elasticsearch-5.3.0-%E9%83%A8%E7%BD%B2.html" target="_blank" rel="external">elasticsearch部署</a></p>
-<p><a href="https://ledefe.github.io/posts/flume1.7-%E9%83%A8%E7%BD%B2(%E6%9C%8D%E5%8A%A1%E9%87%87%E9%9B%86%E7%AB%AF).html" target="_blank" rel="external">flume部署（客户端采集）</a></p>
-<p><a href="https://ledefe.github.io/posts/flume1.7-%E9%83%A8%E7%BD%B2(%E6%9C%8D%E5%8A%A1%E8%81%9A%E5%90%88%E7%AB%AF).html" target="_blank" rel="external">flume（服务采集端）</a></p>
-
+            <p><h1 id="日志采集方案II"><a href="#日志采集方案II" class="headerlink" title="日志采集方案II"></a>日志采集方案II</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>早期采用EFK（Eleasticsearch+Flume+kibana）的架构模式，在各服务器端部署flume代理，以tailf的方式，采集日志文件，当日志文件量大时，会导致cpu的使用率会上升，主要是flume代理会占用服务器端资源，基于上述原因，需求更好的解决方式。查阅官网发现，filebeat,一个轻量级的采集程序，基于golang开发，占用资源比flume的少很多。下面主要介绍filebeat+logstash+Eleasticsearch的日志采集方案。</p></p>
+            <p class="article-more-link">
+               <a href="/2017/07/15/log_collection_scheme_II/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -257,7 +233,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/15/log_collection_scheme_II/" data-id="cj79qoqdk002c7sq0elj21bev" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/15/log_collection_scheme_II/" data-id="cj79slqif0029xgq0k9mdiu4t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -381,28 +357,17 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="jenkins-安装"><a href="#jenkins-安装" class="headerlink" title="jenkins 安装"></a>jenkins 安装</h1><ul>
+            <p><h1 id="jenkins-安装"><a href="#jenkins-安装" class="headerlink" title="jenkins 安装"></a>jenkins 安装</h1><ul>
 <li><p>wget <a href="https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm" target="_blank" rel="external">https://pkg.jenkins.io/redhat/jenkins-2.69-1.1.noarch.rpm</a></p>
 </li>
 <li><p>rpm -ivh  jenkins-2.69-1.1.noarch.rpm</p>
 </li>
-<li><p>vim /etc/sysconfig/jenkins 配置端口</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">JENKINS_USER="root"</div><div class="line"></div><div class="line">JENKINS_PORT="7080"</div></pre></td></tr></table></figure>
-<ul>
-<li>vim /etc/init.d/jenkins 设置java路径</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> see http://www.nabble.com/guinea-pigs-wanted-----Hudson-RPM-for-RedHat-Linux-td25673707.html</span></div><div class="line">candidates="</div><div class="line">/etc/alternatives/java</div><div class="line">/usr/lib/jvm/java-1.8.0/bin/java</div><div class="line">/usr/lib/jvm/jre-1.8.0/bin/java</div><div class="line">/usr/lib/jvm/java-1.7.0/bin/java</div><div class="line">/usr/lib/jvm/jre-1.7.0/bin/java</div><div class="line">/usr/bin/java</div><div class="line">/home/es/jdk1.8.0_131/bin/java</div><div class="line">"</div></pre></td></tr></table></figure>
-<ul>
-<li>service jenkins start</li>
-</ul>
-<ul>
-<li><a href="http://ip:8080" target="_blank" rel="external">http://ip:8080</a> 进入提示安装</li>
-</ul>
-
+<li><p>vim /etc/sysconfig/jenkins 配置端口</p></p>
+            <p class="article-more-link">
+               <a href="/2017/07/14/jenkins_install/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -412,7 +377,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/14/jenkins_install/" data-id="cj79qoqdf00257sq0qzpyktwy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/14/jenkins_install/" data-id="cj79slqi6001yxgq0lsg38msb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -536,6 +501,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <ul>
@@ -552,7 +518,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/13/es_init_script/" data-id="cj79qoqca000v7sq0eqi9d625" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/13/es_init_script/" data-id="cj79slqha000uxgq0eahyxjv1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -676,6 +642,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <ul>
@@ -696,7 +663,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/12/flume_install/" data-id="cj79qoqcv001i7sq0czk1rlde" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/12/flume_install/" data-id="cj79slqhm001axgq0gll7na7b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -820,6 +787,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <ul>
@@ -840,7 +808,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/09/linux_offen_shell_collect/" data-id="cj79qoqdd00227sq0e17bl9wu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/09/linux_offen_shell_collect/" data-id="cj79slqib0025xgq0d6i38pdy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -964,24 +932,15 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <ul>
+            <p><ul>
 <li>flume启动脚本  tail_start.sh</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cd `dirname $0`</div><div class="line">./tail_stop.sh</div><div class="line">nohup bin/flume-ng agent --conf conf --conf-file ./conf/tail.conf --name a1  &gt;/dev/null 2&gt;&amp;1 &amp;</div><div class="line">echo $! &gt; flume_agent.pid</div><div class="line">echo 'flume client started,pid:' $!</div></pre></td></tr></table></figure>
-<ul>
-<li>flume关闭脚本  tail_stop.sh</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">pid=`ps -ef|grep tail.conf|grep -v 'grep' |awk '&#123;print $2&#125;'`</div><div class="line"></div><div class="line">echo $pid</div><div class="line"></div><div class="line">pidStatus=`ps --no-heading $&#123;pid&#125; | wc -l`</div><div class="line"> </div><div class="line">if [ $pidStatus -eq 1 ] ; then</div><div class="line"></div><div class="line">    echo 'flume agent already exsit with pid:' $pid ' and stopping'</div><div class="line">    kill $pid       </div><div class="line">else</div><div class="line">     echo 'flume agent not exsit...'</div><div class="line">fi</div></pre></td></tr></table></figure>
-<ul>
-<li>flume_cloud_start.sh</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/opt/flume_server/jdk1.8.0_131</div><div class="line">SCRIPT_NAME=$(readlink -f "$0")</div><div class="line">dir=`dirname $&#123;SCRIPT_NAME&#125;`</div><div class="line">cd $dir</div><div class="line">if [[ -z $1 ]]</div><div class="line">   then</div><div class="line">        </div><div class="line">        echo "error! must give the name of the configure file! example:./flume_cloud_start.sh 4145|flume_cloud_start.sh 4145"</div><div class="line">        exit -1</div><div class="line">   else</div><div class="line">        #not no postfix, such as conf</div><div class="line">        con_file=$1</div><div class="line">fi</div><div class="line"></div><div class="line">echo $dir</div><div class="line">instance_root_dir=/opt/flume_server/instance</div><div class="line"></div><div class="line">oldPid=$&#123;instance_root_dir&#125;/$&#123;con_file&#125;.pid</div><div class="line"></div><div class="line">if [[ -a $oldPid ]]</div><div class="line"></div><div class="line">    then</div><div class="line">    </div><div class="line">    pid=`cat $&#123;instance_root_dir&#125;/$&#123;con_file&#125;.pid`</div><div class="line"></div><div class="line">        </div><div class="line">    pidStatus=`ps --no-heading $&#123;pid&#125; | wc -l`</div><div class="line">    </div><div class="line">   if [ $pidStatus -eq 1 ] ; then</div><div class="line"></div><div class="line">     echo 'flume server already exsit with pid:' $pid ' and stopping'</div><div class="line">     kill $pid</div><div class="line">     echo 'starting...'</div><div class="line">     fi       </div><div class="line">   else</div><div class="line">     echo 'starting...'</div><div class="line">fi</div><div class="line"></div><div class="line">mkdir -p $&#123;instance_root_dir&#125;/$&#123;con_file&#125;</div><div class="line"></div><div class="line">flumeInstance=$&#123;instance_root_dir&#125;/$&#123;con_file&#125;</div><div class="line"></div><div class="line">nohup $dir/bin/flume-ng agent -c $dir/cloud/conf -f $dir/cloud/conf/$&#123;con_file&#125;.conf -DflumeInstance=$flumeInstance  -n a1 &gt;$&#123;flumeInstance&#125;/opt.log 2&gt;&amp;1 &amp;</div><div class="line"></div><div class="line">echo $! &gt; $&#123;instance_root_dir&#125;/$&#123;con_file&#125;.pid  #保留pid</div><div class="line"></div><div class="line">echo 'flume sever started,pid:' $!</div></pre></td></tr></table></figure>
-<ul>
-<li>flume_cloud_stop.sh</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">SCRIPT_NAME=$(readlink -f "$0")</div><div class="line">dir=`dirname $&#123;SCRIPT_NAME&#125;`</div><div class="line">cd $dir</div><div class="line">if [[ -z $1 ]]</div><div class="line">   then</div><div class="line">        echo "error! must give the name of the configure file!"</div><div class="line">        exit -1</div><div class="line">   else</div><div class="line">        #not no postfix, such as conf</div><div class="line">        con_file=$1</div><div class="line">fi</div><div class="line"></div><div class="line">log_dir=/opt/flume_server/instance</div><div class="line"></div><div class="line">oldPid=$&#123;log_dir&#125;/$&#123;con_file&#125;.pid</div><div class="line"></div><div class="line">if [[ -a $oldPid ]]</div><div class="line">    then</div><div class="line">    </div><div class="line">    pid=`cat $&#123;log_dir&#125;/$&#123;con_file&#125;.pid`</div><div class="line"></div><div class="line">        </div><div class="line">    pidStatus=`ps --no-heading $&#123;pid&#125; | wc -l`</div><div class="line">    </div><div class="line">   if [ $pidStatus -eq 1 ] ; then</div><div class="line"></div><div class="line">     echo 'flume server already exsit with pid:' $pid ' and stopping'</div><div class="line">     kill $pid</div><div class="line">     fi       </div><div class="line">   else</div><div class="line">     echo '...'</div><div class="line">fi</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cd `dirname $0`</div><div class="line">./tail_stop.sh</div><div class="line">nohup bin/flume-ng agent --conf conf --conf-file ./conf/tail.conf --name a1  &gt;/dev/null 2&gt;&amp;1 &amp;</div><div class="line">echo $! &gt; flume_agent.pid</div><div class="line">echo 'flume client started,pid:' $!</div></pre></td></tr></table></figure></p>
+            <p class="article-more-link">
+               <a href="/2017/07/08/linux_shell_collect/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -991,7 +950,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/08/linux_shell_collect/" data-id="cj79qoqdh00297sq05yl2hfsw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/08/linux_shell_collect/" data-id="cj79slqih002dxgq0yuwqhg90" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1069,163 +1028,6 @@
 
 
 
-    <article id="post-log_specification_convention" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/06/log_specification_convention/">日志规范约定</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/06/log_specification_convention/">
-            <time datetime="2017-07-06T06:32:19.000Z" itemprop="datePublished">2017-07-06</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java/">java</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h2 id="1-目标"><a href="#1-目标" class="headerlink" title="1.目标"></a>1.目标</h2><p>日志的要求，希望能够按日期、文件大小切割，并能够自动压缩。并自动删除约定天数后</p>
-<p>的备份日志。</p>
-<h2 id="2-简介"><a href="#2-简介" class="headerlink" title="2.简介"></a>2.简介</h2><p> 查阅官方资料，目前log4j 1.x没办法达到以上目标，如需要需自行进行扩展。</p>
-<p> 还好log4j2 和logback都提供了这些功能，在性能上log4j2有了大大的提升，采用异步写，比logback快18倍。</p>
-<p> log4j2 还提供了对log4j的适配，并且无需更改代码即可轻松更新至log4j2。基于以上，提供log4j2和logback两种</p>
-<p> 通用日志配置,使其达到目标效果。</p>
-<h2 id="3-log4j升级log4j2-无需改动代码"><a href="#3-log4j升级log4j2-无需改动代码" class="headerlink" title="3.log4j升级log4j2(无需改动代码)"></a>3.log4j升级log4j2(无需改动代码)</h2><p>官网原文：<a href="https://logging.apache.org/log4j/2.x/index.html" target="_blank" rel="external">https://logging.apache.org/log4j/2.x/index.html</a></p>
-<p>log4j升级log4j2无需更改代码，只需修改maven相关的依赖,并添加log4j2.xml至classpath下。Maven配置如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">       <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">log4j.version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">log4j.version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- Log4j 1.x API Bridge --&gt;</span></div><div class="line">	<span class="comment">&lt;!-- If existing components use Log4j 1.x and you want to have this logging </span></div><div class="line"><span class="comment">		routed to Log4j 2, then remove any log4j 1.x dependencies and add the following. --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-1.2-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- Apache Commons Logging Bridge --&gt;</span></div><div class="line">	<span class="comment">&lt;!-- If existing components use Apache Commons Logging 1.x and you want </span></div><div class="line"><span class="comment">		to have this logging routed to Log4j 2, then add the following but do not </span></div><div class="line"><span class="comment">		remove any Commons Logging 1.x dependencies. --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-jcl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- SLF4J Bridge --&gt;</span></div><div class="line">	<span class="comment">&lt;!-- If existing components use SLF4J and you want to have this logging </span></div><div class="line"><span class="comment">		routed to Log4j 2, then add the following but do not remove any SLF4J dependencies. --&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 引入该jar需要去除 slf4j-log4j12 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--web工程需要包含log4j-web，非web工程不需要 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- support aync log --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.lmax<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>disruptor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>官网升级说明： <a href="https://logging.apache.org/log4j/2.x/maven-artifacts.html" target="_blank" rel="external">https://logging.apache.org/log4j/2.x/maven-artifacts.html</a></p>
-<h2 id="4-log4j2-xml的配置说明"><a href="#4-log4j2-xml的配置说明" class="headerlink" title="4.log4j2.xml的配置说明"></a>4.log4j2.xml的配置说明</h2><p>主要配置了warn info error三个Appenders，通用的日志输出格式，支持日志生成策略和删除策略；</p>
-<p>配置中定义了：按200MB切割，每天保存100个文件，最多保留45天，可根据需要自行调整。</p>
-<p>配置如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">Configuration</span> <span class="attr">status</span>=<span class="string">"warn"</span> <span class="attr">name</span>=<span class="string">"MyApp"</span> <span class="attr">monitorInterval</span>=<span class="string">"0"</span></span></div><div class="line"><span class="tag">	<span class="attr">strict</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"baseDir"</span>&gt;</span>logs<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"patternLayout"</span>&gt;</span>%d&#123;yyyy-MM-dd'T'HH:mm:ss.SSSZ&#125; %C.%M(%L) [%p]: %m%n<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"warnFileName"</span>&gt;</span>$&#123;baseDir&#125;/warn.log<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"errorFileName"</span>&gt;</span>$&#123;baseDir&#125;/error.log<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"infoFileName"</span>&gt;</span>$&#123;baseDir&#125;/info.log<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"warnFilenamePattern"</span>&gt;</span>$&#123;baseDir&#125;/backup/warn-%d&#123;yyyy-MM-dd&#125;-%i.log.gz</div><div class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"errorFilenamePattern"</span>&gt;</span>$&#123;baseDir&#125;/backup/error-%d&#123;yyyy-MM-dd&#125;-%i.log.gz</div><div class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"infoFilenamePattern"</span>&gt;</span>$&#123;baseDir&#125;/backup/info-%d&#123;yyyy-MM-dd&#125;-%i.log.gz</div><div class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!--切割大小--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"fileSize"</span>&gt;</span>200 MB<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!--每天最多文件数--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxDailFIleSize"</span>&gt;</span>100<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 最多保留的天数目 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxDay"</span>&gt;</span>45d<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">Appenders</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"$&#123;patternLayout&#125;"</span> /&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">Console</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!--日志生成和删除策略：每天自动生成,并压缩至backup目录中,大小按200MB分割,每天最多100个,相当于每天100MB*100=9.7g的日志量,自动删除45天以前的日志文件,可根据需求自行配置--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">RollingRandomAccessFile</span> <span class="attr">name</span>=<span class="string">"warnRollingFile"</span></span></div><div class="line"><span class="tag">			<span class="attr">immediateFlush</span>=<span class="string">"true"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;warnFileName&#125;"</span> <span class="attr">filePattern</span>=<span class="string">"$&#123;warnFilenamePattern&#125;"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>$&#123;patternLayout&#125;<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">			    <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span>/&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"$&#123;fileSize&#125;"</span> /&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">DefaultRolloverStrategy</span> <span class="attr">max</span>=<span class="string">"$&#123;maxDailFIleSize&#125;"</span> <span class="attr">fileIndex</span>=<span class="string">"max"</span></span></div><div class="line"><span class="tag">				<span class="attr">min</span>=<span class="string">"1"</span> <span class="attr">compressionLevel</span>=<span class="string">"3"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">Delete</span> <span class="attr">basePath</span>=<span class="string">"$&#123;baseDir&#125;"</span> <span class="attr">maxDepth</span>=<span class="string">"2"</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">IfFileName</span> <span class="attr">glob</span>=<span class="string">"*/*.log.gz"</span> /&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">IfLastModified</span> <span class="attr">age</span>=<span class="string">"$&#123;maxDay&#125;"</span> /&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">Delete</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">DefaultRolloverStrategy</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">RollingRandomAccessFile</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">RollingRandomAccessFile</span> <span class="attr">name</span>=<span class="string">"errorRollingFile"</span></span></div><div class="line"><span class="tag">			<span class="attr">immediateFlush</span>=<span class="string">"true"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;errorFileName&#125;"</span> <span class="attr">filePattern</span>=<span class="string">"$&#123;errorFilenamePattern&#125;"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>$&#123;patternLayout&#125;<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">			    <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span>/&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"$&#123;fileSize&#125;"</span> /&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">DefaultRolloverStrategy</span> <span class="attr">max</span>=<span class="string">"$&#123;maxDailFIleSize&#125;"</span> <span class="attr">fileIndex</span>=<span class="string">"max"</span></span></div><div class="line"><span class="tag">				<span class="attr">min</span>=<span class="string">"1"</span> <span class="attr">compressionLevel</span>=<span class="string">"3"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">DefaultRolloverStrategy</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">Filters</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"error"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span></span></div><div class="line"><span class="tag">					<span class="attr">onMismatch</span>=<span class="string">"DENY"</span> /&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">Filters</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">RollingRandomAccessFile</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">RollingRandomAccessFile</span> <span class="attr">name</span>=<span class="string">"infoRollingFile"</span></span></div><div class="line"><span class="tag">			<span class="attr">immediateFlush</span>=<span class="string">"true"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;infoFileName&#125;"</span> <span class="attr">filePattern</span>=<span class="string">"$&#123;infoFilenamePattern&#125;"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>$&#123;patternLayout&#125;<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">			    <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span>/&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"$&#123;fileSize&#125;"</span> /&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">DefaultRolloverStrategy</span> <span class="attr">max</span>=<span class="string">"$&#123;maxDailFIleSize&#125;"</span> <span class="attr">fileIndex</span>=<span class="string">"max"</span></span></div><div class="line"><span class="tag">				<span class="attr">min</span>=<span class="string">"1"</span> <span class="attr">compressionLevel</span>=<span class="string">"3"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">DefaultRolloverStrategy</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">RollingRandomAccessFile</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">Appenders</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">Loggers</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!--异步写  --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">asyncRoot</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">includeLocation</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">"Console"</span> /&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">"infoRollingFile"</span> /&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">"warnRollingFile"</span> /&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">"errorRollingFile"</span> /&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">asyncRoot</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">Loggers</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>##　5.logback.xml的配置说明</p>
-<p><strong>maven依赖：</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>主要配置了warn info error三个Appenders，通用的日志输出格式，支持日志生成策略和删除策略；<br>配置中定义了：按200MB切割，最多保留45天，可根据需要自行调整。<br>配置如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="comment">&lt;!--</span></div><div class="line"><span class="comment">scan：当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。</span></div><div class="line"><span class="comment">scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒当scan为true时，此属性生效。默认的时间间隔为1分钟。</span></div><div class="line"><span class="comment">debug：当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">scan</span>=<span class="string">"false"</span> <span class="attr">scanPeriod</span>=<span class="string">"60 seconds"</span> <span class="attr">debug</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">   <span class="comment">&lt;!-- 定义日志的根目录 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"baseDir"</span> <span class="attr">value</span>=<span class="string">"logs"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"patternLayout"</span> <span class="attr">value</span>=<span class="string">"%d&#123;yyyy-MM-dd'T'HH:mm:ss.SSSZ&#125; %c.%M\\(%L\\) [%p]: %m%n"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"warnFileName"</span> <span class="attr">value</span>=<span class="string">"$&#123;baseDir&#125;/warn.log"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"errorFileName"</span> <span class="attr">value</span>=<span class="string">"$&#123;baseDir&#125;/error.log"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"infoFileName"</span> <span class="attr">value</span>=<span class="string">"$&#123;baseDir&#125;/info.log"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"warnFilenamePattern"</span> <span class="attr">value</span>=<span class="string">"$&#123;baseDir&#125;/backup/warn-%d&#123;yyyy-MM-dd&#125;-%i.log.gz"</span>/&gt;</span></div><div class="line">	 <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"errorFilenamePattern"</span> <span class="attr">value</span>=<span class="string">"$&#123;baseDir&#125;/backup/error-%d&#123;yyyy-MM-dd&#125;-%i.log.gz"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"infoFilenamePattern"</span> <span class="attr">value</span>=<span class="string">"$&#123;baseDir&#125;/backup/info-%d&#123;yyyy-MM-dd&#125;-%i.log.gz"</span>/&gt;</span></div><div class="line">	<span class="comment">&lt;!--切割大小--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"fileSize"</span> <span class="attr">value</span>=<span class="string">"200 MB"</span>/&gt;</span></div><div class="line">	<span class="comment">&lt;!--每天最多文件数--&gt;</span></div><div class="line">	<span class="comment">&lt;!-- &lt;property name="maxDailFIleSize" value="100"/&gt; --&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 最多保留的天数目 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxDay"</span> <span class="attr">value</span>=<span class="string">"45"</span>/&gt;</span> </div><div class="line">  </div><div class="line">  <span class="comment">&lt;!--控制台输出 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.ConsoleAppender"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">Encoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.PatternLayout"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;patternLayout&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></div><div class="line">  </div><div class="line">  <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"warnRollingFile"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">Encoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;warnFileName&#125;<span class="tag">&lt;/<span class="name">file</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- TimeBasedRollingPolicy：最常用的滚动策略，它根据时间来制定滚动策略。--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;warnFilenamePattern&#125;<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">MaxHistory</span>&gt;</span>$&#123;maxDay&#125;<span class="tag">&lt;/<span class="name">MaxHistory</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!--按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>$&#123;fileSize&#125;<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.PatternLayout"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;patternLayout&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"infoRollingFile"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">Encoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;infoFileName&#125;<span class="tag">&lt;/<span class="name">file</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- TimeBasedRollingPolicy：最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;infoFilenamePattern&#125;<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">MaxHistory</span>&gt;</span>$&#123;maxDay&#125;<span class="tag">&lt;/<span class="name">MaxHistory</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!--按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>$&#123;fileSize&#125;<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.PatternLayout"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;patternLayout&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"errorRollingFile"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">Encoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;errorFileName&#125;<span class="tag">&lt;/<span class="name">file</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- TimeBasedRollingPolicy：最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;errorFilenamePattern&#125;<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">MaxHistory</span>&gt;</span>$&#123;maxDay&#125;<span class="tag">&lt;/<span class="name">MaxHistory</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!--按文件大小进行滚动的，必须配置timeBasedFileNamingAndTriggeringPolicy--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>$&#123;fileSize&#125;<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.PatternLayout"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;patternLayout&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"warnRollingFile"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"infoRollingFile"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"errorRollingFile"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">root</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="6-日志如何使用"><a href="#6-日志如何使用" class="headerlink" title="6.日志如何使用"></a>6.日志如何使用</h2><p><strong>log4j2使用：</strong>按“log4j升级log4j2”操作，并添加log4j2.xml至classpath下即可；</p>
-<p><strong>logback使用：</strong>添加maven依赖，并添加logback.xml至classpath下即可；</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/06/log_specification_convention/" data-id="cj79qoqdn002g7sq0aort3jaa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/06/log_specification_convention/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-es_install_script" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1272,6 +1074,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <ul>
@@ -1288,7 +1091,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/06/es_install_script/" data-id="cj79qoqcg00127sq0f3cu4kkf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/06/es_install_script/" data-id="cj79slqhg0011xgq087ao67iu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1366,6 +1169,146 @@
 
 
 
+    <article id="post-log_specification_convention" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/07/06/log_specification_convention/">日志规范约定</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/07/06/log_specification_convention/">
+            <time datetime="2017-07-06T06:32:19.000Z" itemprop="datePublished">2017-07-06</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/">java</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            <p><h2 id="1-目标"><a href="#1-目标" class="headerlink" title="1.目标"></a>1.目标</h2><p>日志的要求，希望能够按日期、文件大小切割，并能够自动压缩。并自动删除约定天数后</p>
+<p>的备份日志。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/07/06/log_specification_convention/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/07/06/log_specification_convention/" data-id="cj79slqik002hxgq0w87ku93b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/06/log_specification_convention/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-high_CPU_investigation" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1412,6 +1355,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <h2 id="1-查看java线程"><a href="#1-查看java线程" class="headerlink" title="1.查看java线程"></a>1.查看java线程</h2><p>ps -ef | grep mrf-center | grep -v grep</p>
@@ -1430,7 +1374,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/02/high_CPU_investigation/" data-id="cj79qoqcx001l7sq0oafqa9n4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/02/high_CPU_investigation/" data-id="cj79slqhv001lxgq0xfxs7yv3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1554,39 +1498,17 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="1、firewalld的基本使用"><a href="#1、firewalld的基本使用" class="headerlink" title="1、firewalld的基本使用"></a>1、firewalld的基本使用</h1><p>启动： systemctl start firewalld</p>
+            <p><h1 id="1、firewalld的基本使用"><a href="#1、firewalld的基本使用" class="headerlink" title="1、firewalld的基本使用"></a>1、firewalld的基本使用</h1><p>启动： systemctl start firewalld</p>
 <p>查看状态： systemctl status firewalld </p>
 <p>停止： systemctl disable firewalld</p>
 <p>禁用： systemctl stop firewalld</p>
 <p>启动一个服务：systemctl start firewalld.service</p>
-<p>关闭一个服务：systemctl stop firewalld.service</p>
-<p>重启一个服务：systemctl restart firewalld.service</p>
-<p>显示一个服务的状态：systemctl status firewalld.service</p>
-<p>在开机时启用一个服务：systemctl enable firewalld.service</p>
-<p>在开机时禁用一个服务：systemctl disable firewalld.service</p>
-<p>查看服务是否开机启动：systemctl is-enabled firewalld.service</p>
-<p>查看已启动的服务列表：systemctl list-unit-files|grep enabled</p>
-<p>查看启动失败的服务列表：systemctl –failed</p>
-<h1 id="2-开启端口"><a href="#2-开启端口" class="headerlink" title="2.开启端口"></a>2.开启端口</h1><p>添加</p>
-<p>firewall-cmd –zone=public –add-port=80/tcp –permanent<br>（–permanent永久生效，没有此参数重启后失效）</p>
-<p>重新载入</p>
-<p>firewall-cmd –reload</p>
-<p>查看</p>
-<p>firewall-cmd –zone= public –query-port=80/tcp</p>
-<p>删除<br>firewall-cmd –zone= public –remove-port=80/tcp –permanent</p>
-<h1 id="3-配置firewalld-cmd"><a href="#3-配置firewalld-cmd" class="headerlink" title="3.配置firewalld-cmd"></a>3.配置firewalld-cmd</h1><p>查看版本： firewall-cmd –version</p>
-<p>查看帮助： firewall-cmd –help</p>
-<p>显示状态： firewall-cmd –state</p>
-<p>查看所有打开的端口： firewall-cmd –zone=public –list-ports</p>
-<p>更新防火墙规则： firewall-cmd –reload</p>
-<p>查看区域信息:  firewall-cmd –get-active-zones</p>
-<p>查看指定接口所属区域： firewall-cmd –get-zone-of-interface=eth0</p>
-<p>拒绝所有包：firewall-cmd –panic-on</p>
-<p>取消拒绝状态： firewall-cmd –panic-off</p>
-<p>查看是否拒绝： firewall-cmd –query-panic</p>
-
+<p>关闭一个服务：systemctl stop firewalld.service<br></p>
+            <p class="article-more-link">
+               <a href="/2017/07/01/centos firewall/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1596,7 +1518,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj79qoqc7000r7sq0zyqrf3ev" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj79slqh5000qxgq02omcybvv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

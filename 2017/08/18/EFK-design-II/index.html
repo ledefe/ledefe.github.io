@@ -14,7 +14,7 @@
 <meta property="og:description" content="简介EFLK是Elasticsearch、filebeat、logstash、kibana的简称。 Elasticsearch:是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。 filebeat: elastic官方维护的日志采集程序，基于go语言编写，资源消耗小。 logstash：作为日志的汇总中心">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/ledefe/ledefe.github.io/master/images/t2.png">
-<meta property="og:updated_time" content="2017-09-04T08:15:18.409Z">
+<meta property="og:updated_time" content="2017-09-07T02:12:54.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EFFK-日志采集方案II">
 <meta name="twitter:description" content="简介EFLK是Elasticsearch、filebeat、logstash、kibana的简称。 Elasticsearch:是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。 filebeat: elastic官方维护的日志采集程序，基于go语言编写，资源消耗小。 logstash：作为日志的汇总中心">
@@ -221,6 +221,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>EFLK是Elasticsearch、filebeat、logstash、kibana的简称。</p>
@@ -228,6 +229,7 @@
 <p>filebeat: elastic官方维护的日志采集程序，基于go语言编写，资源消耗小。</p>
 <p>logstash：作为日志的汇总中心，其具有丰富的转换插件，提供日志转换。</p>
 <p>kibana:是一个为ElasticSearch 提供的日志分析的 Web 接口。可使用它对日志进行高效的搜索、可视化、分析等各种操作。</p>
+<a id="more"></a>
 <h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1><p><img src="https://raw.githubusercontent.com/ledefe/ledefe.github.io/master/images/t2.png" alt=""></p>
 <p>日志采集主要借助于filebeat开源采集工具，通过logstash转换后，持久化至ES集群中。</p>
 <p>整个架构可分为三部分：采集端、聚合端和ES集群</p>
@@ -262,7 +264,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj79qoqb100007sq016o3mi24" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj79slqg40002xgq00r2wut6b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

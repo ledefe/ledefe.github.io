@@ -5,13 +5,13 @@
     
     <title>lucence 原理 | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="好文转载自：http://www.cnblogs.com/guochunguang/articles/3641008.html 总论根据http://lucene.apache.org/java/docs/index.html定义： Lucene是一个高效的，基于Java的全文检索库。 所以在了解Lucene之前要费一番工夫了解一下全文检索。 那么什么叫做全文检索呢？这要从我们生活中的数据说起。">
+    <meta name="description" content="好文转载自：http://www.cnblogs.com/guochunguang/articles/3641008.html 总论根据http://lucene.apache.org/java/docs/index.html定义：Lucene是一个高效的，基于Java的全文检索库。所以在了解Lucene之前要费一番工夫了解一下全文检索。那么什么叫做全文检索呢？这要从我们生活中的数据说起。">
 <meta name="keywords" content="lucence">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lucence 原理">
 <meta property="og:url" content="http://ledefe.tech/2017/09/06/lucence/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="好文转载自：http://www.cnblogs.com/guochunguang/articles/3641008.html 总论根据http://lucene.apache.org/java/docs/index.html定义： Lucene是一个高效的，基于Java的全文检索库。 所以在了解Lucene之前要费一番工夫了解一下全文检索。 那么什么叫做全文检索呢？这要从我们生活中的数据说起。">
+<meta property="og:description" content="好文转载自：http://www.cnblogs.com/guochunguang/articles/3641008.html 总论根据http://lucene.apache.org/java/docs/index.html定义：Lucene是一个高效的，基于Java的全文检索库。所以在了解Lucene之前要费一番工夫了解一下全文检索。那么什么叫做全文检索呢？这要从我们生活中的数据说起。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ledefe.tech/css/images/image_thumb.png">
 <meta property="og:image" content="http://ledefe.tech/css/images/inverted%20index_thumb.jpg">
@@ -28,10 +28,10 @@
 <meta property="og:image" content="http://ledefe.tech/css/images/image20_thumb.png">
 <meta property="og:image" content="http://ledefe.tech/css/images/image23_thumb.png">
 <meta property="og:image" content="http://ledefe.tech/css/images/clip_image016_thumb.jpg">
-<meta property="og:updated_time" content="2017-09-07T01:40:13.899Z">
+<meta property="og:updated_time" content="2017-09-07T02:09:30.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lucence 原理">
-<meta name="twitter:description" content="好文转载自：http://www.cnblogs.com/guochunguang/articles/3641008.html 总论根据http://lucene.apache.org/java/docs/index.html定义： Lucene是一个高效的，基于Java的全文检索库。 所以在了解Lucene之前要费一番工夫了解一下全文检索。 那么什么叫做全文检索呢？这要从我们生活中的数据说起。">
+<meta name="twitter:description" content="好文转载自：http://www.cnblogs.com/guochunguang/articles/3641008.html 总论根据http://lucene.apache.org/java/docs/index.html定义：Lucene是一个高效的，基于Java的全文检索库。所以在了解Lucene之前要费一番工夫了解一下全文检索。那么什么叫做全文检索呢？这要从我们生活中的数据说起。">
 <meta name="twitter:image" content="http://ledefe.tech/css/images/image_thumb.png">
     
 
@@ -240,16 +240,11 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <p>好文转载自：<br><a href="http://www.cnblogs.com/guochunguang/articles/3641008.html" target="_blank" rel="external">http://www.cnblogs.com/guochunguang/articles/3641008.html</a></p>
-<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><p>根据<a href="http://lucene.apache.org/java/docs/index.html定义：" target="_blank" rel="external">http://lucene.apache.org/java/docs/index.html定义：</a></p>
-<p><strong>Lucene是一个高效的，基于Java的全文检索库。</strong></p>
-<p>所以在了解Lucene之前要费一番工夫了解一下全文检索。</p>
-<p>那么什么叫做全文检索呢？这要从我们生活中的数据说起。</p>
-<p>我们生活中的数据总体分为两种：<strong>结构化数据</strong>和<strong>非结构化数据</strong>。</p>
-<p><strong>结构化数据</strong>：指具有固定格式或有限长度的数据，如数据库，元数据等。<br><strong>非结构化数据</strong>：指不定长或无固定格式的数据，如邮件，word文档等。<br>当然有的地方还会提到第三种，半结构化数据，如XML，HTML等，当根据需要可按结构化数据来处理，也可抽取出纯文本按非结构化数据来处理。</p>
-<p><strong>非结构化数据又一种叫法叫全文数据。</strong></p>
+<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><p>根据<a href="http://lucene.apache.org/java/docs/index.html定义：" target="_blank" rel="external">http://lucene.apache.org/java/docs/index.html定义：</a><br><strong>Lucene是一个高效的，基于Java的全文检索库。</strong><br>所以在了解Lucene之前要费一番工夫了解一下全文检索。<br>那么什么叫做全文检索呢？这要从我们生活中的数据说起。<br><a id="more"></a><br>我们生活中的数据总体分为两种：<strong>结构化数据</strong>和<strong>非结构化数据</strong>。<br><strong>结构化数据</strong>：指具有固定格式或有限长度的数据，如数据库，元数据等。<br><strong>非结构化数据</strong>：指不定长或无固定格式的数据，如邮件，word文档等。<br>当然有的地方还会提到第三种，半结构化数据，如XML，HTML等，当根据需要可按结构化数据来处理，也可抽取出纯文本按非结构化数据来处理。<br><strong>非结构化数据又一种叫法叫全文数据。</strong></p>
 <p>按照数据的分类，搜索也分为两种：</p>
 <p><strong>对结构化数据的搜索</strong>：如对数据库的搜索，用SQL语句。再如对元数据的搜索，如利用windows搜索对文件名，类型，修改时间进行搜索等。<br><strong>对非结构化数据的搜索</strong>：如利用windows的搜索也可以搜索文件内容，Linux下的grep命令，再如用Google和百度可以搜索大量内容数据。<br>对非结构化数据也即对全文数据的搜索主要有两种方法：</p>
 <p>一种是<strong>顺序扫描法(Serial Scanning)</strong>：所谓顺序扫描，比如要找内容包含某一个字符串的文件，就是一个文档一个文档的看，对于每一个文档，从头看到尾，如果此文档包含此字符串，则此文档为我们要找的文件，接着看下一个文件，直到扫描完所有的文件。如利用windows的搜索也可以搜索文件内容，只是相当的慢。如果你有一个80G硬盘，如果想在上面找到一个内容包含某字符串的文件，不花他几个小时，怕是做不到。Linux下的grep命令也是这一种方式。大家可能觉得这种方法比较原始，但对于小数据量的文件，这种方法还是最直接，最方便的。但是对于大量的文件，这种方法就很慢了。</p>
@@ -699,7 +694,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/09/06/lucence/" data-id="cj79qoqdp002j7sq05oeungcd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/06/lucence/" data-id="cj79slqir002pxgq0t9eiz9q7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

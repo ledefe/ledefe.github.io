@@ -223,456 +223,13 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <p>好文转载自：<br><a href="http://www.cnblogs.com/guochunguang/articles/3641008.html" target="_blank" rel="external">http://www.cnblogs.com/guochunguang/articles/3641008.html</a></p>
-<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><p>根据<a href="http://lucene.apache.org/java/docs/index.html定义：" target="_blank" rel="external">http://lucene.apache.org/java/docs/index.html定义：</a></p>
-<p><strong>Lucene是一个高效的，基于Java的全文检索库。</strong></p>
-<p>所以在了解Lucene之前要费一番工夫了解一下全文检索。</p>
-<p>那么什么叫做全文检索呢？这要从我们生活中的数据说起。</p>
-<p>我们生活中的数据总体分为两种：<strong>结构化数据</strong>和<strong>非结构化数据</strong>。</p>
-<p><strong>结构化数据</strong>：指具有固定格式或有限长度的数据，如数据库，元数据等。<br><strong>非结构化数据</strong>：指不定长或无固定格式的数据，如邮件，word文档等。<br>当然有的地方还会提到第三种，半结构化数据，如XML，HTML等，当根据需要可按结构化数据来处理，也可抽取出纯文本按非结构化数据来处理。</p>
-<p><strong>非结构化数据又一种叫法叫全文数据。</strong></p>
-<p>按照数据的分类，搜索也分为两种：</p>
-<p><strong>对结构化数据的搜索</strong>：如对数据库的搜索，用SQL语句。再如对元数据的搜索，如利用windows搜索对文件名，类型，修改时间进行搜索等。<br><strong>对非结构化数据的搜索</strong>：如利用windows的搜索也可以搜索文件内容，Linux下的grep命令，再如用Google和百度可以搜索大量内容数据。<br>对非结构化数据也即对全文数据的搜索主要有两种方法：</p>
-<p>一种是<strong>顺序扫描法(Serial Scanning)</strong>：所谓顺序扫描，比如要找内容包含某一个字符串的文件，就是一个文档一个文档的看，对于每一个文档，从头看到尾，如果此文档包含此字符串，则此文档为我们要找的文件，接着看下一个文件，直到扫描完所有的文件。如利用windows的搜索也可以搜索文件内容，只是相当的慢。如果你有一个80G硬盘，如果想在上面找到一个内容包含某字符串的文件，不花他几个小时，怕是做不到。Linux下的grep命令也是这一种方式。大家可能觉得这种方法比较原始，但对于小数据量的文件，这种方法还是最直接，最方便的。但是对于大量的文件，这种方法就很慢了。</p>
-<p>有人可能会说，对非结构化数据顺序扫描很慢，对结构化数据的搜索却相对较快（由于结构化数据有一定的结构可以采取一定的搜索算法加快速度），那么把我们的非结构化数据想办法弄得有一定结构不就行了吗？</p>
-<p>这种想法很天然，却构成了全文检索的基本思路，也即将非结构化数据中的一部分信息提取出来，重新组织，使其变得有一定结构，然后对此有一定结构的数据进行搜索，从而达到搜索相对较快的目的。</p>
-<p>这部分从非结构化数据中提取出的然后重新组织的信息，我们称之<strong>索引</strong>。</p>
-<p>这种说法比较抽象，举几个例子就很容易明白，比如字典，字典的拼音表和部首检字表就相当于字典的索引，对每一个字的解释是非结构化的，如果字典没有音节表和部首检字表，在茫茫辞海中找一个字只能顺序扫描。然而字的某些信息可以提取出来进行结构化处理，比如读音，就比较结构化，分声母和韵母，分别只有几种可以一一列举，于是将读音拿出来按一定的顺序排列，每一项读音都指向此字的详细解释的页数。我们搜索时按结构化的拼音搜到读音，然后按其指向的页数，便可找到我们的非结构化数据——也即对字的解释。</p>
-<p><strong>这种先建立索引，再对索引进行搜索的过程就叫全文检索(Full-text Search)。</strong></p>
-<p>下面这幅图来自《Lucene in action》，但却不仅仅描述了Lucene的检索过程，而是描述了全文检索的一般过程。</p>
-<p><img src="/css/images/image_thumb.png" alt="img-w500"></p>
-<p>全文检索大体分两个过程，<strong>索引创建(Indexing)和搜索索引(Search)</strong>。</p>
-<p>索引创建：将现实世界中所有的结构化和非结构化数据提取信息，创建索引的过程。<br>搜索索引：就是得到用户的查询请求，搜索创建的索引，然后返回结果的过程。<br>于是全文检索就存在三个重要问题：</p>
-<p><strong>1. 索引里面究竟存些什么？(Index)</strong></p>
-<p><strong>2. 如何创建索引？(Indexing)</strong></p>
-<p><strong>3. 如何对索引进行搜索？(Search)</strong></p>
-<p>下面我们顺序对每个个问题进行研究。</p>
-<h2 id="二、索引里面究竟存些什么"><a href="#二、索引里面究竟存些什么" class="headerlink" title="二、索引里面究竟存些什么"></a>二、索引里面究竟存些什么</h2><p>索引里面究竟需要存些什么呢？</p>
-<p>首先我们来看为什么顺序扫描的速度慢：</p>
-<p>其实是由于我们想要搜索的信息和非结构化数据中所存储的信息不一致造成的。</p>
-<p>非结构化数据中所存储的信息是每个文件包含哪些字符串，也即已知文件，欲求字符串相对容易，也即是从文件到字符串的映射。而我们想搜索的信息是哪些文件包含此字符串，也即已知字符串，欲求文件，也即从字符串到文件的映射。两者恰恰相反。于是如果索引总能够保存从字符串到文件的映射，则会大大提高搜索速度。</p>
-<p>由于从字符串到文件的映射是文件到字符串映射的反向过程，于是保存这种信息的索引称为反向索引。</p>
-<p>反向索引的所保存的信息一般如下：</p>
-<p>假设我的文档集合里面有100篇文档，为了方便表示，我们为文档编号从1到100，得到下面的结构</p>
-<p><img src="/css/images/inverted index_thumb.jpg" alt="img-w500"></p>
-<p>左边保存的是一系列字符串，称为<strong>词典</strong>。</p>
-<p>每个字符串都指向包含此字符串的文档(Document)链表，此文档链表称为<strong>倒排表(Posting List)</strong>。</p>
-<p>有了索引，便使保存的信息和要搜索的信息一致，可以大大加快搜索的速度。</p>
-<p>比如说，我们要寻找既包含字符串“lucene”又包含字符串“solr”的文档，我们只需要以下几步：</p>
-<ol>
-<li><p>取出包含字符串“lucene”的文档链表。</p>
-</li>
-<li><p>取出包含字符串“solr”的文档链表。</p>
-</li>
-<li><p>通过合并链表，找出既包含“lucene”又包含“solr”的文件。</p>
-</li>
-</ol>
-<p><img src="/css/images/inverted index merge_thumb.jpg" alt="img-w500"></p>
-<p>看到这个地方，有人可能会说，全文检索的确加快了搜索的速度，但是多了索引的过程，两者加起来不一定比顺序扫描快多少。的确，加上索引的过程，全文检索不一定比顺序扫描快，尤其是在数据量小的时候更是如此。而对一个很大量的数据创建索引也是一个很慢的过程。</p>
-<p>然而两者还是有区别的，顺序扫描是每次都要扫描，而创建索引的过程仅仅需要一次，以后便是一劳永逸的了，每次搜索，创建索引的过程不必经过，仅仅搜索创建好的索引就可以了。</p>
-<p><strong>这也是全文搜索相对于顺序扫描的优势之一：一次索引，多次使用。</strong></p>
-<h2 id="三、如何创建索引"><a href="#三、如何创建索引" class="headerlink" title="三、如何创建索引"></a>三、如何创建索引</h2><p>全文检索的索引创建过程一般有以下几步：</p>
-<h3 id="第一步：一些要索引的原文档-Document-。"><a href="#第一步：一些要索引的原文档-Document-。" class="headerlink" title="第一步：一些要索引的原文档(Document)。"></a>第一步：一些要索引的原文档(Document)。</h3><p>为了方便说明索引创建过程，这里特意用两个文件为例：</p>
-<p>文件一：Students should be allowed to go out with their friends, but not allowed to drink beer.</p>
-<p>文件二：My friend Jerry went to school to see his students but found them drunk which is not allowed.</p>
-<h3 id="第二步：将原文档传给分次组件-Tokenizer-。"><a href="#第二步：将原文档传给分次组件-Tokenizer-。" class="headerlink" title="第二步：将原文档传给分次组件(Tokenizer)。"></a>第二步：将原文档传给分次组件(Tokenizer)。</h3><p><strong>分词组件(Tokenizer)会做以下几件事情(此过程称为Tokenize)：</strong></p>
-<p><strong>1. 将文档分成一个一个单独的单词。</strong></p>
-<p><strong>2. 去除标点符号。</strong></p>
-<p><strong>3. 去除停词(Stop word)。</strong></p>
-<p>所谓停词(Stop word)就是一种语言中最普通的一些单词，由于没有特别的意义，因而大多数情况下不能成为搜索的关键词，因而创建索引时，这种词会被去掉而减少索引的大小。</p>
-<p>英语中挺词(Stop word)如：“the”,“a”，“this”等。</p>
-<p>对于每一种语言的分词组件(Tokenizer)，都有一个停词(stop word)集合。</p>
-<p><strong>经过分词(Tokenizer)后得到的结果称为词元(Token)。</strong></p>
-<p>在我们的例子中，便得到以下词元(Token)：</p>
-<p>“Students”，“allowed”，“go”，“their”，“friends”，“allowed”，“drink”，“beer”，“My”，“friend”，“Jerry”，“went”，“school”，“see”，“his”，“students”，“found”，“them”，“drunk”，“allowed”。</p>
-<h3 id="第三步：将得到的词元-Token-传给语言处理组件-Linguistic-Processor-。"><a href="#第三步：将得到的词元-Token-传给语言处理组件-Linguistic-Processor-。" class="headerlink" title="第三步：将得到的词元(Token)传给语言处理组件(Linguistic Processor)。"></a>第三步：将得到的词元(Token)传给语言处理组件(Linguistic Processor)。</h3><p>语言处理组件(linguistic processor)主要是对得到的词元(Token)做一些同语言相关的处理。</p>
-<p><strong>对于英语，语言处理组件(Linguistic Processor)一般做以下几点：</strong></p>
-<p><strong>1. 变为小写(Lowercase)。</strong></p>
-<p><strong>2. 将单词缩减为词根形式，如“cars”到“car”等。这种操作称为：stemming。</strong></p>
-<p><strong>3. 将单词转变为词根形式，如“drove”到“drive”等。这种操作称为：lemmatization。</strong></p>
-<p><strong>Stemming 和 lemmatization的异同：</strong></p>
-<ul>
-<li>相同之处：Stemming和lemmatization都要使词汇成为词根形式。</li>
-<li>两者的方式不同：<ul>
-<li>Stemming采用的是“缩减”的方式：“cars”到“car”，“driving”到“drive”。</li>
-<li>Lemmatization采用的是“转变”的方式：“drove”到“drove”，“driving”到“drive”。</li>
-</ul>
-</li>
-<li>两者的算法不同：<ul>
-<li>Stemming主要是采取某种固定的算法来做这种缩减，如去除“s”，去除“ing”加“e”，将“ational”变为“ate”，将“tional”变为“tion”。</li>
-<li>Lemmatization主要是采用保存某种字典的方式做这种转变。比如字典中有“driving”到“drive”，“drove”到“drive”，“am, is, are”到“be”的映射，做转变时，只要查字典就可以了。</li>
-<li>Stemming和lemmatization不是互斥关系，是有交集的，有的词利用这两种方式都能达到相同的转换。</li>
-</ul>
-</li>
-</ul>
-<p><strong>语言处理组件(linguistic processor)的结果称为词(Term)。</strong></p>
-<p>在我们的例子中，经过语言处理，得到的词(Term)如下：</p>
-<p>“student”，“allow”，“go”，“their”，“friend”，“allow”，“drink”，“beer”，“my”，“friend”，“jerry”，“go”，“school”，“see”，“his”，“student”，“find”，“them”，“drink”，“allow”。</p>
-<p>也正是因为有语言处理的步骤，才能使搜索drove，而drive也能被搜索出来。</p>
-<h3 id="第四步：将得到的词-Term-传给索引组件-Indexer-。"><a href="#第四步：将得到的词-Term-传给索引组件-Indexer-。" class="headerlink" title="第四步：将得到的词(Term)传给索引组件(Indexer)。"></a>第四步：将得到的词(Term)传给索引组件(Indexer)。</h3><p><strong>索引组件(Indexer)主要做以下几件事情：</strong></p>
-<h4 id="1-利用得到的词-Term-创建一个字典。"><a href="#1-利用得到的词-Term-创建一个字典。" class="headerlink" title="1. 利用得到的词(Term)创建一个字典。"></a>1. 利用得到的词(Term)创建一个字典。</h4><p>在我们的例子中字典如下：</p>
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th style="text-align:center">Document ID</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>student</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>allow</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>go</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>their</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>friend</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>allow</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>drink</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>beer</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>my</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>friend</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>jerry</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>go</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>school</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>see</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>his</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>student</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>find</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>them</td>
-<td style="text-align:center">2</td>
-<td></td>
-</tr>
-<tr>
-<td>drink</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>allow</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<h4 id="2-对字典按字母顺序进行排序。"><a href="#2-对字典按字母顺序进行排序。" class="headerlink" title="2. 对字典按字母顺序进行排序。"></a>2. 对字典按字母顺序进行排序。</h4><table>
-<thead>
-<tr>
-<th>Term</th>
-<th style="text-align:center">Document ID</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>allow</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>allow</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>allow</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>beer</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>drink</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>drink</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>find</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>friend</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>friend</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>go</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>go</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>his</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>jerry</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>my</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>school</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>see</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>student</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>student</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td>their</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td>them</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<h4 id="3-合并相同的词-Term-成为文档倒排-Posting-List-链表。"><a href="#3-合并相同的词-Term-成为文档倒排-Posting-List-链表。" class="headerlink" title="3. 合并相同的词(Term)成为文档倒排(Posting List)链表。"></a>3. 合并相同的词(Term)成为文档倒排(Posting List)链表。</h4><p><img src="/css/images/postinglist_thumb.jpg" alt="img-w500"></p>
-<p>在此表中，有几个定义：</p>
-<ul>
-<li>Document Frequency 即文档频次，表示总共有多少文件包含此词(Term)。</li>
-<li>Frequency 即词频率，表示此文件中包含了几个此词(Term)。<br>所以对词(Term) “allow”来讲，总共有两篇文档包含此词(Term)，从而词(Term)后面的文档链表总共有两项，第一项表示包含“allow”的第一篇文档，即1号文档，此文档中，“allow”出现了2次，第二项表示包含“allow”的第二个文档，是2号文档，此文档中，“allow”出现了1次。</li>
-</ul>
-<p>到此为止，索引已经创建好了，我们可以通过它很快的找到我们想要的文档。</p>
-<p>而且在此过程中，我们惊喜地发现，搜索“drive”，“driving”，“drove”，“driven”也能够被搜到。因为在我们的索引中，“driving”，“drove”，“driven”都会经过语言处理而变成“drive”，在搜索时，如果您输入“driving”，输入的查询语句同样经过我们这里的一到三步，从而变为查询“drive”，从而可以搜索到想要的文档。</p>
-<h2 id="三、如何对索引进行搜索？"><a href="#三、如何对索引进行搜索？" class="headerlink" title="三、如何对索引进行搜索？"></a>三、如何对索引进行搜索？</h2><p>到这里似乎我们可以宣布“我们找到想要的文档了”。</p>
-<p>然而事情并没有结束，找到了仅仅是全文检索的一个方面。不是吗？如果仅仅只有一个或十个文档包含我们查询的字符串，我们的确找到了。然而如果结果有一千个，甚至成千上万个呢？那个又是您最想要的文件呢？</p>
-<p>打开Google吧，比如说您想在微软找份工作，于是您输入“Microsoft job”，您却发现总共有22600000个结果返回。好大的数字呀，突然发现找不到是一个问题，找到的太多也是一个问题。在如此多的结果中，如何将最相关的放在最前面呢？</p>
-<p><img src="/css/images/clip_image0024_thumb.jpg" alt="img-w500"></p>
-<p>当然Google做的很不错，您一下就找到了jobs at Microsoft。想象一下，如果前几个全部是“Microsoft does a good job at software industry…”将是多么可怕的事情呀。</p>
-<p>如何像Google一样，在成千上万的搜索结果中，找到和查询语句最相关的呢？</p>
-<p>如何判断搜索出的文档和查询语句的相关性呢？</p>
-<p>这要回到我们第三个问题：如何对索引进行搜索？</p>
-<p>搜索主要分为以下几步：</p>
-<h3 id="第一步：用户输入查询语句。"><a href="#第一步：用户输入查询语句。" class="headerlink" title="第一步：用户输入查询语句。"></a>第一步：用户输入查询语句。</h3><p>查询语句同我们普通的语言一样，也是有一定语法的。</p>
-<p>不同的查询语句有不同的语法，如SQL语句就有一定的语法。</p>
-<p>查询语句的语法根据全文检索系统的实现而不同。最基本的有比如：AND, OR, NOT等。</p>
-<p>举个例子，用户输入语句：lucene AND learned NOT hadoop。</p>
-<p>说明用户想找一个包含lucene和learned然而不包括hadoop的文档。</p>
-<h3 id="第二步：对查询语句进行词法分析，语法分析，及语言处理。"><a href="#第二步：对查询语句进行词法分析，语法分析，及语言处理。" class="headerlink" title="第二步：对查询语句进行词法分析，语法分析，及语言处理。"></a>第二步：对查询语句进行词法分析，语法分析，及语言处理。</h3><p>由于查询语句有语法，因而也要进行语法分析，语法分析及语言处理。</p>
-<h4 id="1-词法分析主要用来识别单词和关键字。"><a href="#1-词法分析主要用来识别单词和关键字。" class="headerlink" title="1. 词法分析主要用来识别单词和关键字。"></a>1. 词法分析主要用来识别单词和关键字。</h4><p>如上述例子中，经过词法分析，得到单词有lucene，learned，hadoop, 关键字有AND, NOT。</p>
-<p>如果在词法分析中发现不合法的关键字，则会出现错误。如lucene AMD learned，其中由于AND拼错，导致AMD作为一个普通的单词参与查询。</p>
-<h4 id="2-语法分析主要是根据查询语句的语法规则来形成一棵语法树。"><a href="#2-语法分析主要是根据查询语句的语法规则来形成一棵语法树。" class="headerlink" title="2. 语法分析主要是根据查询语句的语法规则来形成一棵语法树。"></a>2. 语法分析主要是根据查询语句的语法规则来形成一棵语法树。</h4><p>如果发现查询语句不满足语法规则，则会报错。如lucene NOT AND learned，则会出错。</p>
-<p>如上述例子，lucene AND learned NOT hadoop形成的语法树如下：</p>
-<p><img src="/css/images/语法树_thumb.jpg" alt="img-w500"></p>
-<h4 id="3-语言处理同索引过程中的语言处理几乎相同。"><a href="#3-语言处理同索引过程中的语言处理几乎相同。" class="headerlink" title="3. 语言处理同索引过程中的语言处理几乎相同。"></a>3. 语言处理同索引过程中的语言处理几乎相同。</h4><p>如learned变成learn等。</p>
-<p>经过第二步，我们得到一棵经过语言处理的语法树。</p>
-<p><img src="/css/images/语法树1_thumb.jpg" alt="img-w500"></p>
-<h3 id="第三步：搜索索引，得到符合语法树的文档。"><a href="#第三步：搜索索引，得到符合语法树的文档。" class="headerlink" title="第三步：搜索索引，得到符合语法树的文档。"></a>第三步：搜索索引，得到符合语法树的文档。</h3><p>此步骤有分几小步：</p>
-<p> 1.首先，在反向索引表中，分别找出包含lucene，learn，hadoop的文档链表。<br> 2.其次，对包含lucene，learn的链表进行合并操作，得到既包含lucene又包含learn的文档链表。<br> 3.然后，将此链表与hadoop的文档链表进行差操作，去除包含hadoop的文档，从而得到既包含lucene又包含learn而且不包含hadoop的文档链表。<br> 4.此文档链表就是我们要找的文档。</p>
-<h3 id="第四步：根据得到的文档和查询语句的相关性，对结果进行排序。"><a href="#第四步：根据得到的文档和查询语句的相关性，对结果进行排序。" class="headerlink" title="第四步：根据得到的文档和查询语句的相关性，对结果进行排序。"></a>第四步：根据得到的文档和查询语句的相关性，对结果进行排序。</h3><p>虽然在上一步，我们得到了想要的文档，然而对于查询结果应该按照与查询语句的相关性进行排序，越相关者越靠前。</p>
-<p>如何计算文档和查询语句的相关性呢？</p>
-<p>不如我们把查询语句看作一片短小的文档，对文档与文档之间的相关性(relevance)进行打分(scoring)，分数高的相关性好，就应该排在前面。</p>
-<p>那么又怎么对文档之间的关系进行打分呢？</p>
-<p><strong>这可不是一件容易的事情，首先我们看一看判断人之间的关系吧。</strong></p>
-<p><strong>首先</strong>看一个人，往往有很多<strong>要素</strong>，如性格，信仰，爱好，衣着，高矮，胖瘦等等。</p>
-<p><strong>其次</strong>对于人与人之间的关系，<strong>不同的要素重要性不同</strong>，性格，信仰，爱好可能重要些，衣着，高矮，胖瘦可能就不那么重要了，所以具有相同或相似性格，信仰，爱好的人比较容易成为好的朋友，然而衣着，高矮，胖瘦不同的人，也可以成为好的朋友。</p>
-<p>因而判断人与人之间的关系，<strong>首先要找出哪些要素对人与人之间的关系最重</strong>，比如性格，信仰，爱好。<strong>其次要判断两个人的这些要素之间的关系</strong>，比如一个人性格开朗，另一个人性格外向，一个人信仰佛教，另一个信仰上帝，一个人爱好打篮球，另一个爱好踢足球。我们发现，两个人在性格方面都很积极，信仰方面都很善良，爱好方面都爱运动，因而两个人关系应该会很好。</p>
-<p><strong>我们再来看看公司之间的关系吧。</strong></p>
-<p><strong>首先</strong>看一个公司，有很多人组成，如总经理，经理，首席技术官，普通员工，保安，门卫等。</p>
-<p><strong>其次对于公司与公司之间的关系，不同的人重要性不同</strong>，总经理，经理，首席技术官可能更重要一些，普通员工，保安，门卫可能较不重要一点。所以如果两个公司总经理，经理，首席技术官之间关系比较好，两个公司容易有比较好的关系。然而一位普通员工就算与另一家公司的一位普通员工有血海深仇，怕也难影响两个公司之间的关系。</p>
-<p>因而判断公司与公司之间的关系，<strong>首先要找出哪些人对公司与公司之间的关系最重要</strong>，比如总经理，经理，首席技术官。其次要判断这些人之间的关系，不如两家公司的总经理曾经是同学，经理是老乡，首席技术官曾是创业伙伴。我们发现，两家公司无论总经理，经理，首席技术官，关系都很好，因而两家公司关系应该会很好。</p>
-<p>分析了两种关系，下面看一下<strong>如何判断文档之间的关系</strong>了。</p>
-<p><strong>首先，一个文档有很多词(Term)组成</strong>，如search, lucene, full-text, this, a, what等。</p>
-<p><strong>其次对于文档之间的关系，不同的Term重要性不同</strong>，比如对于本篇文档，search, Lucene, full-text就相对重要一些，this, a , what可能相对不重要一些。所以如果两篇文档都包含search, Lucene，fulltext，这两篇文档的相关性好一些，然而就算一篇文档包含this, a, what，另一篇文档不包含this, a, what，也不能影响两篇文档的相关性。</p>
-<p>因而判断文档之间的关系，首先找出哪些词(Term)对文档之间的关系最重要，如search, Lucene, fulltext。然后判断这些词(Term)之间的关系。</p>
-<p><strong>找出词(Term)对文档的重要性的过程称为计算词的权重(Term weight)的过程。</strong></p>
-<p>计算词的权重(term weight)有两个参数，第一个是词(Term)，第二个是文档(Document)。</p>
-<p>词的权重(Term weight)表示此词(Term)在此文档中的重要程度，越重要的词(Term)有越大的权重(Term weight)，因而在计算文档之间的相关性中将发挥更大的作用。</p>
-<p><strong>判断词(Term)之间的关系从而得到文档相关性的过程应用一种叫做向量空间模型的算法(Vector Space Model)。</strong></p>
-<p>下面仔细分析一下这两个过程：</p>
-<h3 id="1-计算权重-Term-weight-的过程。"><a href="#1-计算权重-Term-weight-的过程。" class="headerlink" title="1. 计算权重(Term weight)的过程。"></a>1. 计算权重(Term weight)的过程。</h3><p>影响一个词(Term)在一篇文档中的重要性主要有两个因素：</p>
-<ul>
-<li>Term Frequency (tf)：即此Term在此文档中出现了多少次。tf 越大说明越重要。</li>
-<li>Document Frequency (df)：即有多少文档包含次Term。df 越大说明越不重要。<br>容易理解吗？词(Term)在文档中出现的次数越多，说明此词(Term)对该文档越重要，如“搜索”这个词，在本文档中出现的次数很多，说明本文档主要就是讲这方面的事的。然而在一篇英语文档中，this出现的次数更多，就说明越重要吗？不是的，这是由第二个因素进行调整，第二个因素说明，有越多的文档包含此词(Term), 说明此词(Term)太普通，不足以区分这些文档，因而重要性越低。</li>
-</ul>
-<p>这也如我们程序员所学的技术，对于程序员本身来说，这项技术掌握越深越好（掌握越深说明花时间看的越多，tf越大），找工作时越有竞争力。然而对于所有程序员来说，这项技术懂得的人越少越好（懂得的人少df小），找工作越有竞争力。人的价值在于不可替代性就是这个道理。</p>
-<p>道理明白了，我们来看看公式：</p>
-<p><img src="http://images.cnblogs.com/cnblogs_com/forfuture1978/WindowsLiveWriter/185c4e9316f3_147FA/image_thumb_2.png" alt=""><br><img src="/css/images/image_thumb_1.png" alt="img-w500"></p>
-<p>这仅仅只term weight计算公式的简单典型实现。实现全文检索系统的人会有自己的实现，Lucene就与此稍有不同。</p>
-<h3 id="2-判断Term之间的关系从而得到文档相关性的过程，也即向量空间模型的算法-VSM-。"><a href="#2-判断Term之间的关系从而得到文档相关性的过程，也即向量空间模型的算法-VSM-。" class="headerlink" title="2. 判断Term之间的关系从而得到文档相关性的过程，也即向量空间模型的算法(VSM)。"></a>2. 判断Term之间的关系从而得到文档相关性的过程，也即向量空间模型的算法(VSM)。</h3><p>我们把文档看作一系列词(Term)，每一个词(Term)都有一个权重(Term weight)，不同的词(Term)根据自己在文档中的权重来影响文档相关性的打分计算。</p>
-<p>于是我们把所有此文档中词(term)的权重(term weight) 看作一个向量。</p>
-<p>Document = {term1, term2, …… ,term N}</p>
-<p>Document Vector = {weight1, weight2, …… ,weight N}</p>
-<p>同样我们把查询语句看作一个简单的文档，也用向量来表示。</p>
-<p>Query = {term1, term 2, …… , term N}</p>
-<p>Query Vector = {weight1, weight2, …… , weight N}</p>
-<p>我们把所有搜索出的文档向量及查询向量放到一个N维空间中，每个词(term)是一维。</p>
-<p>如图：</p>
-<p><img src="/css/images/vsm_thumb.jpg" alt="img-w500"></p>
-<p>我们认为两个向量之间的夹角越小，相关性越大。</p>
-<p>所以我们计算夹角的余弦值作为相关性的打分，夹角越小，余弦值越大，打分越高，相关性越大。</p>
-<p>有人可能会问，查询语句一般是很短的，包含的词(Term)是很少的，因而查询向量的维数很小，而文档很长，包含词(Term)很多，文档向量维数很大。你的图中两者维数怎么都是N呢？</p>
-<p>在这里，既然要放到相同的向量空间，自然维数是相同的，不同时，取二者的并集，如果不含某个词(Term)时，则权重(Term Weight)为0。</p>
-<p>相关性打分公式如下：</p>
-<p><img src="/css/images/image11_thumb.png" alt="img-w500"></p>
-<p>举个例子，查询语句有11个Term，共有三篇文档搜索出来。其中各自的权重(Term weight)，如下表格。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">-</th>
-<th style="text-align:right">t1</th>
-<th style="text-align:right">t2</th>
-<th style="text-align:right">t3</th>
-<th style="text-align:right">t4</th>
-<th style="text-align:right">t5</th>
-<th style="text-align:right">t6</th>
-<th style="text-align:right">t7</th>
-<th style="text-align:right">t8</th>
-<th style="text-align:right">t9</th>
-<th style="text-align:right">t10</th>
-<th style="text-align:right">t11</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">D1</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.477</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.477</td>
-<td style="text-align:right">.176</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-<td style="text-align:right">0</td>
-</tr>
-<tr>
-<td style="text-align:right">D2</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.477</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.954</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-</tr>
-<tr>
-<td style="text-align:right">D3</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-<td style="text-align:right">.176</td>
-</tr>
-<tr>
-<td style="text-align:right">Q</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.477</td>
-<td style="text-align:right">0</td>
-<td style="text-align:right">.176</td>
-</tr>
-</tbody>
-</table>
-<p>于是计算，三篇文档同查询语句的相关性打分分别为：</p>
-<p><img src="/css/images/image17_thumb.png" alt=""><br><img src="/css/images/image20_thumb.png" alt=""><br><img src="/css/images/image23_thumb.png" alt=""></p>
-<p>于是文档二相关性最高，先返回，其次是文档一，最后是文档三。</p>
-<p>到此为止，我们可以找到我们最想要的文档了。</p>
-<p>说了这么多，其实还没有进入到Lucene，而仅仅是信息检索技术(Information retrieval)中的基本理论，然而当我们看过Lucene后我们会发现，Lucene是对这种基本理论的一种基本的的实践。所以在以后分析Lucene的文章中，会常常看到以上理论在Lucene中的应用。</p>
-<p>在进入Lucene之前，对上述索引创建和搜索过程所一个总结，如图：</p>
-<p>此图参照<a href="http://www.lucene.com.cn/about.htm中文章《开放源代码的全文检索引擎Lucene》" target="_blank" rel="external">http://www.lucene.com.cn/about.htm中文章《开放源代码的全文检索引擎Lucene》</a></p>
-<p><img src="/css/images/clip_image016_thumb.jpg" alt="img-w500"></p>
-<h3 id="1-索引过程："><a href="#1-索引过程：" class="headerlink" title="1. 索引过程："></a>1. 索引过程：</h3><ul>
-<li>1) 有一系列被索引文件</li>
-<li>2) 被索引文件经过语法分析和语言处理形成一系列词(Term)。</li>
-<li>3) 经过索引创建形成词典和反向索引表。</li>
-<li>4) 通过索引存储将索引写入硬盘。<h3 id="2-搜索过程："><a href="#2-搜索过程：" class="headerlink" title="2. 搜索过程："></a>2. 搜索过程：</h3></li>
-<li>a) 用户输入查询语句。</li>
-<li>b) 对查询语句经过语法分析和语言分析得到一系列词(Term)。</li>
-<li>c) 通过语法分析得到一个查询树。</li>
-<li>d) 通过索引存储将索引读入到内存。</li>
-<li>e) 利用查询树搜索索引，从而得到每个词(Term)的文档链表，对文档链表进行交，差，并得到结果文档。</li>
-<li>f) 将搜索到的结果文档对查询的相关性进行排序。</li>
-<li>g) 返回查询结果给用户。</li>
-</ul>
-<p>下面我们可以进入Lucene的世界了。</p>
-
+            <p><p>好文转载自：<br><a href="http://www.cnblogs.com/guochunguang/articles/3641008.html" target="_blank" rel="external">http://www.cnblogs.com/guochunguang/articles/3641008.html</a></p>
+<h2 id="总论"><a href="#总论" class="headerlink" title="总论"></a>总论</h2><p>根据<a href="http://lucene.apache.org/java/docs/index.html定义：" target="_blank" rel="external">http://lucene.apache.org/java/docs/index.html定义：</a><br><strong>Lucene是一个高效的，基于Java的全文检索库。</strong><br>所以在了解Lucene之前要费一番工夫了解一下全文检索。<br>那么什么叫做全文检索呢？这要从我们生活中的数据说起。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/09/06/lucence/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -682,7 +239,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/09/06/lucence/" data-id="cj79qoqdp002j7sq05oeungcd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/06/lucence/" data-id="cj79slqir002pxgq0t9eiz9q7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -811,6 +368,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <h1 id="获取jar文件的路径"><a href="#获取jar文件的路径" class="headerlink" title="获取jar文件的路径"></a>获取jar文件的路径</h1><ul>
@@ -826,7 +384,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/31/spring-jar/" data-id="cj79qoqey003p7sq0xyttzh3y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/31/spring-jar/" data-id="cj79slqj00032xgq0x1r7ugat" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -950,35 +508,19 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <ul>
+            <p><ul>
 <li><p>获取 ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz至/opt</p>
 </li>
 <li><p>tar -zxvf ansible-tower-setup-bundle-3.0.3-1.el7.tar.gz</p>
 </li>
 <li><p>mv ansible-tower-setup-bundle-3.0.3-1.el7 ansible-tower</p>
 </li>
-<li><p>cd  ansible-tower </p>
-</li>
-<li><p>配置inventory</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">vi inventory</div><div class="line"></div><div class="line">localhost ansible_connection=local</div><div class="line"></div><div class="line">[secondary]</div><div class="line"></div><div class="line">[database]</div><div class="line"></div><div class="line">[all:vars]</div><div class="line">admin_password='ledefe'</div><div class="line">redis_password='ledefe'</div><div class="line"></div><div class="line">pg_host=''</div><div class="line">pg_port=''</div><div class="line"></div><div class="line">pg_database='awx'</div><div class="line">pg_username='awx'</div><div class="line">pg_password='ledefe'</div></pre></td></tr></table></figure>
-<ul>
-<li><p>运行 ./setup.sh</p>
-</li>
-<li><p>问题解决</p>
-</li>
-</ul>
-<p>ImportError: /var/lib/awx/venv/tower/lib/python2.7/site-packages/_ldap.so: failed to map segment from shared object: Permission denied</p>
-<p>快速禁用SELinux命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/sbin/setenforce 0</div></pre></td></tr></table></figure></p>
-<p>快速开启SELinux命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/sbin/setenforce 1</div></pre></td></tr></table></figure></p>
-<p>禁用SELinux方法：</p>
-<p>修改配置文件 /etc/selinux/config 找到下面的：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELINUX=enforcing</div></pre></td></tr></table></figure></p>
-<p>修改为：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELINUX=disabled</div></pre></td></tr></table></figure></p>
-<p>搞定！ </p>
-
+<li><p>cd  ansible-tower </p></p>
+            <p class="article-more-link">
+               <a href="/2017/08/31/ansible_tower_install/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -988,7 +530,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj79qoqby000j7sq062xmu523" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj79slqh0000lxgq0a2vmi1y0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1112,38 +654,16 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>EFLK是Elasticsearch、filebeat、logstash、kibana的简称。</p>
+            <p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>EFLK是Elasticsearch、filebeat、logstash、kibana的简称。</p>
 <p>Elasticsearch:是个开源实时分布式搜索引擎。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</p>
 <p>filebeat: elastic官方维护的日志采集程序，基于go语言编写，资源消耗小。</p>
 <p>logstash：作为日志的汇总中心，其具有丰富的转换插件，提供日志转换。</p>
-<p>kibana:是一个为ElasticSearch 提供的日志分析的 Web 接口。可使用它对日志进行高效的搜索、可视化、分析等各种操作。</p>
-<h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1><p><img src="https://raw.githubusercontent.com/ledefe/ledefe.github.io/master/images/t2.png" alt=""></p>
-<p>日志采集主要借助于filebeat开源采集工具，通过logstash转换后，持久化至ES集群中。</p>
-<p>整个架构可分为三部分：采集端、聚合端和ES集群</p>
-<ul>
-<li>采集端 filebeat</li>
-</ul>
-<p>filebeat作为日志采集工具，负责客户端日志采集，基于go语言开发，具有占用资源少的特点。</p>
-<p>采集过程中会记录文件读取的offset，具备ack机制，当上报至logstash的日志成功后才会更新offset，网络异常或上报失败，会进行重试操作，保证数据不丢失。</p>
-<ul>
-<li>聚合端 logstash</li>
-</ul>
-<p>logstash作为日志的汇总中心，其具有丰富的转换插件，主要提供日志清洗转换。转换输出至es集群中。</p>
-<p>logstash这边接收filebeat上报的数据，有两种方式进行缓存，一种是基于内存，一种是基于文件。</p>
-<p>基于内存，当出现异常时，数据会丢失，但是性能高。</p>
-<p>基于文件，当出现异常时，由于数据存储于文件中，当恢复时，数据会从文件中恢复，保证数据不丢失，但可能会影响性能。</p>
-<p>而logstash上报至es集群，采用的重试机制，默认开始2秒后进行重试，随后按64*n 秒后进行重试。</p>
-<ul>
-<li><p>ES集群</p>
-<p>主要存放历史日志，使用场景在对历史日志进行检索。</p>
-</li>
-</ul>
-<h1 id="查询工具"><a href="#查询工具" class="headerlink" title="查询工具"></a>查询工具</h1><p>  目前提供日志的在线查询和根据特定条件筛选下载，考虑到日志文件的大小情况，这边限定下载需要选定一个时间区间，且时间区间不超过24个小时。</p>
-<p>局域网：<a href="http://10.200.110.85:8080/" target="_blank" rel="external">http://10.200.110.85:8080/</a></p>
-<h1 id="日志输出格式约定"><a href="#日志输出格式约定" class="headerlink" title="日志输出格式约定"></a>日志输出格式约定</h1><p> 日志输出格式统一约定以ISO 8601（格式为： YYYY-MM-DDTHH:mm:ss.sssZ ）日期开头输出<br> 如：log4j.xml或logback里配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;yyyy-MM-dd'T'HH:mm:ss.SSSZ&#125; [%t] %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>&gt;</span><span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
-
+<p>kibana:是一个为ElasticSearch 提供的日志分析的 Web 接口。可使用它对日志进行高效的搜索、可视化、分析等各种操作。</p></p>
+            <p class="article-more-link">
+               <a href="/2017/08/18/EFK-design-II/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1153,7 +673,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj79qoqb100007sq016o3mi24" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj79slqg40002xgq00r2wut6b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1277,40 +797,12 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。</p>
-<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果</p>
-<p>在线文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html</a></p>
-<h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><p>1./config/elasticsearch.yml设置区域信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>中国区</div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span> 欧洲区</div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span> 美国</div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
-<p>2.索引命名规则：{区域}<em>logs</em>{业务}-{date:YYYY-MM-dd}</p>
-<p>区域：表示 cn,eu,us</p>
-<p>业务：比如 tomcat,nginx等</p>
-<p>3.索引模块定义</p>
-<ul>
-<li><p>PUT /_template/logs_cn</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"cn_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"cn"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>PUT /_template/logs_eu</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"eu_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"eu"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>PUT /_template/logs_us</p>
-</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"order"</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">"template"</span>: <span class="string">"us_logs_*"</span>,</div><div class="line">    <span class="attr">"settings"</span>: &#123;</div><div class="line">      <span class="attr">"index.routing.allocation.include.zone"</span> :<span class="string">"us"</span>,</div><div class="line">      ....</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>4.索引操作</p>
-<ul>
-<li>POST {对应区域es}/cn_logs_demo/log<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"@message"</span>:<span class="string">"cn content.."</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>5.索引查询</p>
-<ul>
-<li>POST /cn<em>logs</em><em>,eu<em>logs</em></em>/_search?_search?preference=_only_nodes:zone:cn,zone:eu</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"query"</span>:&#123;<span class="attr">"match_all"</span>:&#123;&#125;&#125;&#125;</div></pre></td></tr></table></figure>
-<p>其中preference可指定查询的区域,如preference=_only_nodes:zone:cn,zone:eu，多个以逗号隔开</p>
-
+            <p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前日志的采集需要采集中国区（cn）、欧洲区(eu)和美国区(us)三个区域的日志信息，由于日志量大，对于包流量用户来讲，如果采集外网集群的话，在分配索引分片的时候，由于默认是自动分片的，这对于包流量的用户来讲是不合适的。</p></p>
+            <p class="article-more-link">
+               <a href="/2017/08/07/Elasticsearch-routing/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1320,7 +812,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj79qoqb600017sq0b4uehwqz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj79slqgd0006xgq0zx00c6zh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1444,9 +936,9 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <p>1.准备环境</p>
+            <p><p>1.准备环境</p>
 <ul>
 <li>安装go环境</li>
 </ul>
@@ -1454,10 +946,11 @@
 <li>安装ide</li>
 </ul>
 <p>这边采用idea来开发</p>
-<p>2.源码</p>
-<p>3.源码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">	"bytes"</div><div class="line">	"encoding/base64"</div><div class="line">	"fmt"</div><div class="line">	"log"</div><div class="line">	"net/http"</div><div class="line">	"strings"</div><div class="line">	"os/exec"</div><div class="line">	"encoding/json"</div><div class="line">	"io"</div><div class="line">	"os"</div><div class="line">	"github.com/kardianos/service"</div><div class="line">)</div><div class="line"></div><div class="line"></div><div class="line">type program struct&#123;&#125;</div><div class="line"></div><div class="line">func (p *program) Start(s service.Service) error &#123;</div><div class="line">	// Start should not block. Do the actual work async.</div><div class="line">	go p.run()</div><div class="line">	return nil</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p *program) run()&#123;</div><div class="line"></div><div class="line">	user := []byte("test")</div><div class="line">	pass := []byte("test2")</div><div class="line">	http.HandleFunc("/start", BasicAuth(startFunc, user, pass))</div><div class="line">	http.HandleFunc("/stop", BasicAuth(stopFunc, user, pass))</div><div class="line">	http.HandleFunc("/status", BasicAuth(statusFunc, user, pass))</div><div class="line">	http.HandleFunc("/restart", BasicAuth(restartFunc, user, pass))</div><div class="line">	http.HandleFunc("/sync", BasicAuth(syncFunc, user, pass))</div><div class="line"></div><div class="line">	log.Println("Listen :8090")</div><div class="line">	err := http.ListenAndServe(":8090", nil)</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Fatal("ListenAndServe: ", err)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p *program) Stop(s service.Service) error &#123;</div><div class="line">	// Stop should not block. Return with a few seconds.</div><div class="line">	return nil</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">func main() &#123;</div><div class="line"></div><div class="line">	//服务的配置信息</div><div class="line">	cfg := &amp;service.Config&#123;</div><div class="line">		Name:        "beat-agent",</div><div class="line">		DisplayName: "beat agent service",</div><div class="line">		Description: "beat agent Go service.",</div><div class="line">	&#125;</div><div class="line">	// Interface 接口</div><div class="line">	prg := &amp;program&#123;&#125;</div><div class="line">	// 构建服务对象</div><div class="line">	s, err := service.New(prg, cfg)</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Fatal(err)</div><div class="line">	&#125;</div><div class="line">	// logger 用于记录系统日志</div><div class="line">	logger, err := s.Logger(nil)</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Fatal(err)</div><div class="line">	&#125;</div><div class="line">	if len(os.Args) == 2 &#123; //如果有命令则执行</div><div class="line">		err = service.Control(s, os.Args[1])</div><div class="line">		if err != nil &#123;</div><div class="line">			log.Fatal(err)</div><div class="line">		&#125;</div><div class="line">	&#125; else &#123; //否则说明是方法启动了</div><div class="line">		err = s.Run()</div><div class="line">		if err != nil &#123;</div><div class="line">			logger.Error(err)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	if err != nil &#123;</div><div class="line">		logger.Error(err)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">type ViewFunc func(http.ResponseWriter, *http.Request)</div><div class="line"></div><div class="line">func BasicAuth(f ViewFunc, user, passwd []byte) ViewFunc &#123;</div><div class="line">	return func(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">		basicAuthPrefix := "Basic "</div><div class="line">		// 获取 request header</div><div class="line">		auth := r.Header.Get("Authorization")</div><div class="line">		// 如果是 http basic auth</div><div class="line">		if strings.HasPrefix(auth, basicAuthPrefix) &#123;</div><div class="line">			// 解码认证信息</div><div class="line">			payload, err := base64.StdEncoding.DecodeString(</div><div class="line">				auth[len(basicAuthPrefix):],</div><div class="line">			)</div><div class="line">			if err == nil &#123;</div><div class="line">				pair := bytes.SplitN(payload, []byte(":"), 2)</div><div class="line">				if len(pair) == 2 &amp;&amp; bytes.Equal(pair[0], user) &amp;&amp;</div><div class="line">					bytes.Equal(pair[1], passwd) &#123;</div><div class="line">					// 执行被装饰的函数</div><div class="line">					f(w, r)</div><div class="line">					return</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		// 01 状态码</div><div class="line">		w.WriteHeader(http.StatusUnauthorized)</div><div class="line"></div><div class="line">		resultFunc(w,"permission denied","401")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">func startFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line"></div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat start");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func resultFunc(w http.ResponseWriter,msg string,code string)&#123;</div><div class="line">	w.Header().Set("Content-Type", "application/json; charset=utf-8")</div><div class="line">	w.Header().Set("X-Content-Type-Options", "nosniff")</div><div class="line">	var resultMsg *ResultMsg=&amp;ResultMsg&#123;Msg:msg,Code:code&#125;</div><div class="line">	json.NewEncoder(w).Encode(resultMsg)</div><div class="line">	//if bs, err := json.Marshal(&amp;resultMsg); err != nil &#123;</div><div class="line">	//	log.Println(err)</div><div class="line">	//&#125; else &#123;</div><div class="line">	//	fmt.Fprintf(w,string(bs))</div><div class="line">	//&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func stopFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat stop");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func statusFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat status");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func restartFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line">	cmd:=exec.Command("/bin/bash", "-c", "/etc/init.d/filebeat restart");</div><div class="line">	out,err := cmd.Output()</div><div class="line">	if err != nil &#123;</div><div class="line">		log.Println(err)</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line"></div><div class="line">	&#125;else&#123;</div><div class="line">		resultFunc(w,string(out),"200")</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">func syncFunc(w http.ResponseWriter, r *http.Request) &#123;</div><div class="line"></div><div class="line">	r.ParseForm();</div><div class="line">	configHost:=r.Form.Get("configHost");</div><div class="line">	agentHost:=r.Form.Get("agentHost");</div><div class="line">	path:=r.Form.Get("path");</div><div class="line">	hostPort:= strings.Split(configHost, ":")</div><div class="line">	if (len(hostPort)== 1) &#123;</div><div class="line">		configHost = configHost + ":8080";</div><div class="line">	&#125;</div><div class="line">	url:="http://"+configHost+"/getBeatConf?host="+agentHost;</div><div class="line">	res, err := http.Get(url)</div><div class="line">	if err != nil &#123;</div><div class="line">		resultFunc(w,string(err.Error()),"501")</div><div class="line">		return</div><div class="line">	&#125;</div><div class="line">	workDir:="/etc/filebeat";</div><div class="line"><span class="meta">	if(len(path)&gt;</span><span class="bash">0)&#123;</span></div><div class="line">		workDir=path;</div><div class="line">	&#125;</div><div class="line">	checkDir(workDir);</div><div class="line">	fmt.Println("getConf url:"+url)</div><div class="line">	f, err := os.Create(workDir+"/filebeat.yml")</div><div class="line">	if err != nil &#123;</div><div class="line">		resultFunc(w,string(err.Error()),"500")</div><div class="line">		return</div><div class="line">	&#125;</div><div class="line">	io.Copy(f,res.Body)</div><div class="line">	resultFunc(w,"sync success","200")</div><div class="line">&#125;</div><div class="line"></div><div class="line">func checkDir(dir string)&#123;</div><div class="line">	err1:=os.MkdirAll(dir,os.ModePerm)</div><div class="line">	if err1 != nil &#123;</div><div class="line">		fmt.Println("%s", err1)</div><div class="line">	&#125; else &#123;</div><div class="line">		fmt.Println("workDir:"+dir+" create Ok")</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">type ResultMsg struct &#123;</div><div class="line">	Code string `json:"code"`</div><div class="line">	Msg  string `json:"msg"`</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<ul>
+<li>源码</p>
+            <p class="article-more-link">
+               <a href="/2017/07/22/go-web-demo/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1467,7 +960,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/22/go-web-demo/" data-id="cj79qoqct001f7sq05j6p1ewg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/22/go-web-demo/" data-id="cj79slqhq001hxgq0mho44ea3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1545,146 +1038,6 @@
 
 
 
-    <article id="post-java_exec_shell" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/21/java_exec_shell/">java执行shell脚本(备忘)</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/java_exec_shell/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java-shell/">java shell</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="java执行shell脚本-备忘"><a href="#java执行shell脚本-备忘" class="headerlink" title="java执行shell脚本(备忘)"></a>java执行shell脚本(备忘)</h1><ul>
-<li>主要代码</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">     <span class="function"><span class="keyword">public</span> ResultMsg <span class="title">stop</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException </span>&#123;</div><div class="line">	String[] cmd = &#123; <span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/etc/init.d/filebeat stop"</span> &#125;;</div><div class="line">	String result;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		result = doExeCmd(cmd);</div><div class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"500"</span>, e.getMessage());</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"200"</span>, result);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">doExeCmd</span><span class="params">(String[] cmd)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">	ProcessBuilder pbuilder = <span class="keyword">new</span> ProcessBuilder(cmd);</div><div class="line">	pbuilder.redirectErrorStream(<span class="keyword">true</span>);</div><div class="line">	Process process = pbuilder.start();</div><div class="line">	StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">	BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(process.getInputStream(), <span class="string">"UTF-8"</span>));</div><div class="line">	String line = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">		result.append(line).append(<span class="string">"\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> code = -<span class="number">1</span>;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		code = process.waitFor();</div><div class="line">		logger.info(<span class="string">"exec result code"</span> + code);</div><div class="line">	&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">		logger.error(e.getMessage());</div><div class="line">	&#125;</div><div class="line">	logger.info(<span class="string">"exec result"</span> + result.toString());</div><div class="line">	<span class="keyword">return</span> result.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/21/java_exec_shell/" data-id="cj79qoqcz001p7sq0155yl1ov" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/21/java_exec_shell/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-linux cmd" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1731,6 +1084,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
             
             <ul>
@@ -1751,7 +1105,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj79qoqda001y7sq0k57f4tm5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj79slqi90022xgq0p3zo4al3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1829,6 +1183,147 @@
 
 
 
+    <article id="post-java_exec_shell" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/07/21/java_exec_shell/">java执行shell脚本(备忘)</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/07/21/java_exec_shell/">
+            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java-shell/">java shell</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            
+            <h1 id="java执行shell脚本-备忘"><a href="#java执行shell脚本-备忘" class="headerlink" title="java执行shell脚本(备忘)"></a>java执行shell脚本(备忘)</h1><ul>
+<li>主要代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">     <span class="function"><span class="keyword">public</span> ResultMsg <span class="title">stop</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException </span>&#123;</div><div class="line">	String[] cmd = &#123; <span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"/etc/init.d/filebeat stop"</span> &#125;;</div><div class="line">	String result;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		result = doExeCmd(cmd);</div><div class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"500"</span>, e.getMessage());</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ResultMsg(<span class="string">"200"</span>, result);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">doExeCmd</span><span class="params">(String[] cmd)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">	ProcessBuilder pbuilder = <span class="keyword">new</span> ProcessBuilder(cmd);</div><div class="line">	pbuilder.redirectErrorStream(<span class="keyword">true</span>);</div><div class="line">	Process process = pbuilder.start();</div><div class="line">	StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">	BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(process.getInputStream(), <span class="string">"UTF-8"</span>));</div><div class="line">	String line = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">		result.append(line).append(<span class="string">"\n"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> code = -<span class="number">1</span>;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		code = process.waitFor();</div><div class="line">		logger.info(<span class="string">"exec result code"</span> + code);</div><div class="line">	&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">		logger.error(e.getMessage());</div><div class="line">	&#125;</div><div class="line">	logger.info(<span class="string">"exec result"</span> + result.toString());</div><div class="line">	<span class="keyword">return</span> result.toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/07/21/java_exec_shell/" data-id="cj79slqi0001sxgq045cceume" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/21/java_exec_shell/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-service" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1875,27 +1370,18 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="制作java程序以linux服务方式启动"><a href="#制作java程序以linux服务方式启动" class="headerlink" title="制作java程序以linux服务方式启动"></a>制作java程序以linux服务方式启动</h1><ul>
+            <p><ul>
 <li><p>1.获取应用程序包：filebeat-agent.jar</p>
 </li>
 <li><p>2.上传至/opt/filebeat_agent ,使用命令做一个软连接到/etc/init.d</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /opt/filebeat_agent/filebeat-agent.jar /etc/init.d/filebeat-agent</div></pre></td></tr></table></figure>
 </li>
-<li><p>3.设置配置</p>
-</li>
-</ul>
-<p>在/opt/filebeat_agent/目录下，创建一个filebeat-agent.conf,必须与应用名一样<br>加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">JAVA_HOME=/usr/local/jdk1.8.0_121</div><div class="line">JAVA_OPTS=-Xmx128M</div><div class="line">LOG_FOLDER=/var/log</div></pre></td></tr></table></figure>
-<ul>
-<li>4.授权</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">chmod +x /etc/init.d/filebeat-agent</div></pre></td></tr></table></figure>
-<ul>
-<li>5.启动</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">service filebeat-agent start|stop|restart|status</div></pre></td></tr></table></figure>
+</ul></p>
+            <p class="article-more-link">
+               <a href="/2017/07/20/service/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -1905,7 +1391,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/20/service/" data-id="cj79qoqes003m7sq0azyfex02" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/20/service/" data-id="cj79slqiv002vxgq0enhykp21" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -2029,22 +1515,15 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <ul>
+            <p><ul>
 <li><p>rpm方式安装<br>rpm -vi filebeat-5.3.0-x86_64.rpm</p>
 </li>
-<li><p>配置filebeat.yml<br>vi /etc/filebeat/filebeat.yml</p>
-</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="string">filebeat.prospectors:</span></div><div class="line"></div><div class="line"><span class="attr">- input_type:</span> <span class="string">log</span></div><div class="line"><span class="attr">  paths:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">/tmp/logs/eureka</span></div><div class="line"><span class="attr">  fields_under_root:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  fields:</span></div><div class="line"><span class="attr">    host:</span> <span class="number">10.2</span><span class="number">.61</span><span class="number">.201</span></div><div class="line"><span class="attr">    instance:</span> <span class="string">vc_10.2.61.201</span></div><div class="line"><span class="attr">    indexname:</span> <span class="string">logs_vctest</span></div><div class="line">  <span class="string">multiline.pattern:</span> <span class="string">'^[0-9]&#123;4&#125;-[0-9]&#123;2&#125;-[0-9]&#123;2&#125;'</span></div><div class="line">  <span class="string">multiline.negate:</span> <span class="literal">true</span></div><div class="line">  <span class="string">multiline.match:</span> <span class="string">after</span></div><div class="line"><span class="attr">processors:</span></div><div class="line"><span class="attr">- drop_fields:</span></div><div class="line"><span class="attr">    fields:</span> <span class="string">["beat"]</span></div><div class="line"><span class="comment">#----------------------------- Logstash output --------------------------------</span></div><div class="line"><span class="string">output.logstash:</span></div><div class="line">  <span class="comment"># The Logstash hosts</span></div><div class="line"><span class="attr">  hosts:</span> <span class="string">["10.2.61.210:5044"]</span></div><div class="line"><span class="attr">  compression_level:</span> <span class="number">3</span></div><div class="line"><span class="comment">#================================ Logging =====================================</span></div><div class="line"><span class="string">logging.level:</span> <span class="string">info</span></div><div class="line"><span class="comment"># At debug level, you can selectively enable logging only for some components.</span></div><div class="line"><span class="comment"># To enable all selectors use ["*"]. Examples of other selectors are "beat",</span></div><div class="line"><span class="comment"># "publish", "service".</span></div><div class="line"><span class="comment">#logging.selectors: ["*"]</span></div></pre></td></tr></table></figure>
-<ul>
-<li>启动命令<br>sudo /etc/init.d/filebeat start|stop|status</li>
-</ul>
-<ul>
-<li>自启动<br>systemctl enable filebeat.service</li>
-</ul>
-
+<li><p>配置filebeat.yml<br>vi /etc/filebeat/filebeat.yml</p></p>
+            <p class="article-more-link">
+               <a href="/2017/07/16/filebeat_install/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -2054,7 +1533,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/16/filebeat_install/" data-id="cj79qoqce000y7sq0vnlsd8ik" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/16/filebeat_install/" data-id="cj79slqhe000xxgq0xrhkzbzc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

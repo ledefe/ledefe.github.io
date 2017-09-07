@@ -218,89 +218,14 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="Flume-1-7-安裝（服务聚合端）"><a href="#Flume-1-7-安裝（服务聚合端）" class="headerlink" title="Flume 1.7 安裝（服务聚合端）"></a>Flume 1.7 安裝（服务聚合端）</h1><p>该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0</p>
+            <p><h1 id="Flume-1-7-安裝（服务聚合端）"><a href="#Flume-1-7-安裝（服务聚合端）" class="headerlink" title="Flume 1.7 安裝（服务聚合端）"></a>Flume 1.7 安裝（服务聚合端）</h1><p>该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0</p>
 <h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1><p>资源： flume.zip</p>
-<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><h2 id="指定安装目录"><a href="#指定安装目录" class="headerlink" title="指定安装目录"></a>指定安装目录</h2><pre><code>mkdir -p /opt/flume_server
-</code></pre><p><strong>接下来的操作都在/opt/flume_server下操作</strong></p>
-<h2 id="zip包准备"><a href="#zip包准备" class="headerlink" title="zip包准备"></a>zip包准备</h2><ul>
-<li>该flume.zip已经支持flume es5.3.0 sink</li>
-<li>上传至/opt/flume_server目录下</li>
-</ul>
-<blockquote>
-<p>cd /opt/flume_server<br>rz -y</p>
-</blockquote>
-<h2 id="解压zip包"><a href="#解压zip包" class="headerlink" title="解压zip包"></a>解压zip包</h2><ul>
-<li>在/opt/flume_server目录下解压</li>
-</ul>
-<blockquote>
-<p>unzip flume.zip  </p>
-</blockquote>
-<h2 id="定义配置文件"><a href="#定义配置文件" class="headerlink" title="定义配置文件"></a>定义配置文件</h2><ul>
-<li>配置文件都放置到conf中去</li>
-</ul>
-<blockquote>
-<p>mkdir -p cloud/conf<br>cd cloud/conf</p>
-</blockquote>
-<ul>
-<li>这里分别定义三个文件：4145.conf 4144.conf log4j2.xml</li>
-<li>4145.conf 4144.conf 分别对应两个agent服务。</li>
-<li>对外提供avro服务，并最终持久化到es服务中。</li>
-<li>目前文件已定义好，只需更改对应es服务相关信息和avro提供的端口</li>
-</ul>
-<ol>
-<li>4145.conf文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">a1.sources=s1</div><div class="line">a1.channels=c1</div><div class="line">a1.sinks=k1</div><div class="line"></div><div class="line">a1.channels.c1.type=memory</div><div class="line"></div><div class="line"><span class="comment">#a1.channels.c1.type=file</span></div><div class="line"><span class="comment">#a1.channels.c1.checkpointDir = /mnt/flume/checkpoint</span></div><div class="line"><span class="comment">#a1.channels.c1.dataDirs = /mnt/flume/data</span></div><div class="line"></div><div class="line"><span class="comment">#定义avro source</span></div><div class="line">a1.sources.s1.type=avro</div><div class="line">a1.sources.s1.bind=0.0.0.0</div><div class="line">a1.sources.s1.port=4145</div><div class="line">a1.sources.s1.channels=c1</div><div class="line"></div><div class="line">a1.sinks.k1.type=org.apache.flume.sink.elasticsearch5.ElasticSearchSink</div><div class="line">a1.sinks.k1.batchSize=100</div><div class="line"><span class="comment">#es服务的地址</span></div><div class="line">a1.sinks.k1.hostNames=127.0.0.1:9300</div><div class="line">a1.sinks.k1.indexType=logs</div><div class="line"><span class="comment">#动态索引名称，根据需求自行定义比如tomcat/nginx等</span></div><div class="line">a1.sinks.k1.indexName=%&#123;indexName&#125;</div><div class="line">a1.sinks.k1.clusterName=yealink-log</div><div class="line">a1.sinks.k1.serializer=com.nd.imlog.sink.YealinkElasticSearchLogDynamicSerializer</div><div class="line">a1.sinks.k1.channel=c1</div></pre></td></tr></table></figure>
-<ol>
-<li>4144.conf文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">a1.sources=s1</div><div class="line">a1.channels=c1</div><div class="line">a1.sinks=k1</div><div class="line"></div><div class="line">a1.channels.c1.type=memory</div><div class="line"></div><div class="line"><span class="comment">#a1.channels.c1.type=file</span></div><div class="line"><span class="comment">#a1.channels.c1.checkpointDir = /mnt/flume/checkpoint</span></div><div class="line"><span class="comment">#a1.channels.c1.dataDirs = /mnt/flume/data</span></div><div class="line"></div><div class="line"><span class="comment">#定义avro source</span></div><div class="line">a1.sources.s1.type=avro</div><div class="line">a1.sources.s1.bind=0.0.0.0</div><div class="line">a1.sources.s1.port=4144</div><div class="line">a1.sources.s1.channels=c1</div><div class="line"></div><div class="line">a1.sinks.k1.type=org.apache.flume.sink.elasticsearch5.ElasticSearchSink</div><div class="line">a1.sinks.k1.batchSize=100</div><div class="line"><span class="comment">#es服务的地址</span></div><div class="line">a1.sinks.k1.hostNames=127.0.0.1:9300</div><div class="line">a1.sinks.k1.indexType=logs</div><div class="line"><span class="comment">#动态索引名称，根据需求自行定义比如tomcat/nginx等</span></div><div class="line">a1.sinks.k1.indexName=%&#123;indexName&#125;</div><div class="line">a1.sinks.k1.clusterName=yealink-log</div><div class="line">a1.sinks.k1.serializer=com.nd.imlog.sink.YealinkElasticSearchLogDynamicSerializer</div><div class="line">a1.sinks.k1.channel=c1</div></pre></td></tr></table></figure>
-<ol>
-<li>log4j2.xml文件</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"error"</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"trace"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;HH:mm:ss.SSS&#125; %-5level %class&#123;36&#125; %L %M - %msg%xEx%n"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">Console</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFile"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;sys:flumeInstance&#125;/logs/flume.log"</span></span></div><div class="line"><span class="tag">                     <span class="attr">filePattern</span>=<span class="string">"$&#123;sys:flumeInstance&#125;/logs/flume.%d&#123;yyyy-MM-dd&#125;-%i.log"</span></span></div><div class="line"><span class="tag">                     <span class="attr">ignoreExceptions</span>=<span class="string">"false"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;HH:mm:ss.SSS&#125; [%t] %-5level %logger&#123;36&#125; %L %M - %msg%xEx%n"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> /&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"100 MB"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">loggers</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFile"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">root</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">loggers</span>&gt;</span> <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>${sys:flumeInstance} 主要是从系统变量里面获取值，动态设置日志输入目录，通过 -DflumeInstance=xxx进行设置，已在flume_cloud_start.sh中定义好</strong></p>
-<p>##修改脚本配置<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /opt/flume_server/flume</div></pre></td></tr></table></figure></p>
-<ol>
-<li>配置flume_cloud_start.sh</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi flume_cloud_start.sh</div></pre></td></tr></table></figure>
-<ul>
-<li><p>设置实例路径</p>
-<p>   找到 instance_root_dir变量设置实例目录<br>   默认设置为 /opt/flume_server/instance</p>
-</li>
-<li><p>设置运行配置目录</p>
-<p>   设置cloud目录，当前cloud是放在和该执行脚本同级上，可根据需求自行修改</p>
-<p>  <code>nohup $dir/bin/flume-ng agent -c $dir/cloud/conf -f $dir/cloud/conf/${con_file}.conf -DflumeInstance=$flumeInstance  -n a1 &gt;${flumeInstance}/opt.log 2&gt;&amp;1 &amp;</code></p>
-</li>
-<li><p>授权</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x flume_cloud_start.sh</div></pre></td></tr></table></figure>
-<ol>
-<li>flume_cloud_stop.sh脚本</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi flume_cloud_stop.sh</div></pre></td></tr></table></figure>
-<ul>
-<li><p>设置实例路径</p>
-<p>找到 log_dir变量设置实例目录<br>可根据需要更改，默认是在/opt/flume_server/instance下），必须和flume_cloud_start.sh里设置的目录一样<br>  log_dir=/opt/flume_server/instance</p>
-</li>
-<li><p>授权</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x flume_cloud_stop.sh</div></pre></td></tr></table></figure>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">4145为实例名，与cloud/conf中配置的4145.conf相关联</span></div><div class="line">./flume_cloud_start.sh 4145</div></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">4144为实例名，与cloud/conf中配置的4144.conf相关联</span></div><div class="line">./flume_cloud_start.sh 4144</div></pre></td></tr></table></figure>
-<h2 id="添加至开机自启动"><a href="#添加至开机自启动" class="headerlink" title="添加至开机自启动"></a>添加至开机自启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
-<p>追加以下内容<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/opt/flume_server/flume/flume_cloud_start.sh 4145</div><div class="line">/opt/flume_server/flume/flume_cloud_start.sh 4144</div></pre></td></tr></table></figure></p>
-<h2 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h2><p>nohup: failed to run command ‘/opt/flume_server/flume/bin/flume-ng’: Permission denied</p>
-<p>flume-ng未授权</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /opt/flume_server/flume/bin/flume-ng</div></pre></td></tr></table></figure>
-<h2 id="开机启动-找不到javahome"><a href="#开机启动-找不到javahome" class="headerlink" title="开机启动 找不到javahome"></a>开机启动 找不到javahome</h2><p>可直接在flume_cloud_start.sh中加入JAVA_HOME</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div></pre></td></tr></table></figure>
-
+<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1></p>
+            <p class="article-more-link">
+               <a href="/2017/04/26/flume1.7-install(server)/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -310,7 +235,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/04/26/flume1.7-install(server)/" data-id="cj79qoqco00187sq0t97q72qb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/04/26/flume1.7-install(server)/" data-id="cj79slqhi0013xgq013j80hdt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -434,42 +359,19 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="Flume-1-7-采集端"><a href="#Flume-1-7-采集端" class="headerlink" title="Flume 1.7 采集端"></a>Flume 1.7 采集端</h1><p>客户端的部署，这边以监控某个文件夹目录为例，进行说明</p>
+            <p><h1 id="Flume-1-7-采集端"><a href="#Flume-1-7-采集端" class="headerlink" title="Flume 1.7 采集端"></a>Flume 1.7 采集端</h1><p>客户端的部署，这边以监控某个文件夹目录为例，进行说明</p>
 <h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1><p>资源： flume.zip</p>
 <h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><h2 id="指定安装目录"><a href="#指定安装目录" class="headerlink" title="指定安装目录"></a>指定安装目录</h2><pre><code>mkdir -p /opt/flume_client
 </code></pre><p><strong>接下来的操作都在/opt/flume_client下操作</strong></p>
 <h2 id="zip包准备"><a href="#zip包准备" class="headerlink" title="zip包准备"></a>zip包准备</h2><ul>
 <li>上传至/opt/flume_client目录下</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /opt/flume_client</div><div class="line">rz -y</div></pre></td></tr></table></figure>
-<h2 id="解压zip包"><a href="#解压zip包" class="headerlink" title="解压zip包"></a>解压zip包</h2><ul>
-<li>在/opt/flume_client目录下解压</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip flume.zip</div></pre></td></tr></table></figure>
-<h2 id="定义配置文件"><a href="#定义配置文件" class="headerlink" title="定义配置文件"></a>定义配置文件</h2><p>进入conf中<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd  conf</div><div class="line">vi tail.conf</div></pre></td></tr></table></figure></p>
-<ul>
-<li>这个定义一个tail.conf，以监控某个目录为例</li>
-</ul>
-<ol>
-<li>tail.conf 文件</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">a1.sources = r1</div><div class="line">a1.channels = c1</div><div class="line">a1.sinks=k1 k2</div><div class="line"><span class="meta">#</span>指定sources的类型</div><div class="line">a1.sources.r1.type = TAILDIR</div><div class="line">a1.sources.r1.channels = c1</div><div class="line"></div><div class="line"><span class="meta">#</span>指定文件元数据存储路径</div><div class="line">a1.sources.r1.positionFile = /var/log/flume/taildir_position.json</div><div class="line"></div><div class="line"><span class="meta">#</span>监控分组，这里可兼容多个目录</div><div class="line">a1.sources.r1.filegroups = f1 f2</div><div class="line"></div><div class="line"><span class="meta">#</span>监控test1下的example.log文件</div><div class="line">a1.sources.r1.filegroups.f1 = /var/log/test1/example.log</div><div class="line"></div><div class="line"><span class="meta">#</span>自定义字段，存入header中</div><div class="line">a1.sources.r1.headers.f1.indexName=tomcat</div><div class="line">a1.sources.r1.headers.f1.instance=tomcat1</div><div class="line"></div><div class="line"><span class="meta">#</span>监控test2目录</div><div class="line">a1.sources.r1.filegroups.f2 = /var/log/test2/.*log.*</div><div class="line">a1.sources.r1.headers.f2.indexName=tomcat</div><div class="line">a1.sources.r1.headers.f2.instance=tomcat2</div><div class="line"></div><div class="line"><span class="meta">#</span>开启文件路径存入header</div><div class="line">a1.sources.r1.fileHeader = true</div><div class="line">a1.sources.r1.fileHeaderKey=path</div><div class="line"></div><div class="line"><span class="meta">#</span>过滤器定义</div><div class="line">a1.sources.r1.interceptors=i1 i2</div><div class="line"><span class="meta">#</span>时间戳</div><div class="line">a1.sources.r1.interceptors.i1.type=timestamp</div><div class="line">a1.sources.r1.interceptors.i1.preseveExisting=true</div><div class="line"><span class="meta">#</span>该代理的host</div><div class="line">a1.sources.r1.interceptors.i2.type=host</div><div class="line">a1.sources.r1.interceptors.i2.hostHeader=host</div><div class="line"></div><div class="line">a1.channels.c1.type=memory</div><div class="line"><span class="meta">#</span>a1.channels.c1.type=file</div><div class="line"><span class="meta">#</span>a1.channels.c1.checkpointDir = /mnt/flume/checkpoint</div><div class="line"><span class="meta">#</span>a1.channels.c1.dataDirs = /mnt/flume/data</div><div class="line"></div><div class="line"><span class="meta">#</span>控制中心的avro 1</div><div class="line">a1.sinks.k1.type=avro</div><div class="line">a1.sinks.k1.hostname=192.168.24.129</div><div class="line">a1.sinks.k1.port=4145</div><div class="line">a1.sinks.k1.channel=c1</div><div class="line"></div><div class="line"><span class="meta">#</span>控制中心的avro 2</div><div class="line">a1.sinks.k2.type=avro</div><div class="line">a1.sinks.k2.hostname=192.168.24.129</div><div class="line">a1.sinks.k2.port=4144</div><div class="line">a1.sinks.k2.channel=c1</div><div class="line"></div><div class="line"><span class="meta">#</span>sink分组，负载均衡配置</div><div class="line">a1.sinkgroups=g1</div><div class="line">a1.sinkgroups.g1.sinks=k1 k2</div><div class="line">a1.sinkgroups.g1.processor.type=load_balance</div><div class="line">a1.sinkgroups.g1.processor.backoff=true</div><div class="line">a1.sinkgroups.g1.processor.selector=round_robin</div></pre></td></tr></table></figure>
-<p>##修改脚本配置<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /opt/flume_client/flume</div><div class="line">vi tail_start.sh</div></pre></td></tr></table></figure></p>
-<p>加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/flume-ng agent --conf conf --conf-file ./conf/tail.conf --name a1  &amp;</div></pre></td></tr></table></figure>
-<ul>
-<li>授权</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod +x tail_start.sh</div><div class="line">chmod +x bin/*</div></pre></td></tr></table></figure>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./tail_start.sh</div></pre></td></tr></table></figure>
-<h2 id="添加至开机自启动"><a href="#添加至开机自启动" class="headerlink" title="添加至开机自启动"></a>添加至开机自启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
-<p>追加以下内容<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/flume_client/flume/tail_start.sh</div></pre></td></tr></table></figure></p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>往  /var/log/test1/example.log 中写入一些数据，测试是否有成功采集</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo helloworld&gt;&gt;/var/log/test1/example.log</div></pre></td></tr></table></figure>
-<h2 id="通过kibana查看"><a href="#通过kibana查看" class="headerlink" title="通过kibana查看"></a>通过kibana查看</h2><p>访问： <a href="http://ip:5601" target="_blank" rel="external">http://ip:5601</a><br>查看tomcat-*索引中是否能够查询”helloworld”数据<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"took"</span>: <span class="number">78</span>,</div><div class="line">  <span class="attr">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">"_shards"</span>: &#123;</div><div class="line">    <span class="attr">"total"</span>: <span class="number">5</span>,</div><div class="line">    <span class="attr">"successful"</span>: <span class="number">5</span>,</div><div class="line">    <span class="attr">"failed"</span>: <span class="number">0</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"hits"</span>: &#123;</div><div class="line">    <span class="attr">"total"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"max_score"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"_index"</span>: <span class="string">"tomcat-2017-04-14"</span>,</div><div class="line">        <span class="attr">"_type"</span>: <span class="string">"logs"</span>,</div><div class="line">        <span class="attr">"_id"</span>: <span class="string">"AVtqPIRHFPNZ3WMomj4G"</span>,</div><div class="line">        <span class="attr">"_score"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"_source"</span>: &#123;</div><div class="line">          <span class="attr">"@message"</span>: <span class="string">"helloworld"</span>,</div><div class="line">          <span class="attr">"host"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">          <span class="attr">"path"</span>: <span class="string">"/var/log/test1/example.log"</span>,</div><div class="line">          <span class="attr">"instance"</span>: <span class="string">"tomcat1"</span>,</div><div class="line">          <span class="attr">"@timestamp"</span>: <span class="string">"2017-04-14T10:13:14.444+08:00"</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /opt/flume_client</div><div class="line">rz -y</div></pre></td></tr></table></figure></p>
+            <p class="article-more-link">
+               <a href="/2017/04/25/flume1.7-install(client)/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -479,7 +381,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/04/25/flume1.7-install(client)/" data-id="cj79qoqck00147sq09dgklxic" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/04/25/flume1.7-install(client)/" data-id="cj79slqhk0017xgq0xod3gl4g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -603,42 +505,15 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="安装jdk8-必须"><a href="#安装jdk8-必须" class="headerlink" title="安装jdk8(必须)"></a>安装jdk8(必须)</h1><p>此处略过，安装见JDK8安装</p>
+            <p><h1 id="安装jdk8-必须"><a href="#安装jdk8-必须" class="headerlink" title="安装jdk8(必须)"></a>安装jdk8(必须)</h1><p>此处略过，安装见JDK8安装</p>
 <h1 id="创建非ROOT用户"><a href="#创建非ROOT用户" class="headerlink" title="创建非ROOT用户"></a>创建非ROOT用户</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">groupadd es</div><div class="line">useradd es -g es -p es</div><div class="line"></div><div class="line">chown  es /home/es -R</div><div class="line"></div><div class="line">chown  es /data/elasticsearch -R</div><div class="line">su es</div></pre></td></tr></table></figure>
 <p>ES出于安全考虑，不能以ROOT启动</p>
-<h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1><p>资源： elasticsearch-5.3.0.zip</p>
-<h1 id="解压elasticsearch-5-3-0-zip"><a href="#解压elasticsearch-5-3-0-zip" class="headerlink" title="解压elasticsearch-5.3.0.zip"></a>解压elasticsearch-5.3.0.zip</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip elasticsearch-5.3.0.zip</div></pre></td></tr></table></figure>
-<h1 id="ES参数设置"><a href="#ES参数设置" class="headerlink" title="ES参数设置"></a>ES参数设置</h1><p>1.设置内核参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysctl.conf</div></pre></td></tr></table></figure>
-<p>增加下面的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#设置该参数，需要重启生效</div><div class="line">fs.file-max=65536</div><div class="line">vm.max_map_count=262144</div></pre></td></tr></table></figure>
-<p>用以下命令查看是否修改成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl -a | grep &quot;vm.max_map_count&quot;</div></pre></td></tr></table></figure></p>
-<p>永久调整<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl -p /etc/sysctl.conf</div></pre></td></tr></table></figure></p>
-<p>2.设置资源参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/security/limits.conf</div></pre></td></tr></table></figure>
-<p>修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">* soft nofile 32768</div><div class="line">* hard nofile 65536</div></pre></td></tr></table></figure>
-<p>3.修改进程数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ulimit -u 2048</div></pre></td></tr></table></figure>
-<p>4.修改一下es使用的参数（config/elasticsearch.yml）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd elasticsearch-5.3.0/config</div><div class="line">vi elasticsearch.yml</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#换个集群的名字，免得跟别人的集群混在一起</div><div class="line">cluster.name: yealink-log</div><div class="line"></div><div class="line">#换个节点名字</div><div class="line">node.name: node-dev-211</div><div class="line"></div><div class="line">#修改一下ES的监听地址，这样别的机器也可以访问</div><div class="line">network.host: 0.0.0.0</div><div class="line"></div><div class="line">#默认的就好</div><div class="line">http.port: 9200</div><div class="line"></div><div class="line">#增加新的参数，这样head插件可以访问es</div><div class="line">http.cors.enabled: true</div><div class="line">http.cors.allow-origin: &quot;*&quot;</div><div class="line"></div><div class="line">#head权限需要</div><div class="line">http.cors.allow-headers: Authorization</div><div class="line"></div><div class="line">#设置数据存储目录</div><div class="line">path.data: /data/elasticsearch/data</div><div class="line"></div><div class="line">#设置日志存储目录</div><div class="line">path.logs: /data/elasticsearch/logs</div></pre></td></tr></table></figure>
-<p>==注意，设置参数的时候:后面要有空格！==</p>
-<h1 id="5-设置开机自启动"><a href="#5-设置开机自启动" class="headerlink" title="5.设置开机自启动"></a>5.设置开机自启动</h1><ol>
-<li>编写脚本es_start.sh</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vi  es_start.sh</div></pre></td></tr></table></figure>
-<p>加入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line">su es /home/es/elasticsearch-5.3.0/bin/elasticsearch &amp;</div></pre></td></tr></table></figure>
-<p>2.在rc.local里添加一行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi  /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
-<p>加入<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/es/script/es_start.sh</div></pre></td></tr></table></figure></p>
-<p>启动命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/es/script/es_start.sh</div></pre></td></tr></table></figure></p>
-<h1 id="6-附加"><a href="#6-附加" class="headerlink" title="6.附加"></a>6.附加</h1><h2 id="centos7-firewall设置开放9200-9300端口"><a href="#centos7-firewall设置开放9200-9300端口" class="headerlink" title="centos7 firewall设置开放9200/9300端口"></a>centos7 firewall设置开放9200/9300端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">（--permanent永久生效，没有此参数重启后失效）</div><div class="line">firewall-cmd --zone=public --add-port=9200/tcp --permanent</div><div class="line"></div><div class="line">重新载入</div><div class="line">firewall-cmd --reload</div></pre></td></tr></table></figure>
-<h2 id="开机启动-找不到javahome"><a href="#开机启动-找不到javahome" class="headerlink" title="开机启动 找不到javahome"></a>开机启动 找不到javahome</h2><p>可直接在es_start.sh中加入JAVA_HOME<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_101</div></pre></td></tr></table></figure></p>
-
+<h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1></p>
+            <p class="article-more-link">
+               <a href="/2017/04/15/elasticsearch-5.3.0-install/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -648,7 +523,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/04/15/elasticsearch-5.3.0-install/" data-id="cj79qoqc2000o7sq05l7j2sbq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/04/15/elasticsearch-5.3.0-install/" data-id="cj79slqh3000oxgq0illyoftx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -772,39 +647,16 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h1 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h1><p> 实现git地址:<a href="https://github.com/ledefe/flume-elasticsearch-sink" target="_blank" rel="external">https://github.com/ledefe/flume-elasticsearch-sink</a></p>
+            <p><h1 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h1><p> 实现git地址:<a href="https://github.com/ledefe/flume-elasticsearch-sink" target="_blank" rel="external">https://github.com/ledefe/flume-elasticsearch-sink</a></p>
 <p> Flume1.7下载地址：<a href="http://flume.apache.org/download.html" target="_blank" rel="external">http://flume.apache.org/download.html</a></p>
 <h1 id="步骤说明"><a href="#步骤说明" class="headerlink" title="步骤说明"></a>步骤说明</h1><h2 id="1-下载该git源码初始化环境"><a href="#1-下载该git源码初始化环境" class="headerlink" title="1.下载该git源码初始化环境"></a>1.下载该git源码初始化环境</h2><p>  导入至eclipse中去，执行install maven命令生成最终的jar包</p>
 <pre><code>mvn install
-</code></pre><p>  target目录下获取 flume-elasticsearch-sink-0.0.1-SNAPSHOT.jar 拷贝至flume的lib目录</p>
-<h2 id="2-获取依赖的包"><a href="#2-获取依赖的包" class="headerlink" title="2.获取依赖的包"></a>2.获取依赖的包</h2><p>   执行以下命令，会在target目录下生成dependencies目录，将得到的jar拷贝至flume的lib目录中</p>
-<p>   mvn dependency:copy-dependencies</p>
-<h2 id="3-去除flume的lib目录下的冲突的包"><a href="#3-去除flume的lib目录下的冲突的包" class="headerlink" title="3.去除flume的lib目录下的冲突的包:"></a>3.去除flume的lib目录下的冲突的包:</h2><ul>
-<li><p>jackson-annotations-2.3.0.jar</p>
-</li>
-<li><p>jackson-core-2.3.1.jar</p>
-</li>
-<li><p>jackson-databind-2.3.1.jar</p>
-</li>
-<li><p>jopt-simple-3.2.jar</p>
-</li>
-<li><p>log4j-1.2.17.jar</p>
-</li>
-<li><p>netty-3.9.4.Final.jar</p>
-</li>
-<li><p>guava-11.0.2.jar</p>
-</li>
-<li><p>flume-ng-elasticsearch-sink-1.6.7.jar</p>
-</li>
-<li><p>slf4j-log4j12-1.6.1.jar</p>
-</li>
-</ul>
-<h2 id="4-更新日志文件-log4j-to-log4j2"><a href="#4-更新日志文件-log4j-to-log4j2" class="headerlink" title="4.更新日志文件 log4j to log4j2"></a>4.更新日志文件 log4j to log4j2</h2><ul>
-<li>将git中的 log4j2.xml 拷贝至 flume/conf下</li>
-</ul>
-
+</code></pre><p>  target目录下获取 flume-elasticsearch-sink-0.0.1-SNAPSHOT.jar 拷贝至flume的lib目录<br></p>
+            <p class="article-more-link">
+               <a href="/2017/04/11/flume1.7和elasticsearch5.3.0-sink_adapter/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -814,7 +666,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/04/11/flume1.7和elasticsearch5.3.0-sink_adapter/" data-id="cj79qoqcr001b7sq0m73a1k7u" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/04/11/flume1.7和elasticsearch5.3.0-sink_adapter/" data-id="cj79slqho001exgq0lvh8mcrk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -938,28 +790,19 @@
         
         
         <div class="article-entry" itemprop="articleBody">
+		
         
-            
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为5000个ktv商家提供曲库搜索服务，每个商家差不多有15k的曲库信息</p>
+            <p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为5000个ktv商家提供曲库搜索服务，每个商家差不多有15k的曲库信息</p>
 <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
 <li>与商家绑定，查询商家的歌曲信息</li>
 </ul>
 <h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><ul>
 <li>每个商家的曲库信息不一，通过变更的曲库信息文件通过ftp上报至ftp服务</li>
 <li>通过清洗插件对每个商家的曲库信息做比对，对有变更的曲库信息做更新操作</li>
-<li>采用es或solr搜索引擎存储</li>
-</ul>
-<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p><strong>1. solr</strong></p>
-<p><strong>优点：</strong></p>
-<p><strong>缺点：</strong></p>
-<p><strong>2. es</strong></p>
-<p><strong>优点：</strong></p>
-<p><strong>缺点：</strong></p>
-<h3 id="搜索性能"><a href="#搜索性能" class="headerlink" title="搜索性能"></a>搜索性能</h3><p>搜索操作需要在秒级内,采用jmeter压测工具随机关键字随机用户100并发做压测。</p>
-<h3 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h3><p>随着数据的不断增长，在保证不更改当前的逻辑下能够做到横向扩展。</p>
-<p>后期如果数据过大，只需要增加机器做集群，将分片分布到不同的集群上。</p>
-<h3 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h3><p>采用es冗余分片，当有个节点挂掉了，还有其他的节点上分片能够继续提供服务。</p>
-
+<li>采用es或solr搜索引擎存储</p>
+            <p class="article-more-link">
+               <a href="/2016/09/19/song-search-design/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
@@ -969,7 +812,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2016/09/19/song-search-design/" data-id="cj79qoqf4003t7sq01wgshpuy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2016/09/19/song-search-design/" data-id="cj79slqiy002yxgq0rklgzkku" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
