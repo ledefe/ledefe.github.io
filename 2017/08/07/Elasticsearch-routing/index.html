@@ -227,7 +227,7 @@
 <h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><p>初步的想法是通过手动分片，将不同区域的日志信息只至当前区域下的集群。这就不会导致不同区域间的数据的大量同步。阅读es官网发现通过分片过滤这个功能可达到预期效果</p>
 <p>在线文档：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/allocation-filtering.html</a></p>
 <h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><p>1./config/elasticsearch.yml设置区域信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">中国区</span></div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span><span class="bash"> 欧洲区</span></div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span><span class="bash"> 美国</span></div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>中国区</div><div class="line">node.attr.zone: cn</div><div class="line"><span class="meta">#</span> 欧洲区</div><div class="line">node.attr.zone: eu</div><div class="line"><span class="meta">#</span> 美国</div><div class="line">node.attr.zone: us</div></pre></td></tr></table></figure>
 <p>2.索引命名规则：{区域}<em>logs</em>{业务}-{date:YYYY-MM-dd}</p>
 <p>区域：表示 cn,eu,us</p>
 <p>业务：比如 tomcat,nginx等</p>
@@ -264,7 +264,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj7bjvg6w0030foq01oxir5lc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj7bk2bya0002bwq00g57nk0q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

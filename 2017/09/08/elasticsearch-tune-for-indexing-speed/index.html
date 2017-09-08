@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="ledefe">
 <meta property="og:description" content="使用批量请求批量请求将产生比单一文档索引请求更好的性能。为了了解批量请求的最佳大小，您应该使用单个分片在单个节点上运行基准测试。首先尝试一次索引100个文档，然后在每个基准运行中索引100个文档，然后200个等于大量请求中的文档数量。当索引速度开始升高时，您就知道您已达到数据批量请求的最佳大小。请注意，太大的批量请求可能会使集群在许多并发发送时处于内存压力之下，因此建议避免每个请求超过几十MB，即">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-08T07:16:43.804Z">
+<meta property="og:updated_time" content="2017-09-08T07:23:36.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch 优化篇之-调整索引速度（来自官网）">
 <meta name="twitter:description" content="使用批量请求批量请求将产生比单一文档索引请求更好的性能。为了了解批量请求的最佳大小，您应该使用单个分片在单个节点上运行基准测试。首先尝试一次索引100个文档，然后在每个基准运行中索引100个文档，然后200个等于大量请求中的文档数量。当索引速度开始升高时，您就知道您已达到数据批量请求的最佳大小。请注意，太大的批量请求可能会使集群在许多并发发送时处于内存压力之下，因此建议避免每个请求超过几十MB，即">
@@ -232,6 +232,10 @@
 <h2 id="增加刷新间隔编辑"><a href="#增加刷新间隔编辑" class="headerlink" title="增加刷新间隔编辑"></a>增加刷新间隔编辑</h2><p>默认值index.refresh_interval是1s，它强制弹性搜索每秒创建一个新的段。增加此值（表示30s）将允许较大的段来刷新并减少未来的合并压力。</p>
 <h2 id="禁用初始加载的刷新和副本"><a href="#禁用初始加载的刷新和副本" class="headerlink" title="禁用初始加载的刷新和副本"></a>禁用初始加载的刷新和副本</h2><p>如果您需要一次加载大量数据，你应该通过设置禁用刷新index.refresh_interval到-1并设置index.number_of_replicas 到0。<br>这将暂时将您的索引置于风险之中，因为丢失任何碎片将导致数据丢失，但同时索引更快，因为文档将仅被索引一次。<br>初始加载完成后，您可以设置index.refresh_interval并index.number_of_replicas恢复为原始值。</p>
 <h2 id="禁用swapping"><a href="#禁用swapping" class="headerlink" title="禁用swapping"></a>禁用swapping</h2><p>详细地址：<br><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/setup-configuration-memory.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/setup-configuration-memory.html</a></p>
+<h2 id="使用自动生成的ID"><a href="#使用自动生成的ID" class="headerlink" title="使用自动生成的ID"></a>使用自动生成的ID</h2><p>当索引具有显式ID的文档时，elasticsearch需要检查同一分片中是否存在具有相同标识的文档，这是一项昂贵的操作，并且随着索引的增长而变得更加昂贵。<br>通过使用自动生成的ID，Elasticsearch可以跳过此检查，这使索引更快。</p>
+<h2 id="使用更快的硬件"><a href="#使用更快的硬件" class="headerlink" title="使用更快的硬件"></a>使用更快的硬件</h2><p>如果索引是IO绑定，则应该调查为文件系统缓存（见上文）或购买更快的驱动内<br>存。特别地，SSD驱动器比旋转磁盘更好。始终使用本地存储，远程文件系统，如NFS或SMB应该避免。<br>还要注意像亚马逊这样的虚拟化存储Elastic Block Storage。虚拟化存储与Elasticsearch工作非常好，它具有吸引力，<br>因为它设置起来非常快速和简单，但是与专用本地存储相比，不幸的是内在性更慢。如果放置索引 EBS，请确保使用设置的IOPS，否则可以快速节制操作。</p>
+<p>通过配置RAID 0阵列，在多个SSD上分离您的索引。记住，由于任何一个SSD的故障破坏索引，它将增加故障的风险。<br>然而，这通常是正确的权衡：优化单个分片以获得最佳性能，然后在不同节点之间添加副本，以便任何节点故障都有冗余。<br>您还可以使用快照和还原来备份索引进行进一步的保险。</p>
+<h2 id="索引缓冲区大小"><a href="#索引缓冲区大小" class="headerlink" title="索引缓冲区大小"></a>索引缓冲区大小</h2><p>如果您的节点仅进行大量索引，请确保 indices.memory.index_buffer_size足够大以至于每个分片最多可以为512 MB索引缓冲区进行大量索引（超出索引性能通常不会改善）。<br>Elasticsearch采用该设置（占一个百分比的java堆或绝对字节大小），并将其用作所有活动分片上的共享缓冲区。非常活跃的碎片自然会使用这个缓冲区，而不是执行轻量级索引的碎片。<br>默认值10%通常是很多的：例如，如果给予JVM 10GB的内存，它将向索引缓冲区提供1GB，这足以托管两个严重索引的碎片。</p>
 
         
         </div>
@@ -242,7 +246,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/09/08/elasticsearch-tune-for-indexing-speed/" data-id="cj7bjvg53000lfoq0nwtbmvfy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/08/elasticsearch-tune-for-indexing-speed/" data-id="cj7bk2bzi000ybwq0zk8pxj15" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -319,19 +323,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/09/08/elasticsearch-tune_for_disk_usage/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    elasticsearch 优化篇之-降低磁盘使用率（来自官网）
-                
-            </div>
-        </a>
     
-    
-        <a href="/2017/09/06/lucence/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/09/08/elasticsearch-tune_for_disk_usage/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">lucence 原理</div>
+            <div class="article-nav-title">elasticsearch 优化篇之-降低磁盘使用率（来自官网）</div>
         </a>
     
 </nav>
