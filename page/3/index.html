@@ -143,7 +143,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                36
+                37
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -172,6 +172,149 @@
 
             
             <section id="main">
+    <article id="post-high_CPU_investigation" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/07/02/high_CPU_investigation/">CPU高排查小记</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/07/02/high_CPU_investigation/">
+            <time datetime="2017-07-02T06:32:19.000Z" itemprop="datePublished">2017-07-02</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/linux/">linux</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            
+            <h2 id="1-查看java线程"><a href="#1-查看java线程" class="headerlink" title="1.查看java线程"></a>1.查看java线程</h2><p>ps -ef | grep mrf-center | grep -v grep</p>
+<h2 id="2-查看耗cpu时间最长的进程"><a href="#2-查看耗cpu时间最长的进程" class="headerlink" title="2.查看耗cpu时间最长的进程"></a>2.查看耗cpu时间最长的进程</h2><p>top -Hp pid</p>
+<h2 id="3-得到最长的线程ID的十六进制值"><a href="#3-得到最长的线程ID的十六进制值" class="headerlink" title="3.得到最长的线程ID的十六进制值"></a>3.得到最长的线程ID的十六进制值</h2><p>TIME列就是各个Java线程耗费的CPU时间，CPU时间最长的是线程ID为21742的线程，用</p>
+<p>printf “%x\n” 21742 得到21742的十六进制值为54ee</p>
+<h2 id="4-打印堆线程"><a href="#4-打印堆线程" class="headerlink" title="4.打印堆线程"></a>4.打印堆线程</h2><p>jstack pid |grep 54ee<br>打印线程堆栈信息 jstack pid |grep tid -A 30</p>
+<h2 id="查看gc-情况命令"><a href="#查看gc-情况命令" class="headerlink" title="查看gc 情况命令"></a>查看gc 情况命令</h2><p>jstat -gc 12538 5000 jstat -gcutil 3319 2000</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/07/02/high_CPU_investigation/" data-id="cj7bjvg5t001ifoq09xjrar31" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/02/high_CPU_investigation/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-centos firewall" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -238,7 +381,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj7bitkoy000i20q0i6n3enle" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj7bjvg4s000cfoq0hx249tiz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -377,7 +520,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj7bitkpz001n20q0ycpf30d8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj7bjvg5y001qfoq0hiys1lm1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -517,7 +660,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj7bitkqs002m20q0douznrar" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj7bjvg6o002qfoq0u8hn5jmf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -656,7 +799,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj7bitkoh000620q0eufr3tay" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj7bjvg490001foq0xnpvgph6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -734,143 +877,6 @@
 
 
 
-    <article id="post-Elasticsearch5.3.0-options" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-options/">Elasticsearch 入门系列-操作篇</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-options/">
-            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            
-            
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj7bitkoo000a20q0mrhxua7i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-EFK-design-I" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -935,7 +941,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj7bitko8000120q0ttuwiioz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj7bjvg6u002wfoq0luyd841q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1013,143 +1019,6 @@
 
 
 
-    <article id="post-Elasticsearch5.3.0-concepts" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-concepts/">Elasticsearch 入门系列-概念篇</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/">
-            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            
-            
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj7bitkr1002z20q0lojkvlhg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1213,7 +1082,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj7bitkof000520q0kunycooi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj7bjvg4j0006foq0grgvhs9s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1291,6 +1160,280 @@
 
 
 
+    <article id="post-Elasticsearch5.3.0-options" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-options/">Elasticsearch 入门系列-操作篇</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/05/Elasticsearch5.3.0-options/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj7bjvg4h0005foq0viuy780y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-Elasticsearch5.3.0-concepts" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-concepts/">Elasticsearch 入门系列-概念篇</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            
+            
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj7bjvg4f0004foq05lijfsci" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-kibana-5.3.0-install" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1356,7 +1499,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cj7bitkqb002020q0snnaf0sk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cj7bjvg66001yfoq02gpb0ank" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1434,147 +1577,6 @@
 
 
 
-    <article id="post-JDK-1.8-install" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/03/JDK-1.8-install/">JDK 部署</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/05/03/JDK-1.8-install/">
-            <time datetime="2017-05-03T06:32:19.000Z" itemprop="datePublished">2017-05-03</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/JDK/">JDK</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            <p><h1 id="安装jdk1-8"><a href="#安装jdk1-8" class="headerlink" title="安装jdk1.8"></a>安装jdk1.8</h1><ul>
-<li><p>jdk-8u101-linux-x64.tar.gz上传至服务器/opt目录</p>
-<p>解压：</p></p>
-            <p class="article-more-link">
-               <a href="/2017/05/03/JDK-1.8-install/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="cj7bitkos000c20q0ugoq3u1u" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/05/03/JDK-1.8-install/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
     </nav>
@@ -1586,7 +1588,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1595,7 +1597,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1604,7 +1606,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 13.33px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 16.67px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticsearch/" style="font-size: 13.33px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 13.33px;">搜索设计</a>
+            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 12.5px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 17.5px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticsearch/" style="font-size: 15px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 12.5px;">搜索设计</a>
         </div>
     </div>
 

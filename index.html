@@ -143,7 +143,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                36
+                37
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -239,7 +239,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/09/08/elasticsearch-tune_for_disk_usage/" data-id="cj7bitkpa000u20q0054vfg0i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/08/elasticsearch-tune_for_disk_usage/" data-id="cj7bjvg55000nfoq0alcwiiiq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -317,6 +317,150 @@
 
 
 
+    <article id="post-elasticsearch-tune-for-indexing-speed" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/09/08/elasticsearch-tune-for-indexing-speed/">elasticsearch 优化篇之-调整索引速度（来自官网）</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/09/08/elasticsearch-tune-for-indexing-speed/">
+            <time datetime="2017-09-08T06:32:19.000Z" itemprop="datePublished">2017-09-08</time>
+        </a>
+    </div>
+
+
+						
+    <div class="article-tag">
+        <i class="fa fa-user"></i>
+		 ledefe
+    </div>
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/elasticsearch/">elasticsearch</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            <p><h2 id="使用批量请求"><a href="#使用批量请求" class="headerlink" title="使用批量请求"></a>使用批量请求</h2><p>批量请求将产生比单一文档索引请求更好的性能。为了了解批量请求的最佳大小，您应该使用单个分片在单个节点上运行基准测试。<br>首先尝试一次索引100个文档，然后在每个基准运行中索引100个文档，然后200个等于大量请求中的文档数量。<br>当索引速度开始升高时，您就知道您已达到数据批量请求的最佳大小。请注意，太大的批量请求可能会使集群在许多并发发送时处于内存压力之下，<br>因此建议避免每个请求超过几十MB，即使较大的请求似乎表现更好。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/09/08/elasticsearch-tune-for-indexing-speed/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/09/08/elasticsearch-tune-for-indexing-speed/" data-id="cj7bjvg53000lfoq0nwtbmvfy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/09/08/elasticsearch-tune-for-indexing-speed/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-lucence" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -384,7 +528,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/09/06/lucence/" data-id="cj7bitkqu002p20q0r0n0gn1g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/06/lucence/" data-id="cj7bjvg6n002nfoq0pr6g2fx0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -529,7 +673,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/31/spring-jar/" data-id="cj7bitks0004120q0w4uk5sjk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/31/spring-jar/" data-id="cj7bjvg7s003yfoq0zzzwrggn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -675,7 +819,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj7bitkox000g20q0t58u4e1l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/31/ansible_tower_install/" data-id="cj7bjvg4x000ffoq0kl95abtc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -818,7 +962,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj7bitko3000020q0upudlvne" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/18/EFK-design-II/" data-id="cj7bjvg440000foq0nfl613du" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -957,7 +1101,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj7bitkoe000420q06wejthsn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/08/07/Elasticsearch-routing/" data-id="cj7bjvg6w0030foq01oxir5lc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1105,7 +1249,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/22/go-web-demo/" data-id="cj7bitkps001e20q0ucjbkhfg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/22/go-web-demo/" data-id="cj7bjvg5r001ffoq04vpiiglk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1246,7 +1390,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/21/java_exec_shell/" data-id="cj7bitkpu001h20q0javyeeqg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/21/java_exec_shell/" data-id="cj7bjvg5v001nfoq0nuziacfk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1391,7 +1535,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj7bitkq7001v20q06zskspl4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj7bjvg680022foq0kaaqy4nm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1469,151 +1613,6 @@
 
 
 
-    <article id="post-service" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/20/service/">制作java程序以linux服务方式启动</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/07/20/service/">
-            <time datetime="2017-07-20T06:32:19.000Z" itemprop="datePublished">2017-07-20</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            <p><ul>
-<li><p>1.获取应用程序包：filebeat-agent.jar</p>
-</li>
-<li><p>2.上传至/opt/filebeat_agent ,使用命令做一个软连接到/etc/init.d</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /opt/filebeat_agent/filebeat-agent.jar /etc/init.d/filebeat-agent</div></pre></td></tr></table></figure>
-</li>
-</ul></p>
-            <p class="article-more-link">
-               <a href="/2017/07/20/service/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/07/20/service/" data-id="cj7bitkqy002s20q0teerosjb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/07/20/service/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
@@ -1625,7 +1624,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1634,7 +1633,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1643,7 +1642,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 13.33px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 16.67px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticsearch/" style="font-size: 13.33px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 13.33px;">搜索设计</a>
+            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 12.5px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 17.5px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticsearch/" style="font-size: 15px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 10px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 12.5px;">搜索设计</a>
         </div>
     </div>
 

@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>常用命令备忘 | ledefe</title>
+    <title>elasticsearch 优化篇之-调整索引速度（来自官网） | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1.解压至指定目录  12tar -zxvf /opt/jdk-8u131-linux-x64.tar.gz -C /usr/local  2.scp复制  12345678#远程复制至本地scp  root@119.23.61.245:/opt/filebeat-agent.zip /opt#本地服务至远程scp  /opt/filebeat-agent.zip  root@119.23.61">
-<meta name="keywords" content="linux">
+    <meta name="description" content="使用批量请求批量请求将产生比单一文档索引请求更好的性能。为了了解批量请求的最佳大小，您应该使用单个分片在单个节点上运行基准测试。首先尝试一次索引100个文档，然后在每个基准运行中索引100个文档，然后200个等于大量请求中的文档数量。当索引速度开始升高时，您就知道您已达到数据批量请求的最佳大小。请注意，太大的批量请求可能会使集群在许多并发发送时处于内存压力之下，因此建议避免每个请求超过几十MB，即">
+<meta name="keywords" content="elasticsearch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用命令备忘">
-<meta property="og:url" content="http://ledefe.tech/2017/07/21/linux cmd/index.html">
+<meta property="og:title" content="elasticsearch 优化篇之-调整索引速度（来自官网）">
+<meta property="og:url" content="http://ledefe.tech/2017/09/08/elasticsearch-tune-for-indexing-speed/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="1.解压至指定目录  12tar -zxvf /opt/jdk-8u131-linux-x64.tar.gz -C /usr/local  2.scp复制  12345678#远程复制至本地scp  root@119.23.61.245:/opt/filebeat-agent.zip /opt#本地服务至远程scp  /opt/filebeat-agent.zip  root@119.23.61">
+<meta property="og:description" content="使用批量请求批量请求将产生比单一文档索引请求更好的性能。为了了解批量请求的最佳大小，您应该使用单个分片在单个节点上运行基准测试。首先尝试一次索引100个文档，然后在每个基准运行中索引100个文档，然后200个等于大量请求中的文档数量。当索引速度开始升高时，您就知道您已达到数据批量请求的最佳大小。请注意，太大的批量请求可能会使集群在许多并发发送时处于内存压力之下，因此建议避免每个请求超过几十MB，即">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-04T08:15:57.188Z">
+<meta property="og:updated_time" content="2017-09-08T07:16:43.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用命令备忘">
-<meta name="twitter:description" content="1.解压至指定目录  12tar -zxvf /opt/jdk-8u131-linux-x64.tar.gz -C /usr/local  2.scp复制  12345678#远程复制至本地scp  root@119.23.61.245:/opt/filebeat-agent.zip /opt#本地服务至远程scp  /opt/filebeat-agent.zip  root@119.23.61">
+<meta name="twitter:title" content="elasticsearch 优化篇之-调整索引速度（来自官网）">
+<meta name="twitter:description" content="使用批量请求批量请求将产生比单一文档索引请求更好的性能。为了了解批量请求的最佳大小，您应该使用单个分片在单个节点上运行基准测试。首先尝试一次索引100个文档，然后在每个基准运行中索引100个文档，然后200个等于大量请求中的文档数量。当索引速度开始升高时，您就知道您已达到数据批量请求的最佳大小。请注意，太大的批量请求可能会使集群在许多并发发送时处于内存压力之下，因此建议避免每个请求超过几十MB，即">
     
 
     
@@ -173,7 +173,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-linux cmd" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-elasticsearch-tune-for-indexing-speed" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -181,7 +181,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            常用命令备忘
+            elasticsearch 优化篇之-调整索引速度（来自官网）
         </h1>
     
 
@@ -193,23 +193,28 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/07/21/linux cmd/">
-            <time datetime="2017-07-21T06:32:19.000Z" itemprop="datePublished">2017-07-21</time>
+        <a href="/2017/09/08/elasticsearch-tune-for-indexing-speed/">
+            <time datetime="2017-09-08T06:32:19.000Z" itemprop="datePublished">2017-09-08</time>
         </a>
     </div>
 
 
 						
+    <div class="article-tag">
+        <i class="fa fa-user"></i>
+		 ledefe
+    </div>
+
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linux/">linux</a>
+        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linux/">linux</a>
+        <a class="tag-link" href="/tags/elasticsearch/">elasticsearch</a>
     </div>
 
 						
@@ -222,14 +227,11 @@
 		
         
             
-            <ul>
-<li>1.解压至指定目录</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">tar -zxvf /opt/jdk-8u131-linux-x64.tar.gz -C /usr/local</div></pre></td></tr></table></figure>
-<ul>
-<li>2.scp复制</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">远程复制至本地</span></div><div class="line">scp  root@119.23.61.245:/opt/filebeat-agent.zip /opt</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">本地服务至远程</span></div><div class="line">scp  /opt/filebeat-agent.zip  root@119.23.61.22:/opt</div><div class="line"><span class="meta">#</span><span class="bash">加入私钥</span></div><div class="line">scp -i test.pem filebeat-agent.zip ec2-user@34.204.121.27:/home/ec2-user</div></pre></td></tr></table></figure>
+            <h2 id="使用批量请求"><a href="#使用批量请求" class="headerlink" title="使用批量请求"></a>使用批量请求</h2><p>批量请求将产生比单一文档索引请求更好的性能。为了了解批量请求的最佳大小，您应该使用单个分片在单个节点上运行基准测试。<br>首先尝试一次索引100个文档，然后在每个基准运行中索引100个文档，然后200个等于大量请求中的文档数量。<br>当索引速度开始升高时，您就知道您已达到数据批量请求的最佳大小。请注意，太大的批量请求可能会使集群在许多并发发送时处于内存压力之下，<br>因此建议避免每个请求超过几十MB，即使较大的请求似乎表现更好。<br><a id="more"></a></p>
+<h2 id="配置多线程提交索引"><a href="#配置多线程提交索引" class="headerlink" title="配置多线程提交索引"></a>配置多线程提交索引</h2><p>发送批量请求的单线程不太可能最大限度地弹出Elasticsearch集群的索引能力。为了使用集群的所有资源，您应该从多个线程或进程发送数据。<br>除了更好地利用集群的资源外，还有助于降低每个fsync的成本。确保看到TOO_MANY_REQUESTS (429)响应代码（EsRejectedExecutionException与Java客户端），<br>这是Elasticsearch告诉您无法跟上当前索引率的方式。当发生这种情况时，您应该暂停索引，然后重新尝试，理想情况下是随机指数退避。<br>类似于调整批量请求的大小，只有测试可以知道最适合的工作人数。这可以通过逐渐增加工作人员的数量进行测试，直到集群上的IO或CPU饱和为止。</p>
+<h2 id="增加刷新间隔编辑"><a href="#增加刷新间隔编辑" class="headerlink" title="增加刷新间隔编辑"></a>增加刷新间隔编辑</h2><p>默认值index.refresh_interval是1s，它强制弹性搜索每秒创建一个新的段。增加此值（表示30s）将允许较大的段来刷新并减少未来的合并压力。</p>
+<h2 id="禁用初始加载的刷新和副本"><a href="#禁用初始加载的刷新和副本" class="headerlink" title="禁用初始加载的刷新和副本"></a>禁用初始加载的刷新和副本</h2><p>如果您需要一次加载大量数据，你应该通过设置禁用刷新index.refresh_interval到-1并设置index.number_of_replicas 到0。<br>这将暂时将您的索引置于风险之中，因为丢失任何碎片将导致数据丢失，但同时索引更快，因为文档将仅被索引一次。<br>初始加载完成后，您可以设置index.refresh_interval并index.number_of_replicas恢复为原始值。</p>
+<h2 id="禁用swapping"><a href="#禁用swapping" class="headerlink" title="禁用swapping"></a>禁用swapping</h2><p>详细地址：<br><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/setup-configuration-memory.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/5.4/setup-configuration-memory.html</a></p>
 
         
         </div>
@@ -240,7 +242,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/21/linux cmd/" data-id="cj7bjvg680022foq0kaaqy4nm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/08/elasticsearch-tune-for-indexing-speed/" data-id="cj7bjvg53000lfoq0nwtbmvfy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -308,7 +310,7 @@
 
             
     
-        <a href="http://ledefe.tech/2017/07/21/linux cmd/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/09/08/elasticsearch-tune-for-indexing-speed/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -317,19 +319,19 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/07/21/java_exec_shell/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/09/08/elasticsearch-tune_for_disk_usage/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    java执行shell脚本(备忘)
+                    elasticsearch 优化篇之-降低磁盘使用率（来自官网）
                 
             </div>
         </a>
     
     
-        <a href="/2017/07/20/service/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/09/06/lucence/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">制作java程序以linux服务方式启动</div>
+            <div class="article-nav-title">lucence 原理</div>
         </a>
     
 </nav>
