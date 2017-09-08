@@ -118,7 +118,7 @@ body,
 body {
   color: #565a5f;
   background: #f5f8f9;
-  font: 16px "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
+  font: 19px "Verdana", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 a {
@@ -454,9 +454,9 @@ code {
 }
 .nav-icon {
   text-align: center;
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
+  font-size: 19px;
+  width: 19px;
+  height: 19px;
   position: relative;
   cursor: pointer;
   height: 40px !important;
@@ -556,7 +556,7 @@ code {
   line-height: 1.6em;
   outline: none !important;
   background: none !important;
-  font: 16px "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
+  font: 19px "Verdana", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
   border: 1px solid #eceff2 !important;
 }
 .search-form-input:focus,
@@ -662,7 +662,7 @@ code {
   font-weight: 600;
 }
 #profile .inner .base-info #location {
-  font-size: 14px;
+  font-size: 17px;
   margin-top: 5px;
   color: #9a9ea3;
 }
@@ -707,11 +707,11 @@ code {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 22px;
+  font-size: 25px;
 }
 #profile .inner .article-info .article-info-block span {
   display: block;
-  font-size: 16px;
+  font-size: 19px;
   text-transform: uppercase;
 }
 #profile .inner .article-info .article-info-block:first-child {
@@ -722,7 +722,7 @@ code {
 }
 #profile .inner .social-links > table td {
   text-align: center;
-  font-size: 26px;
+  font-size: 29px;
 }
 #profile .inner .social-links > table td a {
   position: relative;
@@ -952,9 +952,9 @@ a.article-title:hover {
   position: absolute;
 }
 .article-entry blockquote footer {
-  font-size: 16px;
+  font-size: 19px;
   margin: 1.6em 0;
-  font-family: "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
+  font-family: "Verdana", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -1151,7 +1151,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
+  font: 14px "Verdana", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
   padding: 0 10px;
   color: #565a5f;
   outline: none;
@@ -1484,7 +1484,7 @@ ol.toc {
 .layout-wrap-inner.list-categories ul li,
 .layout-wrap-inner.list-categories ul .category-list-child {
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 19px;
   border-bottom: 1px solid border-color;
 }
 .layout-wrap-inner.list-categories ul li a,
@@ -1658,7 +1658,7 @@ ol.toc {
   padding: 20px 0;
   border-top: 1px solid #eceff2;
   color: #565a5f;
-  font-size: 18px;
+  font-size: 21px;
   text-align: center;
 }
 #footer .outer {
@@ -1778,7 +1778,7 @@ ol.toc {
 .widget ul .category-list-child,
 .widget ol .category-list-child {
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 19px;
   border-bottom: 1px solid border-color;
 }
 .widget ul li a,
@@ -2082,9 +2082,9 @@ ol.toc {
   display: block;
   overflow-x: auto;
   padding: 15px 20px;
-  font-size: 16px;
+  font-size: 19px;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
-  line-height: 25.6px;
+  line-height: 30.400000000000002px;
 }
 .highlight table {
   margin: 0;
