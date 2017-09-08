@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>filebeat 部署 | ledefe</title>
+    <title>elasticsearch 优化篇之-降低磁盘使用率优化 | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="rpm方式安装rpm -vi filebeat-5.3.0-x86_64.rpm  配置filebeat.ymlvi /etc/filebeat/filebeat.yml">
-<meta name="keywords" content="filebeat">
+    <meta name="description" content="合理禁用不需要的选项 关闭字段索引默认情况下，es会索引所有提交上来的字段，使这些字段内容被索引和聚合。如果你有个数字字段foo,用来做聚合，不需要用来过滤，则可以设置属性index=false以达到效果。">
+<meta name="keywords" content="elasticsearch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="filebeat 部署">
-<meta property="og:url" content="http://ledefe.tech/2017/07/16/filebeat_install/index.html">
+<meta property="og:title" content="elasticsearch 优化篇之-降低磁盘使用率优化">
+<meta property="og:url" content="http://ledefe.tech/2017/09/08/elasticsearch-tune_for_disk_usage/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="rpm方式安装rpm -vi filebeat-5.3.0-x86_64.rpm  配置filebeat.ymlvi /etc/filebeat/filebeat.yml">
+<meta property="og:description" content="合理禁用不需要的选项 关闭字段索引默认情况下，es会索引所有提交上来的字段，使这些字段内容被索引和聚合。如果你有个数字字段foo,用来做聚合，不需要用来过滤，则可以设置属性index=false以达到效果。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-07T02:17:25.049Z">
+<meta property="og:updated_time" content="2017-09-08T06:46:29.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="filebeat 部署">
-<meta name="twitter:description" content="rpm方式安装rpm -vi filebeat-5.3.0-x86_64.rpm  配置filebeat.ymlvi /etc/filebeat/filebeat.yml">
+<meta name="twitter:title" content="elasticsearch 优化篇之-降低磁盘使用率优化">
+<meta name="twitter:description" content="合理禁用不需要的选项 关闭字段索引默认情况下，es会索引所有提交上来的字段，使这些字段内容被索引和聚合。如果你有个数字字段foo,用来做聚合，不需要用来过滤，则可以设置属性index=false以达到效果。">
     
 
     
@@ -173,7 +173,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-filebeat_install" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-elasticsearch-tune_for_disk_usage" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -181,7 +181,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            filebeat 部署
+            elasticsearch 优化篇之-降低磁盘使用率优化
         </h1>
     
 
@@ -193,23 +193,28 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/07/16/filebeat_install/">
-            <time datetime="2017-07-16T06:32:19.000Z" itemprop="datePublished">2017-07-16</time>
+        <a href="/2017/09/08/elasticsearch-tune_for_disk_usage/">
+            <time datetime="2017-09-08T06:32:19.000Z" itemprop="datePublished">2017-09-08</time>
         </a>
     </div>
 
 
 						
+    <div class="article-tag">
+        <i class="fa fa-user"></i>
+		 ledefe
+    </div>
+
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
+        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/filebeat/">filebeat</a>
+        <a class="tag-link" href="/tags/elasticsearch/">elasticsearch</a>
     </div>
 
 						
@@ -222,19 +227,23 @@
 		
         
             
-            <ul>
-<li><p>rpm方式安装<br>rpm -vi filebeat-5.3.0-x86_64.rpm</p>
-</li>
-<li><p>配置filebeat.yml<br>vi /etc/filebeat/filebeat.yml</p>
+            <h2 id="合理禁用不需要的选项"><a href="#合理禁用不需要的选项" class="headerlink" title="合理禁用不需要的选项"></a>合理禁用不需要的选项</h2><ul>
+<li><p>关闭字段索引<br>默认情况下，es会索引所有提交上来的字段，使这些字段内容被索引和聚合。<br>如果你有个数字字段foo,用来做聚合，不需要用来过滤，则可以设置属性index=false以达到效果。</p>
 <a id="more"></a>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="string">filebeat.prospectors:</span></div><div class="line"></div><div class="line"><span class="attr">- input_type:</span> <span class="string">log</span></div><div class="line"><span class="attr">  paths:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">/tmp/logs/eureka</span></div><div class="line"><span class="attr">  fields_under_root:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  fields:</span></div><div class="line"><span class="attr">    host:</span> <span class="number">10.2</span><span class="number">.61</span><span class="number">.201</span></div><div class="line"><span class="attr">    instance:</span> <span class="string">vc_10.2.61.201</span></div><div class="line"><span class="attr">    indexname:</span> <span class="string">logs_vctest</span></div><div class="line">  <span class="string">multiline.pattern:</span> <span class="string">'^[0-9]&#123;4&#125;-[0-9]&#123;2&#125;-[0-9]&#123;2&#125;'</span></div><div class="line">  <span class="string">multiline.negate:</span> <span class="literal">true</span></div><div class="line">  <span class="string">multiline.match:</span> <span class="string">after</span></div><div class="line"><span class="attr">processors:</span></div><div class="line"><span class="attr">- drop_fields:</span></div><div class="line"><span class="attr">    fields:</span> <span class="string">["beat"]</span></div><div class="line"><span class="comment">#----------------------------- Logstash output --------------------------------</span></div><div class="line"><span class="string">output.logstash:</span></div><div class="line">  <span class="comment"># The Logstash hosts</span></div><div class="line"><span class="attr">  hosts:</span> <span class="string">["10.2.61.210:5044"]</span></div><div class="line"><span class="attr">  compression_level:</span> <span class="number">3</span></div><div class="line"><span class="comment">#================================ Logging =====================================</span></div><div class="line"><span class="string">logging.level:</span> <span class="string">info</span></div><div class="line"><span class="comment"># At debug level, you can selectively enable logging only for some components.</span></div><div class="line"><span class="comment"># To enable all selectors use ["*"]. Examples of other selectors are "beat",</span></div><div class="line"><span class="comment"># "publish", "service".</span></div><div class="line"><span class="comment">#logging.selectors: ["*"]</span></div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">PUT index</div><div class="line">&#123;</div><div class="line">  <span class="attr">"mappings"</span>: &#123;</div><div class="line">    <span class="attr">"type"</span>: &#123;</div><div class="line">      <span class="attr">"properties"</span>: &#123;</div><div class="line">        <span class="attr">"foo"</span>: &#123;</div><div class="line">          <span class="attr">"type"</span>: <span class="string">"integer"</span>,</div><div class="line">          <span class="attr">"index"</span>: <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>启动命令<br>sudo /etc/init.d/filebeat start|stop|status</p>
+<li><p>关闭评分功能<br>text 字段会存储一些评分因子，以帮助文档评分。<br>如果你只需要text字段上的匹配功能，不关心分数，则可以关闭评分功能</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">PUT index</div><div class="line">&#123;</div><div class="line">  <span class="attr">"mappings"</span>: &#123;</div><div class="line">    <span class="attr">"type"</span>: &#123;</div><div class="line">      <span class="attr">"properties"</span>: &#123;</div><div class="line">        <span class="attr">"foo"</span>: &#123;</div><div class="line">          <span class="attr">"type"</span>: <span class="string">"text"</span>,</div><div class="line">          <span class="attr">"norms"</span>: <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>关闭词频统计功能</p>
 </li>
 </ul>
-<ul>
-<li>自启动<br>systemctl enable filebeat.service</li>
-</ul>
+<p>默认情况下，索引会存储字段的频率和位置，频率用于计算分数，位置用于短语查询，如果不需要短语查询。可设置<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">PUT index</div><div class="line">&#123;</div><div class="line">  <span class="attr">"mappings"</span>: &#123;</div><div class="line">    <span class="attr">"type"</span>: &#123;</div><div class="line">      <span class="attr">"properties"</span>: &#123;</div><div class="line">        <span class="attr">"foo"</span>: &#123;</div><div class="line">          <span class="attr">"type"</span>: <span class="string">"text"</span>,</div><div class="line">          <span class="attr">"index_options"</span>: <span class="string">"freqs"</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="禁用动态字符串映射"><a href="#禁用动态字符串映射" class="headerlink" title="禁用动态字符串映射"></a>禁用动态字符串映射</h2><p>默认的动态字符串映射将索引字符串字段既作为text和keyword。如果您只需要其中之一，这是浪费的。<br>通常，id字段只需要作为一个索引编制， keyword只需要作为一个text字段编入索引。<br>这可以通过在字符串字段上配置显式映射或设置动态模板来禁用，该模板将字符串字段映射为text 或keyword。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">PUT index</div><div class="line">&#123;</div><div class="line">  <span class="attr">"mappings"</span>: &#123;</div><div class="line">    <span class="attr">"type"</span>: &#123;</div><div class="line">      <span class="attr">"dynamic_templates"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">"strings"</span>: &#123;</div><div class="line">            <span class="attr">"match_mapping_type"</span>: <span class="string">"string"</span>,</div><div class="line">            <span class="attr">"mapping"</span>: &#123;</div><div class="line">              <span class="attr">"type"</span>: <span class="string">"keyword"</span></div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="禁用-all"><a href="#禁用-all" class="headerlink" title="禁用_all"></a>禁用_all</h2><p>该_all字段索引文档的所有字段的值，并且可以使用显着的空间。如果您不需要同时搜索所有字段，则可以禁用它。</p>
+<h2 id="使用-best-compression"><a href="#使用-best-compression" class="headerlink" title="使用 best_compression"></a>使用 best_compression</h2><p>_source和存储的字段都会占用磁盘空间量。使用best_compression 编解码器可以地压缩存储。</p>
+<h2 id="使用最小数字类型"><a href="#使用最小数字类型" class="headerlink" title="使用最小数字类型"></a>使用最小数字类型</h2><p>数字数据选择的类型可能会对磁盘使用量产生重大影响。特别是，整数用整数型（存储byte，short，integer或long）；<br>浮点要么被存储在一个scaled_float,选用适合用例最小的类型：使用float&gt;double，或half_float在float有利于节省存储空间。</p>
 
         
         </div>
@@ -245,7 +254,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/16/filebeat_install/" data-id="cj7bhivxs0010v0q0o60xsfxt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/08/elasticsearch-tune_for_disk_usage/" data-id="cj7bhivy4001fv0q083j7srk4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -313,7 +322,7 @@
 
             
     
-        <a href="http://ledefe.tech/2017/07/16/filebeat_install/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/09/08/elasticsearch-tune_for_disk_usage/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -322,19 +331,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/07/20/service/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    制作java程序以linux服务方式启动
-                
-            </div>
-        </a>
     
-    
-        <a href="/2017/07/15/log_collection_scheme_II/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/09/06/lucence/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">日志采集方案II</div>
+            <div class="article-nav-title">lucence 原理</div>
         </a>
     
 </nav>
