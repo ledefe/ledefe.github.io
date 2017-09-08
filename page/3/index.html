@@ -238,7 +238,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj7bisqfz000tdwq0nkqgjz2w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj7bitkoy000i20q0i6n3enle" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -377,7 +377,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj7bisqh1001zdwq0fakzlxy9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj7bitkpz001n20q0ycpf30d8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -517,7 +517,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj7bisqhs002zdwq0bpjyspa6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj7bitkqs002m20q0douznrar" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -656,7 +656,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj7bisqfd0008dwq0klf6pm1w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj7bitkoh000620q0eufr3tay" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -793,7 +793,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj7bisqfh0009dwq0ppxpobh7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj7bitkoo000a20q0mrhxua7i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -871,147 +871,6 @@
 
 
 
-    <article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-qps/">Elasticsearch 入门系列-常见问题收集篇</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-qps/">
-            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            
-            <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
-<p>‘‘‘java</p>
-<p>request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);</p>
-<p>public MetaData save(final MetaData meta) {<br>        meta.setCreateTime(System.currentTimeMillis());<br>        meta.setUpdateTime(System.currentTimeMillis());<br>        IndexRequest request = new IndexRequest(INDEX_NAME, INDEX_TYPE).source(JSON.toJSONString(meta),<br>                XContentType.JSON);<br>        request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);<br>        IndexResponse respnese = client.index(request).actionGet(DEFAULT_TIMEOUT);<br>        if (respnese.getId() != null) {<br>            meta.setId(respnese.getId());<br>        }<br>        return meta;<br>    }<br>‘‘‘<br>那么基于http restful呢？答案是：在请求后面添加<br>‘‘‘java<br>？refresh=true<br>‘‘‘</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj7bisqfk000ddwq0fd8nq1o8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-EFK-design-I" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1076,7 +935,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj7bisqhn002pdwq0k74ptz13" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cj7bitko8000120q0ttuwiioz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1213,7 +1072,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj7bisqf70006dwq0x363it76" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj7bitkr1002z20q0lojkvlhg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1291,6 +1150,147 @@
 
 
 
+    <article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-qps/">Elasticsearch 入门系列-常见问题收集篇</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/05/Elasticsearch5.3.0-qps/">
+            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            
+            <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
+<p>‘‘‘java</p>
+<p>request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);</p>
+<p>public MetaData save(final MetaData meta) {<br>        meta.setCreateTime(System.currentTimeMillis());<br>        meta.setUpdateTime(System.currentTimeMillis());<br>        IndexRequest request = new IndexRequest(INDEX_NAME, INDEX_TYPE).source(JSON.toJSONString(meta),<br>                XContentType.JSON);<br>        request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);<br>        IndexResponse respnese = client.index(request).actionGet(DEFAULT_TIMEOUT);<br>        if (respnese.getId() != null) {<br>            meta.setId(respnese.getId());<br>        }<br>        return meta;<br>    }<br>‘‘‘<br>那么基于http restful呢？答案是：在请求后面添加<br>‘‘‘java<br>？refresh=true<br>‘‘‘</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj7bitkof000520q0kunycooi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-kibana-5.3.0-install" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1356,7 +1356,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cj7bisqh30022dwq0ycn63s1m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cj7bitkqb002020q0snnaf0sk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1497,7 +1497,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="cj7bisqfs000kdwq0renqejcw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="cj7bitkos000c20q0ugoq3u1u" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
