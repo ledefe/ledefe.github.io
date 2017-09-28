@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="ledefe">
 <meta property="og:description" content="简介elasticsearch 集群建议一般需要3台。两台的情况下，能达到主从模式，保证数据冗余备份一份，但有可能出现脑裂情况，为了防止脑裂，可加入一个非数据节点，参与集群，但不保存数据。 安装说明这边假定安装两个es数据节点和一个非数据节点做集群，如  192.168.24.129 数据节点，参与选举 192.168.24.128 数据节点，参与选举 192.168.24.127 非数据节点，参">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-27T03:29:26.359Z">
+<meta property="og:updated_time" content="2017-09-28T06:45:00.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch集群部署">
 <meta name="twitter:description" content="简介elasticsearch 集群建议一般需要3台。两台的情况下，能达到主从模式，保证数据冗余备份一份，但有可能出现脑裂情况，为了防止脑裂，可加入一个非数据节点，参与集群，但不保存数据。 安装说明这边假定安装两个es数据节点和一个非数据节点做集群，如  192.168.24.129 数据节点，参与选举 192.168.24.128 数据节点，参与选举 192.168.24.127 非数据节点，参">
@@ -247,27 +247,28 @@
 <p>先执行es_env_init.sh脚本，进行es环境系统配置<br>然后执行 exit 重新登录<br>最后执行es_tools.sh 命令，进行es安装至/home/es/elasticsearch-biz目录</p>
 <ul>
 <li><p>127上执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh es_tools.sh -n data-127 -h 192.168.24.129:9300，192.168.24.128:9300，192.168.24.127:9300 -m true -d false -e 2</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh es_tools.sh -n n1 -h 192.168.24.129:9201，192.168.24.128:9201，192.168.24.127:9201 -m true -d false -e 2 -j 2</div></pre></td></tr></table></figure>
 </li>
 <li><p>128上执行</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh es_tools.sh -n data-128 -h 192.168.24.129:9300，192.168.24.128:9300，192.168.24.127:9300 -m true -d true -e 2</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh es_tools.sh -n n2 -h 192.168.24.129:9300，192.168.24.128:9301，192.168.24.127:9201 -m true -d true -e 2 -j 4</div></pre></td></tr></table></figure>
 <ul>
 <li>129上执行</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh es_tools.sh -n data-129 -h 192.168.24.129:9300，192.168.24.128:9300，192.168.24.127:9300 -m true -d true -e 2</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh es_tools.sh -n n3 -h 192.168.24.129:9300，192.168.24.128:9201，192.168.24.127:9201 -m true -d true -e 2 -j 4</div></pre></td></tr></table></figure>
 <ul>
-<li>-n 表示节点名称</li>
-<li>-h 表示要集群的节点列表，以逗号隔开</li>
+<li>-n 表示节点名称,集群内要保证每个节点名称唯一</li>
+<li>-h 表示要集群的节点列表，以逗号隔开，端口为es的tcp端口</li>
 <li>-m 表示用于集群选举，true表示参与选举节点，false表示不参与选举，如果只有两个节点，要为true。</li>
 <li>-d 表示数据节点 true为数据节点，false为不存储数据,如果只有两个节点，要为true。</li>
-<li>-e 表示最小master数，用来防止脑裂，官方的推荐值是(N/2)+1,N为节点数。</li>
+<li>-e 表示最小master数，用来防止脑裂，官方的推荐值是(N/2)+1,N为节点数。以上设置为2，因为有三个节点。</li>
+<li>-p 表示es的http端口，对应的tcp端口为该端口+1,比如http：9200,则tcp为9201,默认为：9200.</li>
+<li>-j 表示jvm的大小，默认为1，代表1g，为数据节点时，设置为4,为非数据节点时，设置为2</li>
 </ul>
 <h2 id="4-启动或重启服务"><a href="#4-启动或重启服务" class="headerlink" title="4.启动或重启服务"></a>4.启动或重启服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/home/es/elasticsearch-biz/es_start.sh</div></pre></td></tr></table></figure>
 <h2 id="5-验证"><a href="#5-验证" class="headerlink" title="5.验证"></a>5.验证</h2><p><a href="http://{ip}:9200" target="_blank" rel="external">http://{ip}:9200</a> 是否有信息，说明安装成功</p>
-<h2 id="6-启动后初始化模板（如果是集群，只需在一个节点下执行即可）"><a href="#6-启动后初始化模板（如果是集群，只需在一个节点下执行即可）" class="headerlink" title="6.启动后初始化模板（如果是集群，只需在一个节点下执行即可）"></a>6.启动后初始化模板（如果是集群，只需在一个节点下执行即可）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh /tmp/es_template_init.sh</div></pre></td></tr></table></figure>
-<p>es安装文件下载：<a href="/file/elasticsearch-biz-install.tar.gz">elasticsearch-biz-install.tar.gz</a></p>
+<h2 id="6-启动后初始化模板（如果是集群，只需在一个节点下执行即可）"><a href="#6-启动后初始化模板（如果是集群，只需在一个节点下执行即可）" class="headerlink" title="6.启动后初始化模板（如果是集群，只需在一个节点下执行即可）"></a>6.启动后初始化模板（如果是集群，只需在一个节点下执行即可）</h2><p>因为模板会根据需求变化，所以，可不做初始化，由用户自行初始化。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh /tmp/es_template_init.sh</div></pre></td></tr></table></figure></p>
 
         
         </div>
@@ -278,7 +279,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/09/27/es_cloud_install/" data-id="cj82gqtrw0000tsq0z7g7wdw2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/09/27/es_cloud_install/" data-id="cj843iqhl000pawq0ldkrdbl2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
