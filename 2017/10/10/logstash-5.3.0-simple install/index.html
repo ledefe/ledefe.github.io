@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Elasticsearch 入门系列-常见问题收集篇 | ledefe</title>
+    <title>制作logstash 一键安装脚本 | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1.用java api更新或保存数据后，发现数据未及时更新可设置刷新策略： ‘‘‘java request.setRefreshPolicy(RefreshPolicy.IMMEDIATE); public MetaData save(final MetaData meta) {        meta.setCreateTime(System.currentTimeMillis());">
-<meta name="keywords" content="Elasticsearch">
+    <meta name="description" content="简介默认制作的脚本安装至/usr/local/logstash_server/logstash-5.3.0下,版本为：5.3.0 默认的java安装目录为：/usr/local/java 制作步骤 1.准备logstash-5.3.0.tar.gz原装包 2.解压至logstash_server下 3.复制脚本tail_start.sh|tail_stop.sh至logstash_server/l">
+<meta name="keywords" content="logstash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Elasticsearch 入门系列-常见问题收集篇">
-<meta property="og:url" content="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/index.html">
+<meta property="og:title" content="制作logstash 一键安装脚本">
+<meta property="og:url" content="http://ledefe.tech/2017/10/10/logstash-5.3.0-simple install/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="1.用java api更新或保存数据后，发现数据未及时更新可设置刷新策略： ‘‘‘java request.setRefreshPolicy(RefreshPolicy.IMMEDIATE); public MetaData save(final MetaData meta) {        meta.setCreateTime(System.currentTimeMillis());">
+<meta property="og:description" content="简介默认制作的脚本安装至/usr/local/logstash_server/logstash-5.3.0下,版本为：5.3.0 默认的java安装目录为：/usr/local/java 制作步骤 1.准备logstash-5.3.0.tar.gz原装包 2.解压至logstash_server下 3.复制脚本tail_start.sh|tail_stop.sh至logstash_server/l">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-08T06:14:03.707Z">
+<meta property="og:updated_time" content="2017-10-10T03:47:32.894Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Elasticsearch 入门系列-常见问题收集篇">
-<meta name="twitter:description" content="1.用java api更新或保存数据后，发现数据未及时更新可设置刷新策略： ‘‘‘java request.setRefreshPolicy(RefreshPolicy.IMMEDIATE); public MetaData save(final MetaData meta) {        meta.setCreateTime(System.currentTimeMillis());">
+<meta name="twitter:title" content="制作logstash 一键安装脚本">
+<meta name="twitter:description" content="简介默认制作的脚本安装至/usr/local/logstash_server/logstash-5.3.0下,版本为：5.3.0 默认的java安装目录为：/usr/local/java 制作步骤 1.准备logstash-5.3.0.tar.gz原装包 2.解压至logstash_server下 3.复制脚本tail_start.sh|tail_stop.sh至logstash_server/l">
     
 
     
@@ -173,7 +173,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-logstash-5.3.0-simple install" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -181,7 +181,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            Elasticsearch 入门系列-常见问题收集篇
+            制作logstash 一键安装脚本
         </h1>
     
 
@@ -193,8 +193,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-qps/">
-            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
+        <a href="/2017/10/10/logstash-5.3.0-simple install/">
+            <time datetime="2017-10-10T06:32:19.000Z" itemprop="datePublished">2017-10-10</time>
         </a>
     </div>
 
@@ -203,13 +203,13 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
+        <a class="tag-link" href="/tags/logstash/">logstash</a>
     </div>
 
 						
@@ -222,10 +222,21 @@
 		
         
             
-            <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
-<p>‘‘‘java</p>
-<p>request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);</p>
-<p>public MetaData save(final MetaData meta) {<br>        meta.setCreateTime(System.currentTimeMillis());<br>        meta.setUpdateTime(System.currentTimeMillis());<br>        IndexRequest request = new IndexRequest(INDEX_NAME, INDEX_TYPE).source(JSON.toJSONString(meta),<br>                XContentType.JSON);<br>        request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);<br>        IndexResponse respnese = client.index(request).actionGet(DEFAULT_TIMEOUT);<br>        if (respnese.getId() != null) {<br>            meta.setId(respnese.getId());<br>        }<br>        return meta;<br>    }<br>‘‘‘<br>那么基于http restful呢？答案是：在请求后面添加<br>‘‘‘java<br>？refresh=true<br>‘‘‘</p>
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>默认制作的脚本安装至/usr/local/logstash_server/logstash-5.3.0下,版本为：5.3.0</p>
+<p>默认的java安装目录为：/usr/local/java</p>
+<h1 id="制作步骤"><a href="#制作步骤" class="headerlink" title="制作步骤"></a>制作步骤</h1><ul>
+<li>1.准备logstash-5.3.0.tar.gz原装包</li>
+<li>2.解压至logstash_server下</li>
+<li>3.复制脚本tail_start.sh|tail_stop.sh至logstash_server/logstash-5.3.0下</li>
+<li>4.解压复制附件中的config目录至对应logstash_server/logstash-5.3.0/config目录</li>
+<li>5.压缩 tar -czvf logstash_server.tar.gz logstash_server</li>
+<li>6.放置logstash_server.tar.gz和logstash_install.sh同级至任何目录执行</li>
+<li>7.安装命令：sh logstash_install.sh -h 127.0.0.1:9200<br> -h 为es的http 地址<a id="more"></a>
+<h1 id="logstash-install-sh脚本"><a href="#logstash-install-sh脚本" class="headerlink" title="logstash_install.sh脚本"></a>logstash_install.sh脚本</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">while getopts "h:" opt; do</div><div class="line"> case $opt in</div><div class="line">  h)</div><div class="line">   hosts=$OPTARG;</div><div class="line">   echo "the es host is $hosts";;</div><div class="line"> \?)</div><div class="line">   echo "Invalid option: -$OPTARG";</div><div class="line">   exit -1;;</div><div class="line">esac</div><div class="line">done</div><div class="line"></div><div class="line">if [ ! -n "$hosts" ]; then </div><div class="line"> echo "-h must to set for es http hosts,example '-h 127.0.0.1:9200,127.0.0.2:9200'"</div><div class="line"> exit -1</div><div class="line">fi</div><div class="line"></div><div class="line">dir=`dirname $0`</div><div class="line">cd $dir</div><div class="line">logstashDir=/usr/local</div><div class="line">tar -zxvf logstash_server.tar.gz -C $&#123;logstashDir&#125;</div><div class="line">result=$(grep "$&#123;logstashDir&#125;/logstash_server/logstash-5.3.0/tail_start.sh" /etc/rc.d/rc.local)</div><div class="line">if echo $result |grep -q "$&#123;logstashDir&#125;/logstash_server/logstash-5.3.0/tail_start.sh"; then</div><div class="line">  echo "ignore auto setup set"</div><div class="line">else</div><div class="line">  echo '$&#123;logstashDir&#125;/logstash_server/logstash-5.3.0/tail_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">fi</div><div class="line">configFile=$&#123;logstashDir&#125;/logstash_server/logstash-5.3.0/config/filebeat_logstash_es.conf</div><div class="line">sed -i "s#^      hosts =&gt; .*#      hosts =&gt; \"$&#123;hosts&#125;\"#g" $&#123;configFile&#125;</div><div class="line">chmod +x /etc/rc.d/rc.local</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="tail-start-sh-脚本"><a href="#tail-start-sh-脚本" class="headerlink" title="tail_start.sh 脚本"></a>tail_start.sh 脚本</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/local/java</div><div class="line">cd `dirname $0`</div><div class="line">./tail_stop.sh</div><div class="line">nohup bin/logstash -f config/filebeat_logstash_es.conf  &gt;/dev/null 2&gt;&amp;1 &amp;</div><div class="line">echo $! &gt; agent.pid</div><div class="line">echo 'logstash started,pid:' $!</div></pre></td></tr></table></figure>
+<h1 id="tail-stop-sh-脚本"><a href="#tail-stop-sh-脚本" class="headerlink" title="tail_stop.sh 脚本"></a>tail_stop.sh 脚本</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">pid=`ps -ef|grep filebeat_logstash_es.conf|grep -v 'grep' |awk '&#123;print $2&#125;'`</div><div class="line"></div><div class="line">echo $pid</div><div class="line"></div><div class="line">pidStatus=`ps --no-heading $&#123;pid&#125; | wc -l`</div><div class="line"> </div><div class="line">if [ $pidStatus -eq 1 ] ; then</div><div class="line"></div><div class="line">    echo 'logstash  already exsit with pid:' $pid ' and stopping'</div><div class="line">    kill $pid       </div><div class="line">else</div><div class="line">     echo 'logstash  not exsit...'</div><div class="line">fi</div></pre></td></tr></table></figure>
 
         
         </div>
@@ -236,7 +247,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj8l2hisu000lf4q0s9scevqp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/10/10/logstash-5.3.0-simple install/" data-id="cj8l2hiuu002pf4q05q129cyi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -304,7 +315,7 @@
 
             
     
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/10/10/logstash-5.3.0-simple install/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -313,19 +324,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    Elasticsearch 入门系列-概念篇
-                
-            </div>
-        </a>
     
-    
-        <a href="/2017/05/05/EFK-design-I/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/09/27/es_cloud_install/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">EFK-日志采集方案I</div>
+            <div class="article-nav-title">elasticsearch集群部署</div>
         </a>
     
 </nav>
