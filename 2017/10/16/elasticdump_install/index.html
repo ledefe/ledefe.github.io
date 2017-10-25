@@ -5,18 +5,18 @@
     
     <title>elasticdump_install | ledefe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="需要安装nodejs1234567wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gztar -zxvf node-v6.11.4-linux-x64.tar.gz mv node-v6.11.4-linux-x64 node-v6.11.4mv node-v6.11.4 /usr/local/```shell## 配">
+    <meta name="description" content="需要安装nodejs12345678wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gztar -zxvf node-v6.11.4-linux-x64.tar.gz mv node-v6.11.4-linux-x64 node-v6.11.4mv node-v6.11.4 /usr/local/```shell##">
 <meta name="keywords" content="elasticdump">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticdump_install">
 <meta property="og:url" content="http://ledefe.tech/2017/10/16/elasticdump_install/index.html">
 <meta property="og:site_name" content="ledefe">
-<meta property="og:description" content="需要安装nodejs1234567wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gztar -zxvf node-v6.11.4-linux-x64.tar.gz mv node-v6.11.4-linux-x64 node-v6.11.4mv node-v6.11.4 /usr/local/```shell## 配">
+<meta property="og:description" content="需要安装nodejs12345678wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gztar -zxvf node-v6.11.4-linux-x64.tar.gz mv node-v6.11.4-linux-x64 node-v6.11.4mv node-v6.11.4 /usr/local/```shell##">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-16T02:48:55.054Z">
+<meta property="og:updated_time" content="2017-10-25T02:28:31.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticdump_install">
-<meta name="twitter:description" content="需要安装nodejs1234567wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gztar -zxvf node-v6.11.4-linux-x64.tar.gz mv node-v6.11.4-linux-x64 node-v6.11.4mv node-v6.11.4 /usr/local/```shell## 配">
+<meta name="twitter:description" content="需要安装nodejs12345678wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gztar -zxvf node-v6.11.4-linux-x64.tar.gz mv node-v6.11.4-linux-x64 node-v6.11.4mv node-v6.11.4 /usr/local/```shell##">
     
 
     
@@ -222,8 +222,9 @@
 		
         
             
-            <h2 id="需要安装nodejs"><a href="#需要安装nodejs" class="headerlink" title="需要安装nodejs"></a>需要安装nodejs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gz</div><div class="line">tar -zxvf node-v6.11.4-linux-x64.tar.gz </div><div class="line">mv node-v6.11.4-linux-x64 node-v6.11.4</div><div class="line">mv node-v6.11.4 /usr/local/</div><div class="line">```shell</div><div class="line"></div><div class="line">## 配置PATH</div></pre></td></tr></table></figure>
-<p>export NODE_HOME=/usr/local/node-v6.11.4<br>export NODE_PATH=$NODE_HOME/lib/node_modules<br>export PATH=$NODE_HOME/bin:$PATH<br>export PATH<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span># 安装elasticdump</div></pre></td></tr></table></figure></p>
+            <h2 id="需要安装nodejs"><a href="#需要安装nodejs" class="headerlink" title="需要安装nodejs"></a>需要安装nodejs</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.4/node-v6.11.4-linux-x64.tar.gz</div><div class="line">tar -zxvf node-v6.11.4-linux-x64.tar.gz </div><div class="line">mv node-v6.11.4-linux-x64 node-v6.11.4</div><div class="line">mv node-v6.11.4 /usr/local/</div><div class="line"></div><div class="line">```shell</div><div class="line"></div><div class="line">## 配置PATH</div></pre></td></tr></table></figure>
+<p>export NODE_HOME=/usr/local/node-v6.11.4<br>export NODE_PATH=$NODE_HOME/lib/node_modules<br>export PATH=$NODE_HOME/bin:$PATH<br>export PATH</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span># 安装elasticdump</div></pre></td></tr></table></figure>
 <p>npm install elasticdump -g<br>```shell</p>
 <p>github:<a href="https://github.com/taskrabbit/elasticsearch-dump" target="_blank" rel="external">https://github.com/taskrabbit/elasticsearch-dump</a></p>
 <h2 id="导出操作"><a href="#导出操作" class="headerlink" title="导出操作"></a>导出操作</h2><ul>
@@ -244,7 +245,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/10/16/elasticdump_install/" data-id="cj96ez0y7000g84q0rxp06sdx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/10/16/elasticdump_install/" data-id="cj96f80lb000ox4q000ur0954" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
