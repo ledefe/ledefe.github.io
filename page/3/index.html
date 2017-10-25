@@ -143,11 +143,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                39
+                41
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                19
+                21
                 <span>标签</span>
             </div>
         </div>
@@ -172,7 +172,7 @@
 
             
             <section id="main">
-    <article id="post-es_install_script" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux_offen_shell_collect" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -180,7 +180,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/07/06/es_install_script/">es安装脚本</a>
+            <a class="article-title" href="/2017/07/09/linux_offen_shell_collect/">linux常用脚本整理</a>
         </h1>
     
 
@@ -192,8 +192,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/07/06/es_install_script/">
-            <time datetime="2017-07-06T06:32:19.000Z" itemprop="datePublished">2017-07-06</time>
+        <a href="/2017/07/09/linux_offen_shell_collect/">
+            <time datetime="2017-07-09T06:32:19.000Z" itemprop="datePublished">2017-07-09</time>
         </a>
     </div>
 
@@ -222,9 +222,13 @@
         
             
             <ul>
-<li>es初始化脚本</li>
+<li>flume启动脚本  tail_start.sh</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line">if [[ -z $1 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  serviceName=$1</div><div class="line">fi</div><div class="line">if [[ -z $2 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  opt=$2</div><div class="line">fi</div><div class="line"></div><div class="line">echo  service:$serviceName,operator:$opt</div><div class="line"></div><div class="line">if [ "$serviceName" == "es" ]; then</div><div class="line"></div><div class="line">	if [ "$opt" == "install" ]; then</div><div class="line"></div><div class="line">	    if [ -n `which unzip` ]; then</div><div class="line">		 echo 'unzip exist'</div><div class="line">		else</div><div class="line">		 echo 'install unzip'</div><div class="line">		 yum install -y unzip</div><div class="line">		fi</div><div class="line"><span class="meta">		#</span>unzip es.zip</div><div class="line">		chmod +x /home/es/jdk1.8.0_131/bin/java</div><div class="line">		chmod +x /home/es/elasticsearch-5.3.0/bin/*</div><div class="line">		chmod +x /home/es/script/*.sh</div><div class="line">		export JAVA_HOME=/home/es/jdk1.8.0_131</div><div class="line">		mkdir -p /data/elasticsearch</div><div class="line"></div><div class="line">		groupadd es</div><div class="line">		useradd es -g es -p 'es123!@#'</div><div class="line">		chown  es /home/es -R</div><div class="line">		chown  es /data/elasticsearch -R</div><div class="line"></div><div class="line">		result=$(grep "/home/es/script/es_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/es_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/es_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/es_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		/home/es/script/es_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line">elif [ "$serviceName" == "kibana" ]; then</div><div class="line"></div><div class="line">    if [ "$opt" == "install" ]; then</div><div class="line">	</div><div class="line">		tar -zxvf /home/es/kibana-5.3.0-linux-x86_64.tar.gz</div><div class="line">		mv kibana-5.3.0-linux-x86_64 /home/es/kibana-5.3.0</div><div class="line">		chmod +x /home/es/kibana-5.3.0/bin/*</div><div class="line">		sed -i "s#^\#server.host:.*#server.host: \"0.0.0.0\"#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		sed -i "s#^\#pid.file:.*#pid.file: /var/run/kibana.pid#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		result=$(grep "/home/es/script/kibana_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/kibana_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/kibana_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/kibana_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		 /home/es/script/kibana_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line"></div><div class="line"></div><div class="line">elif [ "$serviceName" == "watcher" ]; then</div><div class="line"></div><div class="line">      if [ "$opt" == "install" ]; then</div><div class="line">			echo  service:$serviceName install. </div><div class="line">			cp -r /home/es/watcher /home/es/elasticsearch-5.3.0/plugins/</div><div class="line">	elif  [ "$opt" == "remove" ]; then</div><div class="line">		echo  service:$serviceName remove. </div><div class="line">		rm -rf /home/es/elasticsearch-5.3.0/plugins/watcher</div><div class="line">     fi</div><div class="line">  </div><div class="line"> else </div><div class="line">	echo "other starting ...."</div><div class="line">fi</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cd `dirname $0`</div><div class="line">./tail_stop.sh</div><div class="line">nohup bin/flume-ng agent --conf conf --conf-file ./conf/tail.conf --name a1  &gt;/dev/null 2&gt;&amp;1 &amp;</div><div class="line">echo $! &gt; flume_agent.pid</div><div class="line">echo 'flume client started,pid:' $!</div></pre></td></tr></table></figure>
+<ul>
+<li>flume关闭脚本  tail_stop.sh</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">pid=`ps -ef|grep tail.conf|grep -v 'grep' |awk '&#123;print $2&#125;'`</div><div class="line"></div><div class="line">echo $pid</div><div class="line"></div><div class="line">pidStatus=`ps --no-heading $&#123;pid&#125; | wc -l`</div><div class="line"> </div><div class="line">if [ $pidStatus -eq 1 ] ; then</div><div class="line"></div><div class="line">    echo 'flume agent already exsit with pid:' $pid ' and stopping'</div><div class="line">    kill $pid       </div><div class="line">else</div><div class="line">     echo 'flume agent not exsit...'</div><div class="line">fi</div></pre></td></tr></table></figure>
 
         
         </div>
@@ -235,7 +239,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/06/es_install_script/" data-id="cj8l2k0xb0010t8q0sw6scd7c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/09/linux_offen_shell_collect/" data-id="cj96ez110002x84q026eimk8b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -303,7 +307,149 @@
 
             
     
-        <a href="http://ledefe.tech/2017/07/06/es_install_script/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/07/09/linux_offen_shell_collect/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-linux_shell_collect" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/07/08/linux_shell_collect/">linux常用脚本整理</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/07/08/linux_shell_collect/">
+            <time datetime="2017-07-08T06:32:19.000Z" itemprop="datePublished">2017-07-08</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/linux/">linux</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            <p><ul>
+<li>flume启动脚本  tail_start.sh</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cd `dirname $0`</div><div class="line">./tail_stop.sh</div><div class="line">nohup bin/flume-ng agent --conf conf --conf-file ./conf/tail.conf --name a1  &gt;/dev/null 2&gt;&amp;1 &amp;</div><div class="line">echo $! &gt; flume_agent.pid</div><div class="line">echo 'flume client started,pid:' $!</div></pre></td></tr></table></figure></p>
+            <p class="article-more-link">
+               <a href="/2017/07/08/linux_shell_collect/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/07/08/linux_shell_collect/" data-id="cj96ez118003484q0gbhv5zn6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/08/linux_shell_collect/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -375,7 +521,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/06/log_specification_convention/" data-id="cj8l2k0yr002st8q0yn8io7c5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/06/log_specification_convention/" data-id="cj96ez121003q84q0bqcjtpbo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -453,6 +599,147 @@
 
 
 
+    <article id="post-es_install_script" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/07/06/es_install_script/">es安装脚本</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/07/06/es_install_script/">
+            <time datetime="2017-07-06T06:32:19.000Z" itemprop="datePublished">2017-07-06</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/linux/">linux</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            
+            <ul>
+<li>es初始化脚本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line">if [[ -z $1 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  serviceName=$1</div><div class="line">fi</div><div class="line">if [[ -z $2 ]]; then            </div><div class="line">  echo "error! must give service name! example:./install_es_tools.sh es [install|start]|./install_es_tools.sh kibana [install|start]|./install_es_tools.sh watcher"</div><div class="line">  exit -1</div><div class="line">else</div><div class="line"><span class="meta">  #</span>not no postfix, such as conf        </div><div class="line">  opt=$2</div><div class="line">fi</div><div class="line"></div><div class="line">echo  service:$serviceName,operator:$opt</div><div class="line"></div><div class="line">if [ "$serviceName" == "es" ]; then</div><div class="line"></div><div class="line">	if [ "$opt" == "install" ]; then</div><div class="line"></div><div class="line">	    if [ -n `which unzip` ]; then</div><div class="line">		 echo 'unzip exist'</div><div class="line">		else</div><div class="line">		 echo 'install unzip'</div><div class="line">		 yum install -y unzip</div><div class="line">		fi</div><div class="line"><span class="meta">		#</span>unzip es.zip</div><div class="line">		chmod +x /home/es/jdk1.8.0_131/bin/java</div><div class="line">		chmod +x /home/es/elasticsearch-5.3.0/bin/*</div><div class="line">		chmod +x /home/es/script/*.sh</div><div class="line">		export JAVA_HOME=/home/es/jdk1.8.0_131</div><div class="line">		mkdir -p /data/elasticsearch</div><div class="line"></div><div class="line">		groupadd es</div><div class="line">		useradd es -g es -p 'es123!@#'</div><div class="line">		chown  es /home/es -R</div><div class="line">		chown  es /data/elasticsearch -R</div><div class="line"></div><div class="line">		result=$(grep "/home/es/script/es_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/es_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/es_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/es_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		/home/es/script/es_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line">elif [ "$serviceName" == "kibana" ]; then</div><div class="line"></div><div class="line">    if [ "$opt" == "install" ]; then</div><div class="line">	</div><div class="line">		tar -zxvf /home/es/kibana-5.3.0-linux-x86_64.tar.gz</div><div class="line">		mv kibana-5.3.0-linux-x86_64 /home/es/kibana-5.3.0</div><div class="line">		chmod +x /home/es/kibana-5.3.0/bin/*</div><div class="line">		sed -i "s#^\#server.host:.*#server.host: \"0.0.0.0\"#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		sed -i "s#^\#pid.file:.*#pid.file: /var/run/kibana.pid#g" /home/es/kibana-5.3.0/config/kibana.yml</div><div class="line">		result=$(grep "/home/es/script/kibana_start.sh" /etc/rc.d/rc.local)</div><div class="line">		if echo $result |grep -q "/home/es/script/kibana_start.sh"; then</div><div class="line">		  echo "ignore auto setup set"</div><div class="line">		else</div><div class="line">		  echo '/home/es/script/kibana_start.sh'&gt;&gt;/etc/rc.d/rc.local</div><div class="line">		fi</div><div class="line">		chmod +x /etc/rc.d/rc.local</div><div class="line">		</div><div class="line">	elif  [ "$opt" == "start" ]; then</div><div class="line">		echo  service:$serviceName start. </div><div class="line">		/home/es/script/kibana_start.sh</div><div class="line">	elif  [ "$opt" == "stop" ]; then</div><div class="line">		echo  service:$serviceName stop. </div><div class="line">		 /home/es/script/kibana_stop.sh</div><div class="line">	else</div><div class="line">		echo  service:$serviceName,undefined opt:$opt... </div><div class="line">	fi</div><div class="line"></div><div class="line"></div><div class="line">elif [ "$serviceName" == "watcher" ]; then</div><div class="line"></div><div class="line">      if [ "$opt" == "install" ]; then</div><div class="line">			echo  service:$serviceName install. </div><div class="line">			cp -r /home/es/watcher /home/es/elasticsearch-5.3.0/plugins/</div><div class="line">	elif  [ "$opt" == "remove" ]; then</div><div class="line">		echo  service:$serviceName remove. </div><div class="line">		rm -rf /home/es/elasticsearch-5.3.0/plugins/watcher</div><div class="line">     fi</div><div class="line">  </div><div class="line"> else </div><div class="line">	echo "other starting ...."</div><div class="line">fi</div></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/07/06/es_install_script/" data-id="cj96ez104001v84q0gpp7p6fn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/07/06/es_install_script/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-high_CPU_investigation" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -518,7 +805,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/02/high_CPU_investigation/" data-id="cj8l2k0y1001tt8q0oa2pcg77" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/02/high_CPU_investigation/" data-id="cj96ez10l002d84q0m7a0lin9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -662,7 +949,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj8l2k0wq000gt8q04q0f6mae" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/07/01/centos firewall/" data-id="cj96ez0yk000v84q0suzbcwqt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -801,7 +1088,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj8l2k0yj002ht8q0ku0o3603" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="cj96ez10t002q84q03u94caf3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -941,7 +1228,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj8l2k0z40035t8q02kqd7kdk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="cj96ez11r003k84q0bav28mmg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1080,7 +1367,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj8l2k0we0006t8q0pgkvj6fx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cj96ez0xv000684q0tb96reg8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1158,284 +1445,6 @@
 
 
 
-    <article id="post-Elasticsearch5.3.0-options" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-options/">Elasticsearch 入门系列-操作篇</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-options/">
-            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            
-            
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cj8l2k0wj000at8q03reen5nn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-qps/">Elasticsearch 入门系列-常见问题收集篇</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-qps/">
-            <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Elasticsearch/">Elasticsearch</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            
-            <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
-<p>‘‘‘java</p>
-<p>request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);</p>
-<p>public MetaData save(final MetaData meta) {<br>        meta.setCreateTime(System.currentTimeMillis());<br>        meta.setUpdateTime(System.currentTimeMillis());<br>        IndexRequest request = new IndexRequest(INDEX_NAME, INDEX_TYPE).source(JSON.toJSONString(meta),<br>                XContentType.JSON);<br>        request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);<br>        IndexResponse respnese = client.index(request).actionGet(DEFAULT_TIMEOUT);<br>        if (respnese.getId() != null) {<br>            meta.setId(respnese.getId());<br>        }<br>        return meta;<br>    }<br>‘‘‘<br>那么基于http restful呢？答案是：在请求后面添加<br>‘‘‘java<br>？refresh=true<br>‘‘‘</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cj8l2k0wm000ct8q03kv9rphm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-Elasticsearch5.3.0-concepts" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1495,7 +1504,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj8l2k0wb0005t8q0udzqnx65" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cj96ez0xj000184q0nlbwvaj9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1574,7 +1583,7 @@
 
 
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -1584,7 +1593,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1593,7 +1602,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1602,7 +1611,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 12.5px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 17.5px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticsearch/" style="font-size: 15px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 12.5px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 12.5px;">搜索设计</a>
+            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 12.5px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 17.5px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticdump/" style="font-size: 10px;">elasticdump</a> <a href="/tags/elasticsearch/" style="font-size: 15px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 12.5px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 12.5px;">搜索设计</a>
         </div>
     </div>
 
