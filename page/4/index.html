@@ -143,11 +143,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                43
+                45
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                21
+                22
                 <span>标签</span>
             </div>
         </div>
@@ -172,6 +172,285 @@
 
             
             <section id="main">
+    <article id="post-java_job_summary" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/22/java_job_summary/">java工作技术总结</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/22/java_job_summary/">
+            <time datetime="2017-05-22T06:32:19.000Z" itemprop="datePublished">2017-05-22</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/linux/">linux</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            <p><h1 id="java工作技术总结"><a href="#java工作技术总结" class="headerlink" title="java工作技术总结"></a>java工作技术总结</h1><h2 id="redis的使用"><a href="#redis的使用" class="headerlink" title="redis的使用"></a>redis的使用</h2><p>redis是一款nosql数据库，一般用来做临时缓存。也可以用来做消费者和提供者的模型。<br>改造过一款基于redis的后台任务组件，jesque能把任何类或模块作为任务在后台执行，且自带前台管理功能，方便查看执行情况。用于程序间解藕。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/05/22/java_job_summary/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/22/java_job_summary/" data-id="ck3qwmd08002hp8q4gt2o4avp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/22/java_job_summary/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-message-search-design" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/19/message-search-design/">消息搜索设计</a>
+        </h1>
+    
+
+                
+				    
+					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
+					
+					<div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/19/message-search-design/">
+            <time datetime="2017-05-19T06:32:19.000Z" itemprop="datePublished">2017-05-19</time>
+        </a>
+    </div>
+
+
+						
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/design/">design</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/搜索设计/">搜索设计</a>
+    </div>
+
+						
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+		
+        
+            <p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着用户之间的活跃度不断的上升，大约每天会产生300w的数据数据，一个月会产生9000w的记录数据，一年差不多会产生10.8亿的记录数据。</p>
+<p>用户需要根据关键字在这些数据上进行做搜索操作，且搜索体验不能过慢。传统的mysql数据库，支持左匹配，在一定数据量情况下模糊匹配的效率是比较低下的。<br></p>
+            <p class="article-more-link">
+               <a href="/2017/05/19/message-search-design/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ledefe.tech/2017/05/19/message-search-design/" data-id="ck3qwmd0o003kp8q4kglnq9xe" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ledefe.tech/2017/05/19/message-search-design/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-Elasticsearch5.3.0-monitor" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -233,7 +512,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="cjbyn9216000apkq00cb3wss6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/18/Elasticsearch5.3.0-monitor/" data-id="ck3qwmcz7000dp8q4k8gv3knw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -311,7 +590,7 @@
 
 
 
-    <article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Elasticsearch5.3.0-concepts" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -319,7 +598,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-qps/">Elasticsearch 入门系列-常见问题收集篇</a>
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-concepts/">Elasticsearch 入门系列-概念篇</a>
         </h1>
     
 
@@ -331,7 +610,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-qps/">
+        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/">
             <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
         </a>
     </div>
@@ -341,7 +620,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+        <a class="article-category-link" href="/categories/elk/">elk</a>
     </div>
 
                         
@@ -360,11 +639,7 @@
 		
         
             
-            <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
-<p>‘‘‘java</p>
-<p>request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);</p>
-<p>public MetaData save(final MetaData meta) {<br>        meta.setCreateTime(System.currentTimeMillis());<br>        meta.setUpdateTime(System.currentTimeMillis());<br>        IndexRequest request = new IndexRequest(INDEX_NAME, INDEX_TYPE).source(JSON.toJSONString(meta),<br>                XContentType.JSON);<br>        request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);<br>        IndexResponse respnese = client.index(request).actionGet(DEFAULT_TIMEOUT);<br>        if (respnese.getId() != null) {<br>            meta.setId(respnese.getId());<br>        }<br>        return meta;<br>    }<br>‘‘‘<br>那么基于http restful呢？答案是：在请求后面添加<br>‘‘‘java<br>？refresh=true<br>‘‘‘</p>
-
+            
         
         </div>
         <footer class="article-footer">
@@ -374,7 +649,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="cjbyn9218000dpkq0qog9pag2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="ck3qwmcz00002p8q4l7f4zd1k" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -442,7 +717,7 @@
 
             
     
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -511,7 +786,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="cjbyn92120004pkq0mplsbon0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-options/" data-id="ck3qwmcz40006p8q4ogbh2vhj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -653,7 +928,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="cjbyn920v0000pkq0hoz2yq37" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/EFK-design-I/" data-id="ck3qwmcz60009p8q4ady8jt86" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -731,7 +1006,7 @@
 
 
 
-    <article id="post-Elasticsearch5.3.0-concepts" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Elasticsearch5.3.0-qps" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -739,7 +1014,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-concepts/">Elasticsearch 入门系列-概念篇</a>
+            <a class="article-title" href="/2017/05/05/Elasticsearch5.3.0-qps/">Elasticsearch 入门系列-常见问题收集篇</a>
         </h1>
     
 
@@ -751,7 +1026,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/05/05/Elasticsearch5.3.0-concepts/">
+        <a href="/2017/05/05/Elasticsearch5.3.0-qps/">
             <time datetime="2017-05-05T06:32:19.000Z" itemprop="datePublished">2017-05-05</time>
         </a>
     </div>
@@ -761,7 +1036,7 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
+        <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
     </div>
 
                         
@@ -780,7 +1055,11 @@
 		
         
             
-            
+            <h1 id="1-用java-api更新或保存数据后，发现数据未及时更新"><a href="#1-用java-api更新或保存数据后，发现数据未及时更新" class="headerlink" title="1.用java api更新或保存数据后，发现数据未及时更新"></a>1.用java api更新或保存数据后，发现数据未及时更新</h1><p>可设置刷新策略：</p>
+<p>‘‘‘java</p>
+<p>request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);</p>
+<p>public MetaData save(final MetaData meta) {<br>        meta.setCreateTime(System.currentTimeMillis());<br>        meta.setUpdateTime(System.currentTimeMillis());<br>        IndexRequest request = new IndexRequest(INDEX_NAME, INDEX_TYPE).source(JSON.toJSONString(meta),<br>                XContentType.JSON);<br>        request.setRefreshPolicy(RefreshPolicy.IMMEDIATE);<br>        IndexResponse respnese = client.index(request).actionGet(DEFAULT_TIMEOUT);<br>        if (respnese.getId() != null) {<br>            meta.setId(respnese.getId());<br>        }<br>        return meta;<br>    }<br>‘‘‘<br>那么基于http restful呢？答案是：在请求后面添加<br>‘‘‘java<br>？refresh=true<br>‘‘‘</p>
+
         
         </div>
         <footer class="article-footer">
@@ -790,7 +1069,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/" data-id="cjbyn920z0001pkq0729w2omt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/" data-id="ck3qwmcze000rp8q4r9mvj8d8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -858,7 +1137,7 @@
 
             
     
-        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-concepts/#comments" class="article-comment-link">评论</a>
+        <a href="http://ledefe.tech/2017/05/05/Elasticsearch5.3.0-qps/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -933,7 +1212,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="cjbyn923y0034pkq0b1xlb97c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/04/kibana-5.3.0-install/" data-id="ck3qwmd0j0035p8q4t0a5pozt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1074,7 +1353,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="cjbyn921d000ppkq0nn5ol0oq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/03/JDK-1.8-install/" data-id="ck3qwmcz9000gp8q4enrte8jq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1216,7 +1495,7 @@
 
 </div>
 
-    <a data-url="http://ledefe.tech/2017/05/01/logstash-5.3.0-install/" data-id="cjbyn924b003tpkq0svs5bnz6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://ledefe.tech/2017/05/01/logstash-5.3.0-install/" data-id="ck3qwmd0u003up8q4ijiae7ag" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1294,293 +1573,6 @@
 
 
 
-    <article id="post-flume1.7-install(server)" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/04/26/flume1.7-install(server)/">Flume 1.7 安裝（服务聚合端）</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/04/26/flume1.7-install(server)/">
-            <time datetime="2017-04-26T06:32:19.000Z" itemprop="datePublished">2017-04-26</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/flume1-7/">flume1.7</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            <p><h1 id="Flume-1-7-安裝（服务聚合端）"><a href="#Flume-1-7-安裝（服务聚合端）" class="headerlink" title="Flume 1.7 安裝（服务聚合端）"></a>Flume 1.7 安裝（服务聚合端）</h1><p>该版本是基于flume 1.7版本，扩展兼容elasticsearch5.3.0</p>
-<h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1><p>资源： flume.zip</p>
-<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1></p>
-            <p class="article-more-link">
-               <a href="/2017/04/26/flume1.7-install(server)/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/04/26/flume1.7-install(server)/" data-id="cjbyn923k002kpkq05t7jtwrs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/04/26/flume1.7-install(server)/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-flume1.7-install(client)" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/04/25/flume1.7-install(client)/">flume1.7-部署(服务采集端)</a>
-        </h1>
-    
-
-                
-				    
-					<span class="label label-warning" style="float: left;padding: 5px 5px 5px 5px;margin-right: 15px;;background-color:#5cb85c;color:#fff;line-height: 1;font-size:75%">原创</span>
-					
-					<div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/04/25/flume1.7-install(client)/">
-            <time datetime="2017-04-25T06:32:19.000Z" itemprop="datePublished">2017-04-25</time>
-        </a>
-    </div>
-
-
-						
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/elk/">elk</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/flume/">flume</a>
-    </div>
-
-						
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-		
-        
-            <p><h1 id="Flume-1-7-采集端"><a href="#Flume-1-7-采集端" class="headerlink" title="Flume 1.7 采集端"></a>Flume 1.7 采集端</h1><p>客户端的部署，这边以监控某个文件夹目录为例，进行说明</p>
-<h1 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h1><p>资源： flume.zip</p>
-<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><h2 id="指定安装目录"><a href="#指定安装目录" class="headerlink" title="指定安装目录"></a>指定安装目录</h2><pre><code>mkdir -p /opt/flume_client
-</code></pre><p><strong>接下来的操作都在/opt/flume_client下操作</strong></p>
-<h2 id="zip包准备"><a href="#zip包准备" class="headerlink" title="zip包准备"></a>zip包准备</h2><ul>
-<li>上传至/opt/flume_client目录下</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /opt/flume_client</div><div class="line">rz -y</div></pre></td></tr></table></figure></p>
-            <p class="article-more-link">
-               <a href="/2017/04/25/flume1.7-install(client)/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ledefe.tech/2017/04/25/flume1.7-install(client)/" data-id="cjbyn921t001tpkq0qe8p241x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ledefe.tech/2017/04/25/flume1.7-install(client)/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
     </nav>
@@ -1592,7 +1584,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/design/">design</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/devops/">devops</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch/">elasticsearch</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/elk/">elk</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1601,7 +1593,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1610,7 +1602,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 12.5px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 15px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/elasticdump/" style="font-size: 10px;">elasticdump</a> <a href="/tags/elasticsearch/" style="font-size: 17.5px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 12.5px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 12.5px;">搜索设计</a>
+            <a href="/tags/EFK/" style="font-size: 10px;">EFK</a> <a href="/tags/EFK-日志采集/" style="font-size: 12.5px;">EFK 日志采集</a> <a href="/tags/Elasticsearch/" style="font-size: 15px;">Elasticsearch</a> <a href="/tags/Flume-ElasticSearch/" style="font-size: 10px;">Flume ElasticSearch</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/ansible/" style="font-size: 12.5px;">ansible</a> <a href="/tags/devops/" style="font-size: 10px;">devops</a> <a href="/tags/elasticdump/" style="font-size: 10px;">elasticdump</a> <a href="/tags/elasticsearch/" style="font-size: 17.5px;">elasticsearch</a> <a href="/tags/filebeat/" style="font-size: 10px;">filebeat</a> <a href="/tags/flume/" style="font-size: 10px;">flume</a> <a href="/tags/flume1-7/" style="font-size: 10px;">flume1.7</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/java-shell/" style="font-size: 10px;">java shell</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/kibana/" style="font-size: 10px;">kibana</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/logstash/" style="font-size: 12.5px;">logstash</a> <a href="/tags/lucence/" style="font-size: 10px;">lucence</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/spring-jar/" style="font-size: 10px;">spring jar</a> <a href="/tags/搜索设计/" style="font-size: 12.5px;">搜索设计</a>
         </div>
     </div>
 
@@ -1642,7 +1634,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 ledefe<br>
+            &copy; 2019 ledefe<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
